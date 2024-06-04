@@ -119,6 +119,8 @@ a {
 #player .ctrl .icon:hover, #player .ctrl .icon.enable {
   opacity: 0.3;
 }
+
+#player .ctrl .progress  .enable{ opacity:1;}
 #player .ctrl .icon:active {
   opacity: 0.3;
 }
@@ -189,13 +191,13 @@ a {
 }
 #player .ctrl .progress .shuffle {
   background-image: url(../images/shuffle.png);
-  display: none;
+
 }
 
 .slider {
   background: rgba(0, 0, 0, 0.3);
   height: 5px;
-  width: 87%;
+  width: 76%;
   position: relative;
   cursor: pointer;
   float: left;
@@ -268,11 +270,11 @@ a {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
   /*			  height:calc(100% - 350px);  
 			 height: -moz-calc(100% - 350px);
-             height: -webkit-calc(100% - 350px);*/
+             height: -webkit-calc(100% - 350px);
   overflow-y: scroll;
   height: calc(100% - 470px);
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;*/
 }
 #playlist li {
   color: #aaa;
