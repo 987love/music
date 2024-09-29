@@ -50,6 +50,7 @@ a {
     line-height: 1.2em;
     display: inline;
     float: left;
+    letter-spacing: 0.1em;
 }
 		#title-en{
     line-height: 1.2em;
@@ -61,6 +62,7 @@ a {
     line-height: 2.2em;
     font-size: 1.0em;
     padding-left: 12px;
+    letter-spacing: 0.1em;
 }
 		#adress-en{
     line-height: 1.2em;
@@ -78,14 +80,18 @@ a {
             font-size: 1.1em;
             line-height: 2em;
             margin: 0px 1.6em;
-            text-indent: 2.2em;
+            text-indent: 1em;
             clear: both;
             min-height: 10em;
         }
 		
-		#descr-en{padding-top: 13px;padding-bottom: 30px;border-top: 1px solid #ccc;margin-top: -15px;}
+		#descr-en{padding-top: 13px;padding-bottom: 30px;min-height: 1em;}
 		  .description  p {margin-top: 0.2em;letter-spacing: 0.1em;}
-		
+		.word-cn{}
+		.word-en{
+    line-height: 1.6em;
+    padding-bottom: 1.2em;
+}
         .address {
             color: #000000;
             margin: 5px 0;
@@ -98,7 +104,7 @@ a {
         .flag {
             width: 70px;
             height: auto;
-            margin-top: -44px;
+            margin-top: -45px;
             float: left;
             margin-right: 17px;
             position: absolute;
