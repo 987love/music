@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>世界名胜古迹</title>
+<link rel="stylesheet" href="css/post.css">
+<script src="js/post.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script>
+       
+
+        function getParameterByName(name) {
+            const url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        window.onload = function() {
+            const p = getParameterByName('p');
+            if (data[p]) {
+                document.getElementById('title-cn').innerText = data[p].title_cn;
+                document.getElementById('title-en').innerText = data[p].title_en;
+                document.getElementById('descr-cn').innerHTML = data[p].descr_cn;
+                document.getElementById('descr-en').innerHTML = data[p].descr_en;
+                document.getElementById('adress-cn').innerText = data[p].adress_cn;
+                document.getElementById('adress-en').innerText = data[p].adress_en;
+                document.getElementById('image').src = data[p].img;
+                document.getElementById('country-flag').src = data[p].country_flag_img;
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+	    <img id="image" alt="动态图片" />
+		<div class="sec">
+		<img id="country-flag" class="flag" alt="国旗" />
+		<div class="sec_right">
+		   <div class="sec_cn"> 
+			   <h1 id="title-cn"></h1> 
+			   <div class="address" id="adress-cn"></div>
+		   </div>
+		 
+		  <div class="sec_en"> 
+               <h1 id="title-en"></h1>
+               <div class="address" id="adress-en"></div>
+		</div>   
+		</div>
+		</div>
+		
+        <div class="description" id="descr-cn"></div>
+        <div class="description" id="descr-en"></div>
+        
+    </div>
+</body>
+</html>

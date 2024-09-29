@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  background: #333;
+  color: #fff;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            font-size: 1.8em;
+            color: #000000;
+        }
+        .container {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            margin-bottom: 50px;
+        }
+		.sec{
+    clear: both;
+    width: 100%;
+    padding: 10px 11px;
+}
+		.sec_right{margin: 5px 7px 0;width: 88%;}
+
+.sec_cn{height: 2.6em;overflow: hidden;}
+.sec_en{
+    clear: both;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-top: 4px;
+}
+			
+	#image {width: 100%;}
+		#title-cn{
+    line-height: 1.2em;
+    display: inline;
+    float: left;
+}
+		#title-en{
+    line-height: 1.3em;
+    margin: 0;
+    padding: 0;
+}
+		#adress-cn{
+    float: left;
+    line-height: 2.2em;
+    font-size: 1.0em;
+    padding-left: 12px;
+}
+		#adress-en{
+    line-height: 1.8em;
+    font-size: 1.2em;
+    color: #3d3d3d;
+}
+		
+		.third{ clear:both}
+		
+
+		
+        .description {
+            font-size: 1.1em;
+            line-height: 2em;
+            margin: 0px 1.6em;
+            text-indent: 2.2em;
+            clear: both;
+            /* border-top: 1px solid #ccc; */
+        }
+		
+		#descr-en{padding-top: 13px;padding-bottom: 30px;border-top: 1px solid #ccc;margin-top: -15px;}
+		  .description  p { margin-bottom:2em}
+		
+        .address {
+            color: #000000;
+            margin: 5px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .flag {
+            width: 70px;
+            height: auto;
+            margin-top: -44px;
+            float: left;
+            margin-right: 17px;
+            position: absolute;
+            z-index: 9998;
+            padding: 2px;
+            background: #ffffffbd;
+        }
+ 
