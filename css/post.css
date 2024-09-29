@@ -3,8 +3,8 @@
   padding: 0;
 }
 
+html{ width:100%; overflow-x:hidden;}
 body {
-  font: 14px "Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
   background: #333;
   color: #fff;
 }
@@ -52,7 +52,7 @@ a {
     float: left;
 }
 		#title-en{
-    line-height: 1.3em;
+    line-height: 1.2em;
     margin: 0;
     padding: 0;
 }
@@ -63,9 +63,11 @@ a {
     padding-left: 12px;
 }
 		#adress-en{
-    line-height: 1.8em;
+    line-height: 1.2em;
     font-size: 1.2em;
     color: #3d3d3d;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 		
 		.third{ clear:both}
@@ -82,7 +84,7 @@ a {
         }
 		
 		#descr-en{padding-top: 13px;padding-bottom: 30px;border-top: 1px solid #ccc;margin-top: -15px;}
-		  .description  p { margin-bottom:2em}
+		  .description  p {margin-top: 0.2em;letter-spacing: 0.1em;}
 		
         .address {
             color: #000000;
