@@ -45,7 +45,8 @@ a {
     padding-top: 4px;
 }
 			
-	#image {width: 100%;}
+	#image {width: 100%;display: block;
+   min-height: 15em;background: url(../img/loading.gif) no-repeat top center;}
 		#title-cn{
     line-height: 1.2em;
     display: inline;
