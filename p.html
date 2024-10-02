@@ -7,19 +7,6 @@
     <script src="js/post.js"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=tCF5EpUw"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <style>
-        button {
-            margin-left: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
     <script>
         function getParameterByName(name) {
             const url = new URL(window.location.href);
@@ -32,29 +19,29 @@
             return countryName.charAt(0).toUpperCase() + countryName.slice(1);
         }
 
-        function addReadButtons() {
-            const descrCn = document.getElementById('descr-cn');
-
-            // 处理英文段落
-            const englishParagraphs = descrCn.getElementsByClassName('word-en');
-            Array.from(englishParagraphs).forEach(paragraph => {
-                const text = paragraph.innerText;
-                const button = document.createElement('button');
-                button.innerText = '🔊';
-                button.onclick = () => responsiveVoice.speak(text, "UK English Female");
-                paragraph.appendChild(button);
-            });
-
-            // 处理中文段落
-            const chineseParagraphs = descrCn.getElementsByClassName('word-cn');
-            Array.from(chineseParagraphs).forEach(paragraph => {
-                const text = paragraph.innerText;
-                const button = document.createElement('button');
-                button.innerText = '🔊';
-                button.onclick = () => responsiveVoice.speak(text, "Chinese Female");
-                paragraph.appendChild(button);
-            });
-        }
+		   function addReadButtons() {
+		const descrCn = document.getElementById('descr-cn');
+		
+		// 处理英文段落
+		const englishParagraphs = descrCn.getElementsByClassName('word-en');
+		Array.from(englishParagraphs).forEach(paragraph => {
+			const text = paragraph.innerText;
+			const button = document.createElement('button');
+			button.innerText = '🔊';
+			button.onclick = () => responsiveVoice.speak(text, "UK English Female");
+			paragraph.appendChild(button);
+		});
+	
+		// 处理中文段落
+		const chineseParagraphs = descrCn.getElementsByClassName('word-cn');
+		Array.from(chineseParagraphs).forEach(paragraph => {
+			const text = paragraph.innerText;
+			const button = document.createElement('button');
+			button.innerText = '🔊';
+			button.onclick = () => responsiveVoice.speak(text, "Chinese Female");
+			paragraph.appendChild(button);
+		});
+	}
 
         window.onload = function() {
             const p = getParameterByName('p');
