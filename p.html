@@ -26,7 +26,7 @@
             Array.from(paragraphs).forEach(paragraph => {
                 const text = paragraph.innerText;
                 const button = document.createElement('button');
-                button.innerText = '朗读';
+                button.innerText = '朗读2';
                 button.onclick = () => responsiveVoice.speak(text, "Chinese Female"); // 使用 ResponsiveVoice.js
                 paragraph.appendChild(button); // 将按钮添加到段落末尾
             });
