@@ -20,28 +20,40 @@
         }
 
 		   function addReadButtons() {
-		const descrCn = document.getElementById('descr-cn');
-		
-		// 处理英文段落
-		const englishParagraphs = descrCn.getElementsByClassName('word-en');
-		Array.from(englishParagraphs).forEach(paragraph => {
-			const text = paragraph.innerText;
-			const button = document.createElement('button');
-			button.innerText = '🗢';
-			button.onclick = () => responsiveVoice.speak(text, "UK English Female");
-			paragraph.appendChild(button);
-		});
-	
-		// 处理中文段落
-		const chineseParagraphs = descrCn.getElementsByClassName('word-cn');
-		Array.from(chineseParagraphs).forEach(paragraph => {
-			const text = paragraph.innerText;
-			const button = document.createElement('button');
-			button.innerText = '🗢';
-			button.onclick = () => responsiveVoice.speak(text, "Chinese Female");
-			paragraph.appendChild(button);
-		});
-	}
+    const descrCn = document.getElementById('descr-cn');
+    
+    // 处理中文段落
+    const chineseParagraphs = descrCn.getElementsByClassName('word-cn');
+    Array.from(chineseParagraphs).forEach(paragraph => {
+        const text = paragraph.innerText;
+        const button = document.createElement('button');
+        button.innerText = '🔈';
+        
+        button.onclick = () => {
+            button.innerText = '👄'; // 改变按钮文本
+            responsiveVoice.speak(text, "Chinese Female", {
+                onend: () => button.innerText = '🔈' // 播放结束后恢复文本
+            });
+        };
+        paragraph.appendChild(button);
+    });
+
+    // 处理英文段落
+    const englishParagraphs = descrCn.getElementsByClassName('word-en');
+    Array.from(englishParagraphs).forEach(paragraph => {
+        const text = paragraph.innerText;
+        const button = document.createElement('button');
+        button.innerText = '🔈';
+        
+        button.onclick = () => {
+            button.innerText = '👄'; // 改变按钮文本
+            responsiveVoice.speak(text, "UK English Female", {
+                onend: () => button.innerText = '🔈' // 播放结束后恢复文本
+            });
+        };
+        paragraph.appendChild(button);
+    });
+}
 
         window.onload = function() {
             const p = getParameterByName('p');
