@@ -141,12 +141,12 @@ a {
     cursor: pointer;
  }  
 	.description button:hover {
-                  background-image: url(images/play.svg) ; background-repeat:no-repeat;
+                  background-image: url(images/play.gif) ;  background-size: 30px 30px;background-repeat:no-repeat;
         }
 	
 	
 	
-	.description button:active {  background: url(images/play.svg) ; background-repeat:no-repeat;
+	.description button:active {  background: url(images/play.gif) ; background-repeat:no-repeat;
 }
 	
 		.word-cn{}
