@@ -1,78 +1,83 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>世界名胜古迹</title>
-<link rel="stylesheet" href="css/post.css">
-<script src="js/post.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<script>
-       
-
+    <meta charset="utf-8" />
+    <title>世界名胜古迹</title>
+    <link rel="stylesheet" href="css/post.css">
+    <script src="js/post.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script>
         function getParameterByName(name) {
             const url = new URL(window.location.href);
             return url.searchParams.get(name);
         }
-		
-		
-		function getCountryName(flagImg) {
-            // 获取文件名并去掉扩展名
-            const filename = flagImg.split('/').pop(); // 获取最后一部分
-            const countryName = filename.split('.')[0]; // 去掉扩展名
-            return countryName.charAt(0).toUpperCase() + countryName.slice(1); // 首字母大写
+
+        function getCountryName(flagImg) {
+            const filename = flagImg.split('/').pop();
+            const countryName = filename.split('.')[0];
+            return countryName.charAt(0).toUpperCase() + countryName.slice(1);
         }
 
-		
-		
-		
+        function readText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function addReadButtons() {
+            const descrCn = document.getElementById('descr-cn');
+            const paragraphs = descrCn.getElementsByTagName('p');
+
+            Array.from(paragraphs).forEach(paragraph => {
+                const text = paragraph.innerText;
+                const button = document.createElement('button');
+                button.innerText = '🔉';
+                button.onclick = () => readText(text);
+                paragraph.appendChild(button); // 将按钮添加到段落末尾
+            });
+        }
 
         window.onload = function() {
             const p = getParameterByName('p');
             if (data[p]) {
                 document.getElementById('title-cn').innerText = data[p].title_cn;
                 document.getElementById('title-en').innerText = data[p].title_en;
-                document.getElementById('descr-cn').innerHTML = data[p].descr_cn;
-                document.getElementById('descr-en').innerHTML = data[p].descr_en;
                 document.getElementById('adress-cn').innerText = data[p].adress_cn;
                 document.getElementById('adress-en').innerText = data[p].adress_en;
                 document.getElementById('image').src = data[p].img;
                 document.getElementById('country-flag').src = data[p].country_flag_img;
-				document.getElementById('country-flag').src = data[p].country_flag_img;
-				
-				// 提取并显示国家名称
+                document.getElementById('descr-cn').innerHTML = data[p].descr_cn; // 使用原始数据
+
                 const countryName = getCountryName(data[p].country_flag_img);
                 document.getElementById('country-name').innerText = countryName;
-				
+
+                // 添加朗读按钮
+                addReadButtons();
             }
         };
     </script>
 </head>
 <body>
     <div class="container">
-	    <img id="image" alt="动态图片" src="img/loading.gif" />
-		<div class="sec">
-		<img id="country-flag" class="flag" alt="国旗" src="img/positioning.gif" />
-		<div id="country-name" class="country"></div>
-		<div class="sec_right">
-		   <div class="sec_cn">  
-			   <h1 id="title-cn">景区名称加载中...</h1> 
-			   <div class="address" id="adress-cn">景区位置加载中...</div>
-		   </div>
-		 
-		  <div class="sec_en"> 
-               <h1 id="title-en">Attraction name loading...</h1>
-               <div class="address" id="adress-en">Attractions are loading..</div>
-			   <div class="clear"></div>
-		</div>   
-		</div>
-		</div>
-		
+        <img id="image" alt="动态图片" src="img/loading.gif" />
+        <div class="sec">
+            <img id="country-flag" class="flag" alt="国旗" src="img/positioning.gif" />
+            <div id="country-name" class="country"></div>
+            <div class="sec_right">
+                <div class="sec_cn">  
+                    <h1 id="title-cn">景区名称加载中...</h1> 
+                    <div class="address" id="adress-cn">景区位置加载中...</div>
+                </div>
+                <div class="sec_en"> 
+                    <h1 id="title-en">Attraction name loading...</h1>
+                    <div class="address" id="adress-en">Attractions are loading..</div>
+                    <div class="clear"></div>
+                </div>   
+            </div>
+        </div>
+        
         <div class="description" id="descr-cn">景点介绍加载中...</div>
         <div class="description" id="descr-en">Attractions introduction loading...</div>
-        
     </div>
-	<div class="copyright" >山海蝉月文化版权所有</div>
+    <div class="copyright">山海蝉月文化版权所有</div>
 </body>
 </html>
