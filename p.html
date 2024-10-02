@@ -15,6 +15,18 @@
             const url = new URL(window.location.href);
             return url.searchParams.get(name);
         }
+		
+		
+		function getCountryName(flagImg) {
+            // 获取文件名并去掉扩展名
+            const filename = flagImg.split('/').pop(); // 获取最后一部分
+            const countryName = filename.split('.')[0]; // 去掉扩展名
+            return countryName.charAt(0).toUpperCase() + countryName.slice(1); // 首字母大写
+        }
+
+		
+		
+		
 
         window.onload = function() {
             const p = getParameterByName('p');
@@ -27,6 +39,12 @@
                 document.getElementById('adress-en').innerText = data[p].adress_en;
                 document.getElementById('image').src = data[p].img;
                 document.getElementById('country-flag').src = data[p].country_flag_img;
+				document.getElementById('country-flag').src = data[p].country_flag_img;
+				
+				// 提取并显示国家名称
+                const countryName = getCountryName(data[p].country_flag_img);
+                document.getElementById('country-name').innerText = countryName;
+				
             }
         };
     </script>
@@ -36,6 +54,7 @@
 	    <img id="image" alt="动态图片" src="img/loading.gif" />
 		<div class="sec">
 		<img id="country-flag" class="flag" alt="国旗" src="img/positioning.gif" />
+		<div id="country-name" class="country"></div>
 		<div class="sec_right">
 		   <div class="sec_cn">  
 			   <h1 id="title-cn">景区名称加载中...</h1> 
@@ -45,6 +64,7 @@
 		  <div class="sec_en"> 
                <h1 id="title-en">Attraction name loading...</h1>
                <div class="address" id="adress-en">Attractions are loading..</div>
+			   <div class="clear"></div>
 		</div>   
 		</div>
 		</div>

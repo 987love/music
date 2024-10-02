@@ -8,11 +8,32 @@ body {
   background: #333;
   color: #fff;
 }
+@font-face {
+	font-family:enart;
+	src:url(enart.otf);
+}
+@font-face {
+	font-family:entitle;
+	src:url(entitle.otf);
+}
+@font-face {
+	font-family:pinyin;
+	src:url(pinyin.otf);
+}
 
+@font-face {
+	font-family:enarticle;
+	src:url(entitle.otf);
+}
+@font-face {
+	font-family:enwen;
+	src:url(enwen.otf);
+}
 a {
   outline: none;
   text-decoration: none;
 }
+.clear{ clear:both;}
 
         body {
             font-family: Arial, sans-serif;
@@ -40,7 +61,6 @@ a {
 .sec_cn{height: 2.6em;overflow: hidden;}
 .sec_en{
     clear: both;
-    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     padding-top: 4px;
 }
@@ -51,12 +71,29 @@ a {
     line-height: 1.2em;
     display: inline;
     float: left;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.1em; 
 }
+.country{
+            font-family:enart;
+            margin-top: -35px;
+            float: left;
+            margin-left: 87px;
+            position: absolute;
+            font-size: 2em;
+            letter-spacing: 8px;
+            text-shadow: 1px 1px 5px #000;
+            color: #fff;
+            }
 		#title-en{
     line-height: 1.2em;
     margin: 0;
+    font-size: 1.4em;
     padding: 0;
+    display: inline-block;
+    float: left;
+    padding-right: 0.5em;
+    font-family: 'enarticle';
+    letter-spacing:5px;
 }
 		#adress-cn{
     float: left;
@@ -66,11 +103,15 @@ a {
     letter-spacing: 0.1em;
 }
 		#adress-en{
-    line-height: 1.2em;
-    font-size: 1.2em;
+    line-height: 1.5em;
+    font-size: 1.1em;
     color: #3d3d3d;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 10px;
+    display: inline;
+    float: left;
+    font-family: 'entitle';
+    letter-spacing: 1px;
 }
 		
 		.third{ clear:both}
@@ -91,7 +132,7 @@ a {
 		.word-cn{}
 		.word-en{
     line-height: 1.6em;
-    padding-bottom: 1.2em;
+    padding-bottom: 1.2em; font-family:enwen;
 }
         .address {
             color: #000000;
