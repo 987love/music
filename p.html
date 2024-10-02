@@ -5,6 +5,7 @@
     <title>世界名胜古迹</title>
     <link rel="stylesheet" href="css/post.css">
     <script src="js/post.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=tCF5EpUw"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <script>
         function getParameterByName(name) {
@@ -18,11 +19,6 @@
             return countryName.charAt(0).toUpperCase() + countryName.slice(1);
         }
 
-        function readText(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            window.speechSynthesis.speak(utterance);
-        }
-
         function addReadButtons() {
             const descrCn = document.getElementById('descr-cn');
             const paragraphs = descrCn.getElementsByTagName('p');
@@ -30,8 +26,8 @@
             Array.from(paragraphs).forEach(paragraph => {
                 const text = paragraph.innerText;
                 const button = document.createElement('button');
-                button.innerText = '🔉';
-                button.onclick = () => readText(text);
+                button.innerText = '朗读';
+                button.onclick = () => responsiveVoice.speak(text, "UK English Female"); // 使用 ResponsiveVoice.js
                 paragraph.appendChild(button); // 将按钮添加到段落末尾
             });
         }
