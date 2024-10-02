@@ -27,7 +27,7 @@
 		Array.from(englishParagraphs).forEach(paragraph => {
 			const text = paragraph.innerText;
 			const button = document.createElement('button');
-			button.innerText = '🔊';
+			button.innerText = '🗢';
 			button.onclick = () => responsiveVoice.speak(text, "UK English Female");
 			paragraph.appendChild(button);
 		});
@@ -37,7 +37,7 @@
 		Array.from(chineseParagraphs).forEach(paragraph => {
 			const text = paragraph.innerText;
 			const button = document.createElement('button');
-			button.innerText = '🔊';
+			button.innerText = '🗢';
 			button.onclick = () => responsiveVoice.speak(text, "Chinese Female");
 			paragraph.appendChild(button);
 		});
