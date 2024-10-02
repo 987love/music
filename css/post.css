@@ -134,7 +134,7 @@ a {
     border: 1px solid #fff;
     padding: 0 4px 0px; font-size:0.8em;
     line-height: 22px;
-    border-radius: 10px;
+    border-radius: 30px;
 	transition: transform 0.1s; /* 添加过渡效果 */
 	
 	margin-left: 10px;
@@ -152,7 +152,7 @@ a {
 	
 	
 	.description button:active { background:#0099FF; color:#fff;
-    transform: translateY(3px); /* 向下移动 */ 
+    transform: translateY(-3px); /* 向下移动 */ 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 产生阴影效果 */ border:2px solid #66FFFF;
 }
 	
