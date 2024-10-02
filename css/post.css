@@ -49,7 +49,6 @@ a {
             background: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 0;
-            margin-bottom: 50px;
         }
 		.sec{
     clear: both;
@@ -154,4 +153,4 @@ a {
             padding: 2px;
             background: #ffffffbd;
         }
- .copyright{text-align:center; font-size:1em; background:#222; color:#888; padding:1em 0; }
+ .copyright{text-align:center; font-size:0.6em; background:#222; color:#888; padding:1em 0; }
