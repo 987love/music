@@ -58,7 +58,7 @@ a {
 }
 		.sec_right{margin: 5px 7px 0;width: 88%;}
 
-.sec_cn{height: 2.6em;overflow: hidden;}
+.sec_cn{}
 .sec_en{
     clear: both;
    border-bottom: 2px dotted #ccc;;
