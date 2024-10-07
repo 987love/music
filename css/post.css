@@ -190,25 +190,38 @@ a {
 	
 	
 	
-	 .nav-links {    position: fixed;
-    top: 90%;
-    left: 24px;
-    z-index: 1000;
+	 .nav-links {    position: relative; /* 为了让绝对定位的动画相对 */
+        overflow: hidden; /* 防止按钮飞出边界 */
         }
         .nav-links a {margin: 0 0px;
     padding: 8px 15px;
     background: #fffffff0;
     border: 1px solid #dbdbdb;
     text-decoration: none;
-    font-size: 1.3em; display:inline-block;
-    color: #000;
+    font-size: 1.3em; display:inline-block; position:fixed;
+    color: #000;transition: transform 1.5s ease; /* 动画效果 */ 
         }
-		#previous-link{moz-transform:scaleX(-1);
+		.fly-left {
+        transform: translateX(-100vw); border-radius: 50px 0 0 50px; border-right:none;  /* 向左飞离 */
+    }
+
+    .fly-right {
+        transform: translateX(100vw); border-radius: 0 50px 50px 0; border-left:none; /* 向右飞离 */ 
+    }
+		
+		
+		#previous-link{  top:85%; left:135px;}
+			
+			
+		#previous-link b{ moz-transform:scaleX(-1);
             -webkit-transform:scaleX(-1);
             -o-transform:scaleX(-1);
-            transform:scaleX(-1);
+            transform:scaleX(-1); display:inline-block;
             /*兼容IE*/
-            filter:FlipH;}
+            filter:FlipH;}	
+			
+			#next-link{ top:85%; left:187px;}
+			
         .nav-links a:hover {
-            background: #0099CC; color:#fff;
+            
         }

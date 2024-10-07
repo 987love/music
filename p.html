@@ -55,19 +55,33 @@
             });
         }
 
-			   function setNavigationLinks() {
-			const p = parseInt(getParameterByName('p'));
-			const totalPages = 100;
+						 function setNavigationLinks() {
+				const p = parseInt(getParameterByName('p'));
+				const totalPages = 100;
 		
-			const previous = (p === 1) ? totalPages : p - 1;
-			const next = (p === totalPages) ? 1 : p + 1;
+				const previous = (p === 1) ? totalPages : p - 1;
+				const next = (p === totalPages) ? 1 : p + 1;
 		
-			const previousLink = document.getElementById('previous-link');
-			const nextLink = document.getElementById('next-link');
+				const previousLink = document.getElementById('previous-link');
+				const nextLink = document.getElementById('next-link');
 		
-			previousLink.href = `p.html?p=${previous}`;
-			nextLink.href = `p.html?p=${next}`;
-		}
+				previousLink.href = `p.html?p=${previous}`;
+				nextLink.href = `p.html?p=${next}`;
+		
+				previousLink.onclick = function() {
+					this.classList.add('fly-left');
+					setTimeout(() => {
+						window.location.href = this.href; // 等待动画结束后跳转
+					}, 500); // 与动画时长相同
+				};
+		
+				nextLink.onclick = function() {
+					this.classList.add('fly-right');
+					setTimeout(() => {
+						window.location.href = this.href; // 等待动画结束后跳转
+					}, 500); // 与动画时长相同
+				};
+			}
 
         window.onload = function() {
             const p = getParameterByName('p');
@@ -95,8 +109,8 @@
 </head>
 <body>
     <div class="nav-links">
-        <a id="previous-link" href="#">✈</a>
-        <a id="next-link" href="#">✈</a>
+        <a id="previous-link" href="#"><b>✈</b></a>
+        <a id="next-link" href="#"><b>✈</b></a>
     </div>
     <div class="container">
         <img id="image" alt="动态图片" src="img/loading.gif" />
