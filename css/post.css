@@ -44,7 +44,7 @@ a {
         }
         h1 {
             font-size: 1.8em;
-            color: #000000;
+            color: #ffffff;
         }
         .container {
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@ a {
 		.sec{
     clear: both;
     padding: 7px 7px;
-    background: #ffffffab;
+    background: #0a0a0a;
     border-bottom: 2px solid #e5e5e5;
     margin: 0px 0px 13px;
     box-shadow: 3px 4px 14px #bfbbbb45;
@@ -63,12 +63,12 @@ a {
 .sec_cn{}
 .sec_en{
     clear: both;
-     border-top:1px solid #f3f3f3;
-    padding-top: 4px;
+    border-top: 1px solid #181818;
+    padding-top: 7px;
 }
 			
 	#image {width: 100%;display: block;
-   min-height: 15em;background: url(../img/loading.gif) no-repeat top center;    margin-top: -11px;
+   min-height: 15em;background: url(../img/loading.gif) no-repeat top center;    margin-top: 0px;
 }
 		#title-cn{
     line-height: 1.4em;
@@ -77,6 +77,7 @@ a {
     padding-right: 7px;
     letter-spacing: 0.1em;
     font-size: 1.5em;
+    color: #fff;
 }
 .country{
           font-family: enart;
@@ -110,7 +111,7 @@ a {
 		#adress-en{
     line-height: 1.6em;
     font-size: 1em;
-    color: #3d3d3d;
+    color: #ffffff;
     margin-top: 0px;
     margin-bottom: -1px;
     display: inline;
@@ -164,7 +165,7 @@ a {
     padding-bottom: 1.2em; font-family:enwen;
 }
         .address {
-            color: #000000;
+            color: #ffffff;
             margin: 5px 0;
         }
         img {
