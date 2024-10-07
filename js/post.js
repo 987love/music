@@ -422,7 +422,7 @@
 43:{
   "title_cn": "圣彼得大教堂",
   "title_en": "St. Peter's Basilica",
-  "descr_cn": " "<p class=\"word-cn\">圣彼得大教堂是位于梵蒂冈城国的一座天主教宗座圣殿，是罗马天主教会的重要中心。</p><p class=\"word-en\">St. Peter's Basilica is a Catholic basilica in Vatican City and an important center of the Roman Catholic Church.</p><p class=\"word-cn\">这座教堂是文艺复兴和巴洛克建筑风格的典范，由多位著名建筑师和艺术家设计。</p><p class=\"word-en\">The church is a model of Renaissance and Baroque architectural styles, designed by several renowned architects and artists.</p><p class=\"word-cn\">圣彼得大教堂不仅是宗教活动的场所，也是艺术和建筑爱好者的圣地。</p><p class=\"word-en\">St. Peter's Basilica is not only a place of religious activities but also a holy place for art and architecture enthusiasts.</p><p class=\"word-cn\">教堂内部装饰华丽，拥有精美的壁画、雕塑和彩色玻璃窗，是参观者必看的亮点。</p><p class=\"word-en\">The interior of the church is beautifully decorated with exquisite frescoes, sculptures, and stained glass windows, which are must-see highlights for visitors.</p><p class=\"word-cn\">圣彼得大教堂的圆顶是米开朗基罗的杰作，提供了俯瞰圣彼得广场和罗马市景的壮丽视角。</p><p class=\"word-en\">The dome of St. Peter's Basilica, a masterpiece by Michelangelo, offers a magnificent view overlooking St. Peter's Square and the cityscape of Rome.</p>",
+  "descr_cn": " <p class=\"word-cn\">圣彼得大教堂是位于梵蒂冈城国的一座天主教宗座圣殿，是罗马天主教会的重要中心。</p><p class=\"word-en\">St. Peter's Basilica is a Catholic basilica in Vatican City and an important center of the Roman Catholic Church.</p><p class=\"word-cn\">这座教堂是文艺复兴和巴洛克建筑风格的典范，由多位著名建筑师和艺术家设计。</p><p class=\"word-en\">The church is a model of Renaissance and Baroque architectural styles, designed by several renowned architects and artists.</p><p class=\"word-cn\">圣彼得大教堂不仅是宗教活动的场所，也是艺术和建筑爱好者的圣地。</p><p class=\"word-en\">St. Peter's Basilica is not only a place of religious activities but also a holy place for art and architecture enthusiasts.</p><p class=\"word-cn\">教堂内部装饰华丽，拥有精美的壁画、雕塑和彩色玻璃窗，是参观者必看的亮点。</p><p class=\"word-en\">The interior of the church is beautifully decorated with exquisite frescoes, sculptures, and stained glass windows, which are must-see highlights for visitors.</p><p class=\"word-cn\">圣彼得大教堂的圆顶是米开朗基罗的杰作，提供了俯瞰圣彼得广场和罗马市景的壮丽视角。</p><p class=\"word-en\">The dome of St. Peter's Basilica, a masterpiece by Michelangelo, offers a magnificent view overlooking St. Peter's Square and the cityscape of Rome.</p>",
   "descr_en": "",
   "adress_cn": "梵蒂冈城国",
   "adress_en": "Vatican City",
@@ -579,7 +579,7 @@
   "adress_cn": "美国亚利桑那州",
   "adress_en": "Arizona, USA",
   "img": "img/58.jpg",
-  "country_flag_img": "flag/usa.jpg"
+  "country_flag_img": "flag/USA.jpg"
 },
 59:{
   "title_cn": "阿拉斯加北极光",
@@ -589,7 +589,7 @@
   "adress_cn": "美国阿拉斯加",
   "adress_en": "Alaska, USA",
   "img": "img/59.jpg",
-  "country_flag_img": "flag/usa.jpg"
+  "country_flag_img": "flag/USA.jpg"
 },
 60:{
   "title_cn": "大棱镜温泉",
@@ -599,7 +599,7 @@
   "adress_cn": "美国怀俄明州",
   "adress_en": "Wyoming, USA",
   "img": "img/60.jpg",
-  "country_flag_img": "flag/usa.jpg"
+  "country_flag_img": "flag/USA.jpg"
 },
 61:{
   "title_cn": "库拉玛蒂岛",

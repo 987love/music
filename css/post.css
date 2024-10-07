@@ -187,3 +187,28 @@ a {
     display: block;
     text-indent: 23px;
     padding: 5px 2px;}
+	
+	
+	
+	 .nav-links {    position: fixed;
+    top: 80%;
+    left: 24px;
+    z-index: 1000;
+        }
+        .nav-links a {margin: 0 0px;
+    padding: 8px 15px;
+    background: #fffffff0;
+    border: 1px solid #dbdbdb;
+    text-decoration: none;
+    font-size: 1.3em; display:inline-block;
+    color: #000;
+        }
+		#previous-link{moz-transform:scaleX(-1);
+            -webkit-transform:scaleX(-1);
+            -o-transform:scaleX(-1);
+            transform:scaleX(-1);
+            /*ºÊ»›IE*/
+            filter:FlipH;}
+        .nav-links a:hover {
+            background: #0099CC; color:#fff;
+        }
