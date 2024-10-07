@@ -78,14 +78,14 @@ a {
 }
 .country{
            font-family: enart;
-    margin-top: -32px;
+    margin-top: -38px;
     float: left;
     margin-left: 77px;
     text-transform: uppercase;
     position: absolute;
     font-size: 1.6em;
     letter-spacing: 4px;
-    text-shadow: 1px 1px 8px #fff;
+    text-shadow: 1px 1px 8px #000;
     color: #ffffff;
             }
 		#title-en{
@@ -176,7 +176,7 @@ a {
     position: absolute;
     z-index: 9998;
     background: url(../img/positioning.gif) no-repeat top center;
-    box-shadow: 6px -5px 10px #000000b0;
+    box-shadow: 6px -5px 26px #00000061;
     border-radius: 0;
     border: 1px solid #ffffff70;
         }
