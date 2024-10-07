@@ -176,4 +176,14 @@ a {
             padding: 2px;
             background: #ffffffbd;
         }
- .copyright{text-align:center; font-size:0.6em; background:#222; color:#888; padding:1em 0; }
+ .copyright{text-align: center;
+    font-size: 1em;
+    background: #222;
+    color: #6f6f6f;
+    padding: 1em 1em 1em;}
+.copyright span{ font-size: 0.4em;
+    color: #555;
+    text-align: left;
+    display: block;
+    text-indent: 23px;
+    padding: 5px 2px;}
