@@ -58,7 +58,7 @@ a {
     margin: 0px 0px 13px;
     box-shadow: 3px 4px 14px #bfbbbb45;
 }
-		.sec_right{margin: 5px 7px 0 72px;width: 78%;}
+		.sec_right{margin: 5px 7px 0 78px;width: 78%;}
 
 .sec_cn{}
 .sec_en{
@@ -71,24 +71,24 @@ a {
    min-height: 15em;background: url(../img/loading.gif) no-repeat top center;    margin-top: -11px;
 }
 		#title-cn{
-    line-height: 1.2em;
+    line-height: 1.4em;
     display: inline;
     float: left;
     padding-right: 7px;
     letter-spacing: 0.1em;
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 .country{
-           font-family: enart;
-           margin-top: -31px;
-           float: left;
-           margin-left: 5px;
-           text-transform: uppercase;
-           position: absolute;
-           font-size: 1.5em;
-           letter-spacing: 4px;
-           text-shadow: 1px 1px 8px #000;
-           color: #ffffff;
+          font-family: enart;
+    margin-top: -26px;
+    float: left;
+    margin-left: 5px;
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 1.1em;
+    letter-spacing: 4px;
+    text-shadow: 1px 1px 8px #000;
+    color: #ffffff;
            }
 		#title-en{
     line-height: 1.2em;
@@ -103,13 +103,13 @@ a {
 }
 		#adress-cn{
     float: left;
-    line-height: 2.1em;
+    line-height: 1.9em;
     font-size: 1.0em;
     letter-spacing: 0.1em;
 }
 		#adress-en{
     line-height: 1.6em;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #3d3d3d;
     margin-top: 0px;
     margin-bottom: -1px;
@@ -175,9 +175,9 @@ a {
     width: 55px;
     height: auto;
     min-height: 1em;
-    margin-top: 5px;
+    margin-top: 10px;
     float: left;
-    left: 12px;
+    left: 18px;
     position: absolute;
     z-index: 9998;
     background: url(../img/positioning.gif) no-repeat top center;
