@@ -96,6 +96,10 @@
 
                 const countryName = getCountryName(data[p].country_flag_img);
                 document.getElementById('country-name').innerText = countryName;
+				
+				 // 预加载语音
+			responsiveVoice.speak("", "Chinese Female"); // 预加载中文
+			responsiveVoice.speak("", "UK English Female"); // 预加载英文
 
                 // 添加朗读按钮
                 addReadButtons();
