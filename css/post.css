@@ -194,23 +194,42 @@ a {
         overflow: hidden; /* ∑¿÷π∞¥≈•∑…≥ˆ±ﬂΩÁ */
         }
         .nav-links a {margin: 0 0px;
-    padding: 8px 15px;
-    background: #fffffff0;
-    border: 1px solid #dbdbdb;
-    text-decoration: none;
-    font-size: 1.3em; display:inline-block; position:fixed;
-    color: #000;transition: transform 1.5s ease; /* ∂Øª≠–ßπ˚ */ 
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    display: inline-block;
+    position: fixed;
+    color: #000;
+    border-radius: 50px;
+    background: #fff;
+    transition: transform 1.5s ease;
         }
-		.fly-left {
-        transform: translateX(-100vw); border-radius: 50px 0 0 50px; border-right:none;  /* œÚ◊Û∑…¿Î */
+	.nav-links	.fly-left {
+        transform: translateX(-100vw); border-radius: 50px 0 0 50px;  /* œÚ◊Û∑…¿Î */
+		
+    border-radius: 50px 0 0 50px;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #313131;
+    background: #fff;
+    text-decoration: line-through;
     }
 
-    .fly-right {
+   .nav-links .fly-right {
         transform: translateX(100vw); border-radius: 0 50px 50px 0; border-left:none; /* œÚ”“∑…¿Î */ 
+		border-radius:0  50px 50px 0;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-right: 1px solid #313131;
+    background: #fff;
+    text-decoration: line-through;
     }
 		
 		
-		#previous-link{  top:85%; left:135px;}
+		#previous-link{  top: 85%;
+    left: 140px;
+    padding: 2px 7px 2px 5px;}
 			
 			
 		#previous-link b{ moz-transform:scaleX(-1);
@@ -220,7 +239,9 @@ a {
             /*ºÊ»›IE*/
             filter:FlipH;}	
 			
-			#next-link{ top:85%; left:187px;}
+			#next-link{ top: 85%;
+    left: 186px;
+    padding: 2px 4px 2px 8px;}
 			
         .nav-links a:hover {
             
