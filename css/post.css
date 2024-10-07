@@ -168,13 +168,13 @@ a {
         .flag {
             width: 70px;
             height: auto;
-            margin-top: -45px;
+			min-height: 2.4em;
+            margin-top: -47px;
             float: left;
-            margin-right: 17px;
+            left: 17px;
             position: absolute;
             z-index: 9998;
-            padding: 2px;
-            background: #ffffffbd;
+            background: url(../img/positioning.gif) no-repeat top center
         }
  .copyright{text-align: center;
     font-size: 1em;
@@ -191,7 +191,7 @@ a {
 	
 	
 	 .nav-links {    position: fixed;
-    top: 80%;
+    top: 90%;
     left: 24px;
     z-index: 1000;
         }
