@@ -124,9 +124,9 @@ a {
 		
         .description {
             font-size: 1.1em;
-            line-height: 2em;
+            line-height: 1.8em;
             margin: 0px 1.6em;
-            text-indent: 1em;
+            text-indent: 2em; padding-top:.8em;
             clear: both;
             min-height: 10em;
         }
@@ -139,7 +139,7 @@ a {
     border: none;
     font-size: 0em;
     background-size: 23px 23px;
-    line-height: 15px;
+    line-height: 18px;
     margin-left: 1px;
     padding: 8px 15px;
     cursor: pointer;
