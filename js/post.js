@@ -579,7 +579,7 @@
   "adress_cn": "美国亚利桑那州",
   "adress_en": "Arizona, USA",
   "img": "img/58.jpg",
-  "country_flag_img": "flag/USA.jpg"
+  "country_flag_img": "flag/usa.jpg"
 },
 59:{
   "title_cn": "阿拉斯加北极光",
@@ -589,7 +589,7 @@
   "adress_cn": "美国阿拉斯加",
   "adress_en": "Alaska, USA",
   "img": "img/59.jpg",
-  "country_flag_img": "flag/USA.jpg"
+  "country_flag_img": "flag/usa.jpg"
 },
 60:{
   "title_cn": "大棱镜温泉",
@@ -599,7 +599,7 @@
   "adress_cn": "美国怀俄明州",
   "adress_en": "Wyoming, USA",
   "img": "img/60.jpg",
-  "country_flag_img": "flag/USA.jpg"
+  "country_flag_img": "flag/usa.jpg"
 },
 61:{
   "title_cn": "库拉玛蒂岛",
