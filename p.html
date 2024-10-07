@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>环球美景明信片</title>
+    <link rel="stylesheet" href="css/post.css">
+    <script src="js/post.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=tCF5EpUw"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script>
+        function getParameterByName(name) {
+            const url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        function getCountryName(flagImg) {
+            const filename = flagImg.split('/').pop();
+            const countryName = filename.split('.')[0];
+            return countryName.charAt(0).toUpperCase() + countryName.slice(1);
+        }
+
+        function addReadButtons() {
+            const descrCn = document.getElementById('descr-cn');
+            
+            // 处理中文段落
+            const chineseParagraphs = descrCn.getElementsByClassName('word-cn');
+            Array.from(chineseParagraphs).forEach(paragraph => {
+                const text = paragraph.innerText;
+                const button = document.createElement('button');
+                button.innerText = '🔈';
+                
+                button.onclick = () => {
+                    button.innerText = '👄'; // 改变按钮文本
+                    responsiveVoice.speak(text, "Chinese Female", {
+                        onend: () => button.innerText = '🔈' // 播放结束后恢复文本
+                    });
+                };
+                paragraph.appendChild(button);
+            });
+
+            // 处理英文段落
+            const englishParagraphs = descrCn.getElementsByClassName('word-en');
+            Array.from(englishParagraphs).forEach(paragraph => {
+                const text = paragraph.innerText;
+                const button = document.createElement('button');
+                button.innerText = '🔈';
+                
+                button.onclick = () => {
+                    button.innerText = '👄'; // 改变按钮文本
+                    responsiveVoice.speak(text, "UK English Female", {
+                        onend: () => button.innerText = '🔈' // 播放结束后恢复文本
+                    });
+                };
+                paragraph.appendChild(button);
+            });
+        }
+
+						 function setNavigationLinks() {
+				const p = parseInt(getParameterByName('p'));
+				const totalPages = 100;
+		
+				const previous = (p === 1) ? totalPages : p - 1;
+				const next = (p === totalPages) ? 1 : p + 1;
+		
+				const previousLink = document.getElementById('previous-link');
+				const nextLink = document.getElementById('next-link');
+		
+				previousLink.href = `p.html?p=${previous}`;
+				nextLink.href = `p.html?p=${next}`;
+		
+				previousLink.onclick = function() {
+					this.classList.add('fly-left');
+					setTimeout(() => {
+						window.location.href = this.href; // 等待动画结束后跳转
+					}, 500); // 与动画时长相同
+				};
+		
+				nextLink.onclick = function() {
+					this.classList.add('fly-right');
+					setTimeout(() => {
+						window.location.href = this.href; // 等待动画结束后跳转
+					}, 500); // 与动画时长相同
+				};
+			}
+
+        window.onload = function() {
+            const p = getParameterByName('p');
+            if (data[p]) {
+                document.getElementById('title-cn').innerText = data[p].title_cn;
+                document.getElementById('title-en').innerText = data[p].title_en;
+                document.getElementById('adress-cn').innerText = data[p].adress_cn;
+                document.getElementById('adress-en').innerText = data[p].adress_en;
+                document.getElementById('image').src = data[p].img;
+                document.getElementById('country-flag').src = data[p].country_flag_img;
+                document.getElementById('descr-cn').innerHTML = data[p].descr_cn;
+
+                const countryName = getCountryName(data[p].country_flag_img);
+                document.getElementById('country-name').innerText = countryName;
+				
+
+                // 添加朗读按钮
+                addReadButtons();
+
+                // 设置导航链接
+                setNavigationLinks();
+            }
+        };
+    </script>
+   
+</head>
+<body>
+    <div class="nav-links">
+        <a id="previous-link" href="#"><b>✈</b></a>
+        <a id="next-link" href="#"><b>✈</b></a>
+    </div>
+    <div class="container">
+        <img id="image" alt="动态图片" src="img/loading.gif" />
+        <div class="sec">
+            <img id="country-flag" class="flag" alt="国旗" src="img/positioning.gif" />
+            <div id="country-name" class="country"></div>
+            <div class="sec_right">
+                <div class="sec_cn">  
+                    <h1 id="title-cn">景区名称加载中...</h1> 
+                    <div class="address" id="adress-cn">景区位置加载中...</div>
+                </div>
+                <div class="sec_en"> 
+                    <h1 id="title-en">Attraction name loading...</h1>
+                    <div class="address" id="adress-en">Attractions are loading..</div>
+                    <div class="clear"></div>
+                </div>   
+            </div>
+        </div>
+        
+        <div class="description" id="descr-cn">景点介绍加载中...</div>
+        <div class="description" id="descr-en">Attractions introduction loading...</div>
+    </div>
+    <div class="copyright">山海蝉月文化版权所有<br><span>该系列所采用的摄影图片均为付费购买使用，该套明信片由山海蝉月指定店铺生产售卖，其余店铺未经允许，不得侵犯版权、擅自销售。</span></div>
+</body>
+</html>
