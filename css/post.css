@@ -6,7 +6,7 @@
 html{ width:100%; overflow-x:hidden;}
 body {
   background-color: #fefefe;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ebebeb' fill-opacity='0.31'%3E%3Cpath opacity='.8' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ebebeb' fill-opacity='0.31'%3E%3Cpath opacity='.8' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   color: #fff;
 }
 @font-face {
@@ -47,21 +47,24 @@ a {
             color: #000000;
         }
         .container {
-            background: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 0;
         }
 		.sec{
     clear: both;
-    width: 100%;
-    padding: 10px 11px;
+    /* width: 100%; */
+    padding: 7px 7px;
+    background: #ffffffab;
+    border: 2px solid #e5e5e5;
+    margin: 6px 6px 13px;
+    box-shadow: 3px 4px #d5d5d545;
 }
 		.sec_right{margin: 5px 7px 0;width: 88%;}
 
 .sec_cn{}
 .sec_en{
     clear: both;
-   border-bottom: 2px dotted #ccc;;
+     border-top:1px solid #f3f3f3;
     padding-top: 4px;
 }
 			
@@ -70,24 +73,26 @@ a {
 		#title-cn{
     line-height: 1.2em;
     display: inline;
-    float: left;
+    float: left; 
+    padding-right: 12px;
     letter-spacing: 0.1em; 
 }
 .country{
             font-family:enart;
-            margin-top: -31px;
+            margin-top: -38px;
             float: left;
-            margin-left: 87px;text-transform: uppercase;
+            margin-left: 87px;
+            text-transform: uppercase;
             position: absolute;
-            font-size:1.6em;
+            font-size: 1.6em;
             letter-spacing: 4px;
-            text-shadow: 1px 1px 5px #000;
-            color: #fff;
+            text-shadow: 1px 1px 8px #fff;
+            color: #ffffff;
             }
 		#title-en{
     line-height: 1.2em;
     margin: 0;
-    font-size: 1.4em;
+    font-size: 1.1em;
     padding: 0;
     display: inline-block;
     float: left;
@@ -97,9 +102,8 @@ a {
 }
 		#adress-cn{
     float: left;
-    line-height: 2.2em;
+    line-height: 2.1em;
     font-size: 1.0em;
-    padding-left: 12px;
     letter-spacing: 0.1em;
 }
 		#adress-en{
@@ -107,7 +111,7 @@ a {
     font-size: 1.1em;
     color: #3d3d3d;
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
     display: inline;
     float: left;
     font-family: 'entitle';
@@ -134,8 +138,8 @@ a {
     background: url(images/read.svg) no-repeat;
     border: none;
     font-size: 0em;
-    background-size: 28px 28px;
-    line-height: 22px;
+    background-size: 23px 23px;
+    line-height: 15px;
     margin-left: 1px;
     padding: 8px 15px;
     cursor: pointer;
@@ -168,13 +172,15 @@ a {
         .flag {
             width: 70px;
             height: auto;
-			min-height: 2.4em;
-            margin-top: -47px;
+            min-height: 2.4em;
+            margin-top: -43px;
             float: left;
             left: 17px;
             position: absolute;
             z-index: 9998;
-            background: url(../img/positioning.gif) no-repeat top center
+            background: url(../img/positioning.gif) no-repeat top center;
+            box-shadow: 3px 4px #bfb9b9b0;
+            border-radius: 0;
         }
  .copyright{text-align: center;
     font-size: 1em;
@@ -190,21 +196,22 @@ a {
 	
 	
 	
-	 .nav-links {    position: relative; /* ÎªÁËÈÃ¾ø¶Ô¶¨Î»µÄ¶¯»­Ïà¶Ô */
-        overflow: hidden; /* ·ÀÖ¹°´Å¥·É³ö±ß½ç */
+	 .nav-links {    position: relative; /* Îªï¿½ï¿½ï¿½Ã¾ï¿½ï¿½Ô¶ï¿½Î»ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+        overflow: hidden; /* ï¿½ï¿½Ö¹ï¿½ï¿½Å¥ï¿½É³ï¿½ï¿½ß½ï¿½ */
         }
-        .nav-links a {margin: 0 0px;
-    font-size: 1.5em;
+        .nav-links a {
+    margin: 0 0px;
+    font-size: 1.2em;
     border: 1px solid #ccc;
     display: inline-block;
     position: fixed;
-    color: #000;
+    color: #8a8a8a;
     border-radius: 50px;
     background: #fff;
     transition: transform 1.5s ease;
-        }
+    }
 	.nav-links	.fly-left {
-        transform: translateX(-100vw); border-radius: 50px 0 0 50px;  /* Ïò×ó·ÉÀë */
+        transform: translateX(-100vw); border-radius: 50px 0 0 50px;  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		
     border-radius: 50px 0 0 50px;
     border-right: none;
@@ -216,7 +223,7 @@ a {
     }
 
    .nav-links .fly-right {
-        transform: translateX(100vw); border-radius: 0 50px 50px 0; border-left:none; /* ÏòÓÒ·ÉÀë */ 
+        transform: translateX(100vw); border-radius: 0 50px 50px 0; border-left:none; /* ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ */ 
 		border-radius:0  50px 50px 0;
     border-left: none;
     border-top: none;
@@ -227,21 +234,25 @@ a {
     }
 		
 		
-		#previous-link{  top: 85%;
-    left: 140px;
-    padding: 2px 7px 2px 5px;}
+		#previous-link{
+    top: 87%;
+    left: 19px;
+    padding: 2px 7px 2px 5px;
+    }
 			
 			
 		#previous-link b{ moz-transform:scaleX(-1);
             -webkit-transform:scaleX(-1);
             -o-transform:scaleX(-1);
             transform:scaleX(-1); display:inline-block;
-            /*¼æÈÝIE*/
+            /*ï¿½ï¿½ï¿½ï¿½IE*/
             filter:FlipH;}	
 			
-			#next-link{ top: 85%;
-    left: 186px;
-    padding: 2px 4px 2px 8px;}
+			#next-link{
+    top: 87%;
+    left: 61px;
+    padding: 2px 4px 2px 8px;
+    }
 			
         .nav-links a:hover {
             
