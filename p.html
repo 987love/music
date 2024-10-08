@@ -6,8 +6,43 @@
     <link rel="stylesheet" href="css/post.css">
     <script src="js/post.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-   
+    <style>
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            cursor: zoom-in;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
     <script>
+        let scale = 1; // 当前缩放比例
+
         function getParameterByName(name) {
             const url = new URL(window.location.href);
             return url.searchParams.get(name);
@@ -70,11 +105,35 @@
             const imageSrc = document.getElementById('image').src;
             modalImg.src = imageSrc; // 设置弹窗中的图片
             modal.style.display = 'flex'; // 显示弹窗
+            scale = 1; // 重置缩放比例
+            modalImg.style.transform = `scale(${scale})`; // 应用缩放
         }
 
         function closeModal() {
             const modal = document.getElementById('image-modal');
             modal.style.display = 'none'; // 隐藏弹窗
+        }
+
+        function handleTouchMove(event) {
+            if (event.touches.length === 2) {
+                const touch1 = event.touches[0];
+                const touch2 = event.touches[1];
+                const distance = Math.sqrt(Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2));
+                
+                if (this.lastDistance) {
+                    if (distance > this.lastDistance) {
+                        scale *= 1.1; // 放大
+                    } else {
+                        scale *= 0.9; // 缩小
+                    }
+                    document.getElementById('modal-image').style.transform = `scale(${scale})`;
+                }
+                this.lastDistance = distance;
+            }
+        }
+
+        function handleTouchEnd() {
+            this.lastDistance = null; // 重置距离
         }
 
         window.onload = function() {
@@ -99,6 +158,11 @@
 
                 // 添加点击图片事件
                 document.getElementById('image').onclick = showImageModal;
+
+                // 绑定触摸事件
+                const modalImg = document.getElementById('modal-image');
+                modalImg.addEventListener('touchmove', handleTouchMove);
+                modalImg.addEventListener('touchend', handleTouchEnd);
             }
         };
     </script>
