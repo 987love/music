@@ -27,21 +27,22 @@
             overflow: hidden;
         }
         .modal-content img {
-            width: 100%;
-            height: auto;
-            cursor: zoom-in;
+            cursor: grab;
+            transition: transform 0.1s ease;
         }
         .close {
-            position: absolute;
+            position: fixed;
             top: 10px;
             right: 10px;
             color: white;
-            font-size: 24px;
-            cursor: pointer;
+            font-size: 34px;
+            cursor: pointer; z-index:999
         }
     </style>
     <script>
         let scale = 1; // 当前缩放比例
+        let isDragging = false;
+        let startX, startY, initialX, initialY;
 
         function getParameterByName(name) {
             const url = new URL(window.location.href);
@@ -106,7 +107,8 @@
             modalImg.src = imageSrc; // 设置弹窗中的图片
             modal.style.display = 'flex'; // 显示弹窗
             scale = 1; // 重置缩放比例
-            modalImg.style.transform = `scale(${scale})`; // 应用缩放
+            modalImg.style.transform = `scale(${scale}) translate(0, 0)`; // 应用缩放
+            initialX = 0; initialY = 0; // 初始化位置
         }
 
         function closeModal() {
@@ -126,7 +128,7 @@
                     } else {
                         scale *= 0.9; // 缩小
                     }
-                    document.getElementById('modal-image').style.transform = `scale(${scale})`;
+                    document.getElementById('modal-image').style.transform = `scale(${scale}) translate(${initialX}px, ${initialY}px)`;
                 }
                 this.lastDistance = distance;
             }
@@ -134,6 +136,29 @@
 
         function handleTouchEnd() {
             this.lastDistance = null; // 重置距离
+        }
+
+        function startDrag(event) {
+            isDragging = true;
+            startX = event.clientX || event.touches[0].clientX;
+            startY = event.clientY || event.touches[0].clientY;
+        }
+
+        function drag(event) {
+            if (isDragging) {
+                const modalImg = document.getElementById('modal-image');
+                const x = (event.clientX || event.touches[0].clientX) - startX;
+                const y = (event.clientY || event.touches[0].clientY) - startY;
+                initialX += x;
+                initialY += y;
+                modalImg.style.transform = `scale(${scale}) translate(${initialX}px, ${initialY}px)`;
+                startX = event.clientX || event.touches[0].clientX;
+                startY = event.clientY || event.touches[0].clientY;
+            }
+        }
+
+        function endDrag() {
+            isDragging = false;
         }
 
         window.onload = function() {
@@ -163,6 +188,10 @@
                 const modalImg = document.getElementById('modal-image');
                 modalImg.addEventListener('touchmove', handleTouchMove);
                 modalImg.addEventListener('touchend', handleTouchEnd);
+                modalImg.addEventListener('mousedown', startDrag);
+                modalImg.addEventListener('mousemove', drag);
+                modalImg.addEventListener('mouseup', endDrag);
+                modalImg.addEventListener('mouseleave', endDrag);
             }
         };
     </script>
@@ -194,14 +223,27 @@
         <div class="description" id="descr-en">Attractions introduction loading...</div>
     </div>
 
-    <!-- 弹窗 -->
+      <!-- 弹窗结构 -->
     <div id="image-modal" class="modal">
-        <span class="close" onclick="closeModal()">✖</span>
         <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
             <img id="modal-image" alt="放大图片" />
         </div>
     </div>
 
-    <div class="copyright">山海蝉月文化版权所有<br><span>该系列所采用的摄影图片均为付费购买使用，该套明信片由山海蝉月指定店铺生产售卖，其余店铺未经允许，不得侵犯版权、擅自销售。</span></div>
+    <div class="copyright">山海蝉月文化版权所有<br>
+        <span>该系列所采用的摄影图片均为付费购买使用，该套明信片由山海蝉月指定店铺生产售卖，其余店铺未经允许，不得侵犯版权、擅自销售。</span>
+    </div>
+    
+    <script>
+        // 绑定触摸事件
+        const modalImg = document.getElementById('modal-image');
+        modalImg.addEventListener('touchmove', handleTouchMove);
+        modalImg.addEventListener('touchend', handleTouchEnd);
+        modalImg.addEventListener('mousedown', startDrag);
+        modalImg.addEventListener('mousemove', drag);
+        modalImg.addEventListener('mouseup', endDrag);
+        modalImg.addEventListener('mouseleave', endDrag);
+    </script>
 </body>
 </html>
