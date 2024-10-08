@@ -15,7 +15,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -32,17 +32,18 @@
         }
         .close {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             color: white;
             font-size: 34px;
-            cursor: pointer; z-index:999
+            cursor: pointer;
+            z-index: 999;
         }
     </style>
     <script>
         let scale = 1; // 当前缩放比例
         let isDragging = false;
-        let startX, startY, initialX, initialY;
+        let startX, startY, initialX = 0, initialY = 0;
 
         function getParameterByName(name) {
             const url = new URL(window.location.href);
@@ -65,7 +66,7 @@
                 
                 button.onclick = () => {
                     button.innerText = '👄'; // 改变按钮文本
-                    responsiveVoice.speak(text, "UK English Female", {
+                    responsiveVoice.speak(text, "UK English Male", {
                         onend: () => button.innerText = '🔈' // 播放结束后恢复文本
                     });
                 };
@@ -194,6 +195,13 @@
                 modalImg.addEventListener('mouseleave', endDrag);
             }
         };
+
+        // 关闭弹窗时，点击背景也能关闭
+        document.getElementById('image-modal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
     </script>
 </head>
 <body>
@@ -223,7 +231,7 @@
         <div class="description" id="descr-en">Attractions introduction loading...</div>
     </div>
 
-      <!-- 弹窗结构 -->
+    <!-- 弹窗结构 -->
     <div id="image-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
