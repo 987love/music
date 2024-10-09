@@ -32,8 +32,8 @@
         }
         .close {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             color: white;
             font-size: 34px;
             cursor: pointer;
@@ -43,7 +43,7 @@
     <script>
         let scale = 1; // 当前缩放比例
         let isDragging = false;
-        let startX, startY, initialX = 0, initialY = 0;
+        let startX, startY, initialX, initialY;
 
         function getParameterByName(name) {
             const url = new URL(window.location.href);
@@ -63,7 +63,7 @@
                 const text = paragraph.innerText;
                 const button = document.createElement('button');
                 button.innerText = '🔈';
-                
+
                 button.onclick = () => {
                     button.innerText = '👄'; // 改变按钮文本
                     responsiveVoice.speak(text, "UK English Male", {
@@ -79,20 +79,20 @@
             const totalPages = 100;
             const previous = (p === 1) ? totalPages : p - 1;
             const next = (p === totalPages) ? 1 : p + 1;
-        
+
             const previousLink = document.getElementById('previous-link');
             const nextLink = document.getElementById('next-link');
-        
+
             previousLink.href = `p.html?p=${previous}`;
             nextLink.href = `p.html?p=${next}`;
-        
+
             previousLink.onclick = function() {
                 this.classList.add('fly-left');
                 setTimeout(() => {
                     window.location.href = this.href; // 等待动画结束后跳转
                 }, 500); // 与动画时长相同
             };
-        
+
             nextLink.onclick = function() {
                 this.classList.add('fly-right');
                 setTimeout(() => {
@@ -122,7 +122,7 @@
                 const touch1 = event.touches[0];
                 const touch2 = event.touches[1];
                 const distance = Math.sqrt(Math.pow(touch2.clientX - touch1.clientX, 2) + Math.pow(touch2.clientY - touch1.clientY, 2));
-                
+
                 if (this.lastDistance) {
                     if (distance > this.lastDistance) {
                         scale *= 1.1; // 放大
@@ -175,7 +175,7 @@
 
                 const countryName = getCountryName(data[p].country_flag_img);
                 document.getElementById('country-name').innerText = countryName;
-                
+
                 // 添加朗读按钮
                 addReadButtons();
 
@@ -195,13 +195,6 @@
                 modalImg.addEventListener('mouseleave', endDrag);
             }
         };
-
-        // 关闭弹窗时，点击背景也能关闭
-        document.getElementById('image-modal').addEventListener('click', function(event) {
-            if (event.target === this) {
-                closeModal();
-            }
-        });
     </script>
 </head>
 <body>
@@ -233,7 +226,7 @@
 
     <!-- 弹窗结构 -->
     <div id="image-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" onclick="closeModal()"> <!-- 点击弹窗内容区域关闭 -->
             <span class="close" onclick="closeModal()">&times;</span>
             <img id="modal-image" alt="放大图片" />
         </div>
@@ -242,16 +235,5 @@
     <div class="copyright">山海蝉月文化版权所有<br>
         <span>该系列所采用的摄影图片均为付费购买使用，该套明信片由山海蝉月指定店铺生产售卖，其余店铺未经允许，不得侵犯版权、擅自销售。</span>
     </div>
-    
-    <script>
-        // 绑定触摸事件
-        const modalImg = document.getElementById('modal-image');
-        modalImg.addEventListener('touchmove', handleTouchMove);
-        modalImg.addEventListener('touchend', handleTouchEnd);
-        modalImg.addEventListener('mousedown', startDrag);
-        modalImg.addEventListener('mousemove', drag);
-        modalImg.addEventListener('mouseup', endDrag);
-        modalImg.addEventListener('mouseleave', endDrag);
-    </script>
 </body>
 </html>

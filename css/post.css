@@ -81,16 +81,16 @@ a {
 }
 .country{
           font-family: enart;
-    margin-top: -26px;
-    float: left;
-    margin-left: 5px;
-    text-transform: uppercase;
-    position: absolute;
-    font-size: 1.1em;
-    letter-spacing: 4px;
-    text-shadow: 1px 1px 8px #000;
-    color: #ffffff;
-           }
+          margin-top: -30px;
+          float: left;
+          margin-left: 89px;
+          text-transform: uppercase;
+          position: absolute;
+          font-size: 1.1em;
+          letter-spacing: 4px;
+          text-shadow: 1px 1px 8px #000;
+          color: #ffffff;
+          }
 		#title-en{
     line-height: 1.2em;
     margin: 0;
@@ -200,18 +200,20 @@ a {
 	
 	
 	
-	 .nav-links {    position: relative; /* Ϊ���þ��Զ�λ�Ķ������ */
-        overflow: hidden; /* ��ֹ��ť�ɳ��߽� */
+	 .nav-links {
+        position: relative; /* Ϊ���þ��Զ�λ�Ķ������ */
+         /* ��ֹ��ť�ɳ��߽� */
         }
         .nav-links a {
-    margin: 0 0px;
+    margin-top: 218px;
     font-size: 1.2em;
-    border: 1px solid #ccc;
+    border: none;
     display: inline-block;
-    position: fixed;
-    color: #8a8a8a;
+    position: absolute;
+    color: #ffffff;
     border-radius: 50px;
-    background: #fff;
+    background: #00000038;
+    z-index: 555;
     transition: transform 1.5s ease;
     }
 	.nav-links	.fly-left {
@@ -221,27 +223,28 @@ a {
     border-right: none;
     border-top: none;
     border-bottom: none;
-    border-left: 1px solid #313131;
-    background: #fff;
+    border-left: 1px solid #f9f9f9;
+    background: #ffffff00;
     text-decoration: line-through;
     }
 
    .nav-links .fly-right {
-        transform: translateX(100vw); border-radius: 0 50px 50px 0; border-left:none; /* ���ҷ��� */ 
-		border-radius:0  50px 50px 0;
-    border-left: none;
-    border-top: none;
-    border-bottom: none;
-    border-right: 1px solid #313131;
-    background: #fff;
-    text-decoration: line-through;
+        transform: translateX(100vw);
+        border-radius: 0 50px 50px 0;
+        border-left:none; /* ���ҷ��� */
+        border-radius:0  50px 50px 0;
+        border-left: none;
+        border-top: none;
+        border-bottom: none;
+        border-right: 1px solid #f9f9f9;
+        background: #ffffff00;
+        text-decoration: line-through;
     }
 		
 		
 		#previous-link{
-    top: 87%;
-    left: 19px;
     padding: 2px 7px 2px 5px;
+    margin-left: 16px;
     }
 			
 			
@@ -253,8 +256,7 @@ a {
             filter:FlipH;}	
 			
 			#next-link{
-    top: 87%;
-    left: 61px;
+    left: 49px;
     padding: 2px 4px 2px 8px;
     }
 			
