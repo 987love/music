@@ -85,16 +85,22 @@
             landmarksModal.querySelector('.modal-content').appendChild(ul);
         }
 
-        function showLandmarksModal() {
-            const landmarksModal = document.getElementById('landmarks-modal');
-            landmarksModal.style.display = 'flex'; // 显示景观弹窗
-        }
+function showLandmarksModal() {
+    const landmarksModal = document.getElementById('landmarks-modal');
+    landmarksModal.style.display = 'flex'; // 显示时设置为 flex
+    requestAnimationFrame(() => { // 确保下一个渲染周期应用动画
+        landmarksModal.classList.add('show'); // 添加显示类
+    });
+}
 
-        function closeLandmarksModal() {
-            const landmarksModal = document.getElementById('landmarks-modal');
-            landmarksModal.style.display = 'none'; // 隐藏景观弹窗
-        }
-
+function closeLandmarksModal() {
+    const landmarksModal = document.getElementById('landmarks-modal');
+    landmarksModal.classList.remove('show'); // 移除显示类
+    // 等待动画完成后再隐藏
+    setTimeout(() => {
+        landmarksModal.style.display = 'none'; // 隐藏
+    }, 300); // 与动画时长相同
+}
 
 
 
