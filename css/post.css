@@ -211,8 +211,8 @@ a {
          /* ��ֹ��ť�ɳ��߽� */
         }
         .nav-links a {
-    margin-top: -34px;
-    font-size: 1.2em;
+    margin-top: -36px;
+    font-size: 1.4em;
     border: none;
     display: inline-block;
     position: absolute;
@@ -220,7 +220,7 @@ a {
     border-radius: 50px;
     background: #00000038;
     z-index: 555;
-    transition: transform 1.5s ease;
+    transition: transform 3.5s ease;
     }
 	
 	.sec button {margin-top: 57px;
@@ -279,7 +279,7 @@ a {
             filter:FlipH;}	
 			
 			#next-link{
-    left: 48px;
+    left:50px;
     padding: 2px 4px 2px 8px;
     }
 			
@@ -375,3 +375,7 @@ a {
     padding-left: 7px;
     color: #999;
 }
+
+
+.imgbox{display: block;
+    min-height: 15em;}

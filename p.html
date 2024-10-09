@@ -108,6 +108,9 @@ function closeLandmarksModal() {
 
 
 
+
+
+
         window.onload = function() {
             const p = getParameterByName('p');
             if (data[p]) {
@@ -136,7 +139,7 @@ function closeLandmarksModal() {
 </head>
 <body>
     <div class="container">
-        <img id="image" alt="动态图片" src="img/loading.gif" />
+        <div class="imgbox"><img id="image" alt="动态图片" src="img/loading.gif" /></div>
         <div class="nav-links">
             <a id="previous-link" href="#"><b>✈</b></a>
             <a id="next-link" href="#"><b>✈</b></a>
