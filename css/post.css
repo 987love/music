@@ -223,20 +223,20 @@ a {
     transition: transform 1.5s ease;
     }
 	
-	.nav-links button {
-   margin-top: -26px;
-    font-size: 40px;
-    line-height: 19px;
-    border: none;
-    display: inline-block;
-    position: absolute;
-    color: #ffffff;
-    border-radius: 50px;
-    background: #00000038;
-    z-index: 555;
-    transition: transform 1.5s ease;
-    padding: 2px 3px 9px 3px;
-    margin-left: 47px;
+	.sec button {
+   margin-top: 46px;
+   font-size: 32px;
+   line-height: 25px;
+   border: none;
+   display: inline-block;
+   position: absolute;
+   color: #ffffff;
+   border-radius: 50px;
+   background: #00000038;
+   z-index: 555;
+   transition: transform 1.5s ease;
+   padding: 2px 3px 9px 3px;
+   margin-left: 22px;
 }
     }
 	
@@ -280,7 +280,7 @@ a {
             filter:FlipH;}	
 			
 			#next-link{
-    left: 80px;
+    left: 44px;
     padding: 2px 4px 2px 8px;
     }
 			
@@ -293,13 +293,14 @@ a {
 		
 	.clock {
            color: white;
-           font-size: 15px;
+           font-size: 12px;
            z-index: 999;
            letter-spacing: 2px;
            font-family: 'clock';
            margin-top: -18px;
-           margin-left: 116px;
-           line-height: 18px;}
+           margin-left: 88px;
+           line-height: 18px;
+           }
 		   
 		   
 		   
