@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>少儿安全意识测试</title>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=tCF5EpUw"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            position: relative;
+            width: 81%;
+            max-width: 600px;
+            margin: 20px 26px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: left;
+            line-height: 33px;
+            margin-top: 9px;
+        }
+
+        .options {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .option {
+            padding: 8px;
+            margin: 5px 0;
+            transition: font-size 0.5s, color 0.5s;
+        }
+
+        .correct-answer {
+            color: red;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        #start-button {
+            background-color: #00a5c1;
+            color: white;
+            font-size: 20px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10%;
+        }
+
+        #start-button:hover {
+            background-color: #007b8b;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 测试标题 -->
+    <div class="title" id="test-title">加载中...</div>
+
+    <!-- 开始按钮 -->
+    <button id="start-button" class="hidden">开始测试</button>
+
+    <div id="question-container" class="question-container hidden">
+        <p id="question-text" class="question-text"></p>
+        <div id="options-text" class="options"></div>
+    </div>
+
+    <script src="js/testdata.js"></script>
+    <script>
+        let currentQuestionIndex = 0;
+        let currentTestData;
+
+        // 解析URL参数
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // 根据URL参数加载题库
+        function loadTestData() {
+            const testId = getQueryParam('s'); // 获取URL中的's'参数
+            currentTestData = testDatabases[testId];
+
+            if (currentTestData) {
+                // 设置标题和背景图
+                document.getElementById('test-title').innerText = currentTestData.title;
+                document.body.style.backgroundImage = currentTestData.backgroundImage;
+                document.getElementById('start-button').classList.remove('hidden');
+            } else {
+                document.getElementById('test-title').innerText = "未找到对应的题库！";
+            }
+        }
+
+        // 使用 ResponsiveVoice 播报
+        function speak(text, callback) {
+            responsiveVoice.speak(text, "Chinese Female", { onend: callback });
+        }
+
+        // 显示题目
+        function showQuestion(index) {
+            const question = currentTestData.questions[index];
+            const questionText = document.getElementById('question-text');
+            const optionsText = document.getElementById('options-text');
+
+            questionText.innerText = `${index + 1}、${question.question}`;
+            optionsText.innerHTML = question.options.map((opt, i) => 
+                `<div class="option" id="option-${i}">${String.fromCharCode(65 + i)}. ${opt}</div>`
+            ).join('');
+
+            // 播报题目和选项
+            speak(`${index + 1}、${question.question}，${question.options.map((opt, i) => `${String.fromCharCode(65 + i)}：${opt}`).join("，")}.`, function() {
+                // 等待 3 秒后播报答案
+                setTimeout(() => {
+                    showAnswer();
+                }, 3000);
+            });
+        }
+
+        // 显示答案
+        function showAnswer() {
+            const question = currentTestData.questions[currentQuestionIndex];
+            const correctOption = document.getElementById(`option-${question.correctIndex}`);
+            correctOption.classList.add('correct-answer');
+            correctOption.style.fontSize = '30px';
+
+            // 播报答案
+            speak(`正确答案是 ${question.answer}。`, function() {
+                // 等待 2 秒后进入下一题
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < currentTestData.questions.length) {
+                        showQuestion(currentQuestionIndex);
+                    } else {
+                        alert("测试结束，谢谢参与！");
+                    }
+                }, 2000);
+            });
+        }
+
+        document.getElementById('start-button').addEventListener('click', function() {
+            this.classList.add('hidden');
+            document.getElementById('question-container').classList.remove('hidden');
+            showQuestion(currentQuestionIndex);
+        });
+
+        // 加载题库
+        loadTestData();
+    </script>
+
+</body>
+</html>

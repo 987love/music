@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名言名句展示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* 背景视频 */
+        video.background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        /* 背景图片 */
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            height: 300px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+            box-shadow: 0 4px 8px rgb(0 0 0 / 23%);
+            border-radius: 10px;
+            margin: -78px 20px 20px;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quote-author {
+            font-size: 1.2em;
+            font-weight: normal;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-indent: 20px;
+            opacity: 1;
+            display: inline;
+            transition: opacity 2s ease-in-out;
+        }
+        .author {
+            margin-left: 10px;
+            font-size: 1em;
+            font-style: italic;
+            color: #555;
+        }
+        .typing {
+            border-right: 2px solid black;
+            display: inline;
+            animation: blink 0.7s step-end infinite;
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        /* 音量控制按钮 */
+        .sound-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景视频 -->
+    <video class="background-video" id="background-video" autoplay loop muted></video>
+    <!-- 背景图片 -->
+    <img class="background-image" id="background-image" alt="background"/>
+    
+    <!-- 背景音乐 -->
+    <audio id="background-music" preload="auto" loop>
+        <source id="audio-source" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <div class="title" id="title"></div>
+        <div class="quote-author" id="quote-author"></div>
+    </div>
+
+    <!-- 音量控制按钮 -->
+    <button class="sound-toggle-btn" id="sound-toggle-btn">开启背景音乐</button>
+
+    <script src="js/quotedata.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const seriesId = parseInt(urlParams.get('s'), 10) || 1; // 获取参数 s，默认值为 1
+
+        const data = quotedata[seriesId] || quotedata[1]; // 默认使用系列 1 的数据
+
+        // 设置标题
+        document.getElementById('title').textContent = data.title;
+
+        const quoteAuthorElement = document.getElementById('quote-author');
+
+        // 设置背景
+        if (data.background.video) {
+            document.getElementById('background-video').src = data.background.video;
+            document.getElementById('background-video').style.display = 'block';
+        } else if (data.background.image) {
+            document.getElementById('background-image').src = data.background.image;
+            document.getElementById('background-image').style.display = 'block';
+        }
+
+        // 背景音乐控制
+        const musicElement = document.getElementById('background-music');
+        const audioSource = document.getElementById('audio-source');
+        const soundToggleBtn = document.getElementById('sound-toggle-btn');
+        let isMuted = true;
+
+        // 根据是否有背景音乐来决定是否播放
+        if (data.background.music) {
+            audioSource.src = data.background.music; // 设置背景音乐
+            soundToggleBtn.textContent = "开启背景音乐"; // 设置按钮文本为“开启背景音乐”
+            musicElement.load(); // 强制加载音频
+        } else {
+            musicElement.muted = true; // 没有背景音乐时静音
+            soundToggleBtn.textContent = "开启声音"; // 设置按钮文本为“开启声音”
+        }
+
+        // 音量控制按钮点击事件
+        soundToggleBtn.addEventListener('click', () => {
+            if (data.background.music) {
+                // 背景音乐
+                if (musicElement.paused) {
+                    musicElement.play(); // 播放音乐
+                    musicElement.muted = false; // 不静音
+                    soundToggleBtn.textContent = "关闭背景音乐";
+                } else {
+                    musicElement.pause(); // 停止播放音乐
+                    soundToggleBtn.textContent = "开启背景音乐";
+                }
+            } else {
+                // 视频声音
+                isMuted = !isMuted;
+                document.getElementById('background-video').muted = isMuted;
+                soundToggleBtn.textContent = isMuted ? "开启声音" : "关闭声音";
+            }
+        });
+
+        let currentQuoteIndex = 0;
+
+        function typeText(text, element, callback) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text[i];
+                    i++;
+                    setTimeout(type, 200); // 减慢打字速度
+                } else if (callback) {
+                    callback();
+                }
+            }
+
+            type();
+        }
+
+        function displayNextQuote() {
+            if (currentQuoteIndex >= data.quotes.length) {
+                currentQuoteIndex = 0; // 循环显示
+            }
+
+            const { text, author } = data.quotes[currentQuoteIndex];
+
+            // 显示名言和作者信息
+            typeText(text + " " + author, quoteAuthorElement, () => {
+                setTimeout(() => {
+                    // 渐变隐去
+                    setTimeout(() => {
+                        quoteAuthorElement.style.opacity = 0;
+                        setTimeout(() => {
+                            quoteAuthorElement.style.opacity = 1;
+                            currentQuoteIndex++;
+                            displayNextQuote();
+                        }, 1000); // 1秒渐隐效果
+                    }, 4000); // 等待4秒后进行渐变隐去
+                }, 0);
+            });
+        }
+
+        displayNextQuote();
+    </script>
+</body>
+</html>

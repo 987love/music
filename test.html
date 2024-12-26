@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+       .result .final-score {
+            font-size: 14px;
+        }
+		
+		.result .final-score-hundred{
+    font-size: 44px;
+    color: red;
+}
+		.result .final-score-hundred b{
+    font-size: 16px;
+    font-weight: normal;
+    color: #000;
+    padding: 0 15px;
+} 
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:active {
+            background-color: #0056b3;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .option input {
+            margin-right: 10px;
+            transform: scale(1.5);
+        }
+        .option:active {
+            background-color: #e0e0e0;
+        }
+        .feedback {
+            margin-top: 30px;
+        }
+        .feedback-item {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+        .feedback-item p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">考试页面</h1>
+    <div id="exam">
+        <div id="questions">
+            <!-- 题目将动态添加到这里 -->
+        </div>
+        <button id="submit">提交答案</button>
+    </div>
+    <div id="result" class="result"></div>
+    <div id="feedback" class="feedback"></div>
+
+    <script>
+        const questions = [
+    {
+        id: 1,
+        type: 'single',
+        question: '如果你看到陌生人跟踪你，你应该怎么做？',
+        options: ['跟着走', '告诉父母或老师', '不理会'],
+        answer: '告诉父母或老师',
+        score: 1,
+        explanation: '如果有陌生人跟踪你，应该立刻寻找安全的地方，并告知父母或老师，确保自己的安全。'
+    },
+    {
+        id: 2,
+        type: 'single',
+        question: '如果家里有火灾，你应该怎么办？',
+        options: ['打电话给火警', '自己扑灭火源', '留在家里'],
+        answer: '打电话给火警',
+        score: 1,
+        explanation: '火灾发生时，首先应拨打紧急电话给火警，确保安全后再考虑撤离。'
+    },
+    {
+        id: 3,
+        type: 'multiple',
+        question: '以下哪些行为是儿童在家时应该避免的？',
+        options: ['玩火', '接触插座', '喝酒'],
+        answer: ['玩火', '接触插座', '喝酒'],
+        score: 3,
+        explanation: '儿童应该避免玩火、接触插座和饮酒，这些行为都非常危险，可能导致伤害。'
+    },
+    {
+        id: 4,
+        type: 'single',
+        question: '当你在公园玩耍时，应该如何保持安全？',
+        options: ['远离水边', '离开父母身边', '在陌生人旁边玩'],
+        answer: '远离水边',
+        score: 1,
+        explanation: '在公园玩耍时，应避免靠近水边，防止溺水事故发生。'
+    },
+    {
+        id: 5,
+        type: 'multiple',
+        question: '以下哪些物品可能对儿童构成安全隐患？',
+        options: ['锋利的刀具', '充电器', '小玩具'],
+        answer: ['锋利的刀具', '充电器'],
+        score: 3,
+        explanation: '锋利的刀具和充电器都可能对儿童造成伤害，应该远离儿童并妥善存放。'
+    },
+    {
+        id: 6,
+        type: 'single',
+        question: '如果你看到电线断裂并冒烟，应该怎么办？',
+        options: ['触摸电线检查', '报警并远离现场', '继续使用电器'],
+        answer: '报警并远离现场',
+        score: 1,
+        explanation: '电线断裂并冒烟时，应该迅速报警，并远离现场，避免触电危险。'
+    },
+    {
+        id: 7,
+        type: 'single',
+        question: '骑自行车时，你应该佩戴什么来确保安全？',
+        options: ['头盔', '护膝', '手套'],
+        answer: '头盔',
+        score: 1,
+        explanation: '骑自行车时，佩戴头盔是非常重要的，能有效防止摔倒时对头部的伤害。'
+    },
+    {
+        id: 8,
+        type: 'multiple',
+        question: '哪些是交通安全规则？',
+        options: ['过马路要走人行道', '红灯停，绿灯行', '骑自行车不需要戴头盔'],
+        answer: ['过马路要走人行道', '红灯停，绿灯行'],
+        score: 3,
+        explanation: '过马路时应走人行道，并遵守交通信号灯。骑自行车时应佩戴头盔，确保安全。'
+    },
+    {
+        id: 9,
+        type: 'single',
+        question: '如果你被困在电梯中，应该怎么办？',
+        options: ['按电梯报警按钮', '自行打开电梯门', '大声呼喊'],
+        answer: '按电梯报警按钮',
+        score: 1,
+        explanation: '如果被困在电梯中，应按电梯内的报警按钮，等待工作人员来救援。'
+    },
+    {
+        id: 10,
+        type: 'multiple',
+        question: '以下哪些行为能够帮助你保持健康和安全？',
+        options: ['定期洗手', '注意饮食健康', '与陌生人分享个人信息'],
+        answer: ['定期洗手', '注意饮食健康'],
+        score: 3,
+        explanation: '定期洗手和保持健康饮食有助于预防疾病，避免不必要的健康风险。与陌生人分享个人信息则可能带来危险。'
+    }
+];
+
+
+        const questionContainer = document.getElementById('questions');
+        const resultContainer = document.getElementById('result');
+        const feedbackContainer = document.getElementById('feedback');
+
+        let totalScore = 0;
+        let maxScore = 0;
+        let correctCount = 0;
+
+        // 渲染题目
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.dataset.id = q.id;
+            questionDiv.dataset.type = q.type;
+
+            const questionText = document.createElement('p');
+            const typeLabel = q.type === 'single' ? '【单选题】' : '【多选题】';
+            questionText.textContent = `${index + 1}、${typeLabel}${q.question}（${q.score}分）`;
+            questionDiv.appendChild(questionText);
+
+            q.options.forEach(option => {
+                const optionDiv = document.createElement('label');
+                optionDiv.className = 'option';
+
+                const input = document.createElement('input');
+                input.type = q.type === 'single' ? 'radio' : 'checkbox';
+                input.name = `question-${q.id}`;
+                input.value = option;
+                optionDiv.appendChild(input);
+
+                const label = document.createElement('span');
+                label.textContent = option;
+                optionDiv.appendChild(label);
+
+                questionDiv.appendChild(optionDiv);
+            });
+
+            questionContainer.appendChild(questionDiv);
+
+            // 累计最大分数
+            maxScore += q.score;
+        });
+
+        document.getElementById('submit').addEventListener('click', () => {
+            totalScore = 0; // 重置得分
+            correctCount = 0; // 重置正确题目计数
+            feedbackContainer.innerHTML = ''; // 清空反馈内容
+
+            questions.forEach(q => {
+                const questionDiv = document.querySelector(`.question[data-id='${q.id}']`);
+                const inputs = questionDiv.querySelectorAll('input');
+                let userAnswer;
+
+                if (q.type === 'single') {
+                    const selected = Array.from(inputs).find(input => input.checked);
+                    userAnswer = selected ? selected.value : null;
+
+                    if (userAnswer === q.answer) {
+                        totalScore += q.score;
+                        correctCount++;
+                        addFeedback(q, userAnswer, true, q.score);
+                    } else {
+                        addFeedback(q, userAnswer, false, 0);
+                    }
+                } else if (q.type === 'multiple') {
+                    const selected = Array.from(inputs).filter(input => input.checked).map(input => input.value);
+                    userAnswer = selected;
+
+                    if (JSON.stringify(userAnswer.sort()) === JSON.stringify(q.answer.sort())) {
+                        totalScore += q.score;
+                        correctCount++;
+                        addFeedback(q, userAnswer, true, q.score);
+                    } else {
+                        addFeedback(q, userAnswer, false, 0);
+                    }
+                }
+            });
+
+            // 显示最终成绩
+            resultContainer.innerHTML = `
+                <p class="final-score">您的最终成绩为${totalScore}分（总分${maxScore}分）<br>答对${correctCount}题（总共${questions.length}题）。</p>
+                <p class="final-score-hundred"><b>百分制换算：</b>${Math.round((totalScore / maxScore) * 100)}<b>分：</b></p>
+            `;
+
+            // 滑动到结果区域
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function addFeedback(question, userAnswer, isCorrect, score) {
+            const feedbackItem = document.createElement('div');
+            feedbackItem.className = 'feedback-item';
+
+            const feedbackText = document.createElement('p');
+            feedbackText.innerHTML = `${isCorrect ? '<span class="correct">✔</span>' : '<span class="incorrect">×</span>'} ${question.id}、${question.question}（${question.score}分）`;
+            feedbackItem.appendChild(feedbackText);
+
+            const userAnswerText = document.createElement('p');
+            userAnswerText.textContent = `您的答案：${Array.isArray(userAnswer) ? userAnswer.join('，') : userAnswer || '未作答'}（${score === 0 ? '0分' : `+${score}分`}）`;
+            feedbackItem.appendChild(userAnswerText);
+
+            const explanationText = document.createElement('p');
+            explanationText.textContent = `解析：${question.explanation}`;
+            feedbackItem.appendChild(explanationText);
+
+            feedbackContainer.appendChild(feedbackItem);
+        }
+    </script>
+</body>
+</html>
