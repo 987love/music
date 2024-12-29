@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机端导航页面</title>
     <style>
+        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 页面基本样式 */
         body {
             font-family: Arial, sans-serif;
             height: 100vh;
@@ -19,6 +21,7 @@
             overflow: hidden;
         }
 
+        /* iframe区域 */
         .content {
             position: relative;
             height: 100%;
@@ -26,10 +29,11 @@
             flex-direction: column;
         }
 
+        /* 单个iframe显示区域 */
         .iframe-container {
             width: 100%;
             height: 100%;
-            display: none;
+            display: none; /* 默认所有iframe都隐藏 */
         }
 
         #iframe1, #iframe2, #iframe3, #iframe4 {
@@ -37,7 +41,8 @@
             height: 100%;
         }
 
-        .back-button, .home-button {
+        /* 返回按钮 */
+        .back-button {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -54,15 +59,12 @@
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
-        .back-button.hidden, .home-button.hidden {
+        .back-button.hidden {
             transform: translateX(-100%);
             opacity: 0;
         }
 
-        .home-button {
-            top: 50px;
-        }
-
+        /* 底部Tab菜单 */
         .tab-menu {
             position: fixed;
             bottom: 0;
@@ -90,15 +92,20 @@
             font-size: 16px;
             text-align: center;
             flex: 1;
+            transition: all 0.3s ease;
         }
 
         .tab-menu ul li.active {
-            background-color: #00bfff;
-            color: white;
-            border-radius: 4px;
-            font-weight: bold;
+            background-color: #ff8c00; /* 激活项的背景色 */
+            color: white; /* 激活项的字体颜色 */
+            font-weight: bold; /* 激活项字体加粗 */
         }
 
+        .tab-menu ul li:hover {
+            background-color: #555; /* 鼠标悬停时背景颜色 */
+        }
+
+        /* 动画效果 */
         .tab-menu.hidden {
             transform: translateY(100%);
         }
@@ -110,31 +117,32 @@
 </head>
 <body>
     <div class="content">
+        <!-- iframe 1 -->
         <div id="iframe1-container" class="iframe-container">
             <iframe id="iframe1" src="p.html?p=1" frameborder="0"></iframe>
             <button id="back-button1" class="back-button hidden" onclick="goBack(1)">返回</button>
-            <button id="home-button1" class="home-button hidden" onclick="goHome(1)">返回主页</button>
         </div>
 
+        <!-- iframe 2 -->
         <div id="iframe2-container" class="iframe-container">
-            <iframe id="iframe2" src="https://www.baidu.com/" frameborder="0"></iframe>
+            <iframe id="iframe2" src="quote.html" frameborder="0"></iframe>
             <button id="back-button2" class="back-button hidden" onclick="goBack(2)">返回</button>
-            <button id="home-button2" class="home-button hidden" onclick="goHome(2)">返回主页</button>
         </div>
 
+        <!-- iframe 3 -->
         <div id="iframe3-container" class="iframe-container">
             <iframe id="iframe3" src="test.html" frameborder="0"></iframe>
             <button id="back-button3" class="back-button hidden" onclick="goBack(3)">返回</button>
-            <button id="home-button3" class="home-button hidden" onclick="goHome(3)">返回主页</button>
         </div>
 
+        <!-- iframe 4 -->
         <div id="iframe4-container" class="iframe-container">
             <iframe id="iframe4" src="test2.html?s=2" frameborder="0"></iframe>
             <button id="back-button4" class="back-button hidden" onclick="goBack(4)">返回</button>
-            <button id="home-button4" class="home-button hidden" onclick="goHome(4)">返回主页</button>
         </div>
     </div>
 
+    <!-- 底部Tab菜单 -->
     <div id="tab-menu" class="tab-menu visible">
         <ul>
             <li id="menu1" onclick="changeIframe(1)">首页</li>
@@ -145,112 +153,109 @@
     </div>
 
     <script>
+        // 存储每个iframe的历史记录
         const iframeHistory = {
-            1: ['p.html?p=1'],
-            2: ['quote.html'],
-            3: ['test.html'],
-            4: ['test2.html?s=2']
+            1: ['p.html?p=1'],  // iframe 1 初始页面
+            2: ['quote.html'],  // iframe 2 初始页面
+            3: ['test.html'],   // iframe 3 初始页面
+            4: ['test2.html?s=2'] // iframe 4 初始页面
         };
 
+        // 当前显示的iframe
         let currentIframe = 1;
 
-        function changeIframe(iframeIndex) {
-            document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
-            document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
-            currentIframe = iframeIndex;
-            updateTabMenuStatus(iframeIndex);
+        // 上一次滚动的位置
+        let lastScrollPosition = 0;
 
+        // 切换iframe显示
+        function changeIframe(iframeIndex) {
+            // 隐藏当前iframe
+            document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
+            // 显示目标iframe
+            document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
+            // 更新当前显示的iframe
+            currentIframe = iframeIndex;
+
+            // 显示对应iframe的返回按钮
             for (let i = 1; i <= 4; i++) {
                 const backButton = document.getElementById(`back-button${i}`);
-                const homeButton = document.getElementById(`home-button${i}`);
                 if (i === iframeIndex) {
                     backButton.classList.remove('hidden');
-                    homeButton.classList.remove('hidden');
                 } else {
                     backButton.classList.add('hidden');
-                    homeButton.classList.add('hidden');
                 }
             }
+
+            // 更新菜单项的激活状态
+            updateMenuActiveState(iframeIndex);
         }
 
-        function updateTabMenuStatus(iframeIndex) {
-            const menuItems = document.querySelectorAll('.tab-menu ul li');
-            menuItems.forEach(item => item.classList.remove('active'));
-            document.getElementById(`menu${iframeIndex}`).classList.add('active');
-        }
-
+        // 处理返回操作
         function goBack(iframeIndex) {
             const history = iframeHistory[iframeIndex];
             if (history.length > 1) {
-                history.pop();
-                const previousPage = history[history.length - 1];
-                document.getElementById(`iframe${iframeIndex}`).src = previousPage;
+                history.pop();  // 移除当前页面
+                const previousPage = history[history.length - 1];  // 获取上一页面
+                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
             }
         }
 
-        function goHome(iframeIndex) {
-            const homePage = iframeHistory[iframeIndex][0];
-            document.getElementById(`iframe${iframeIndex}`).src = homePage;
+        // 更新菜单项的激活状态
+        function updateMenuActiveState(iframeIndex) {
+            // 重置所有菜单项的激活状态
+            for (let i = 1; i <= 4; i++) {
+                const menuItem = document.getElementById(`menu${i}`);
+                menuItem.classList.remove('active');
+            }
+            // 激活当前选中的菜单项
+            const activeMenuItem = document.getElementById(`menu${iframeIndex}`);
+            activeMenuItem.classList.add('active');
         }
 
+        // 监听每个iframe的加载事件，记录历史
         const iframes = [1, 2, 3, 4];
         iframes.forEach(iframeIndex => {
-            document.getElementById(`iframe${iframeIndex}`).addEventListener('load', () => {
-                const iframe = document.getElementById(`iframe${iframeIndex}`);
-                const iframeSrc = iframe.src;
-                iframeHistory[iframeIndex].push(iframeSrc);
-            });
-        });
-
-        let lastScrollTop = 0;
-        iframes.forEach(iframeIndex => {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
-            iframe.contentWindow.addEventListener('scroll', function () {
-                const scrollTop = iframe.contentWindow.scrollY;
-                if (scrollTop > lastScrollTop) {
-                    hideButtons(iframeIndex);
-                } else {
-                    showButtons(iframeIndex);
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            iframe.addEventListener('load', () => {
+                const iframeSrc = iframe.src;
+                iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
             });
+
+            // 监听iframe滚动事件
+            iframe.contentWindow.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
         });
 
-        function showButtons(iframeIndex) {
-            document.getElementById(`back-button${iframeIndex}`).classList.remove('hidden');
-            document.getElementById(`home-button${iframeIndex}`).classList.remove('hidden');
-        }
+        // 监听iframe的滚动方向
+        function onIframeScroll(iframeIndex) {
+            const iframe = document.getElementById(`iframe${iframeIndex}`);
+            const scrollPosition = iframe.contentWindow.scrollY;
 
-        function hideButtons(iframeIndex) {
-            document.getElementById(`back-button${iframeIndex}`).classList.add('hidden');
-            document.getElementById(`home-button${iframeIndex}`).classList.add('hidden');
-        }
-
-        function hideTabMenu() {
-            document.getElementById('tab-menu').classList.add('hidden');
-        }
-
-        function showTabMenu() {
-            document.getElementById('tab-menu').classList.remove('hidden');
-        }
-
-        let touchStartY = 0;
-
-        let touchEndY = 0;
-
-        window.addEventListener('touchstart', function (e) {
-            touchStartY = e.changedTouches[0].screenY;
-        });
-
-        window.addEventListener('touchend', function (e) {
-            touchEndY = e.changedTouches[0].screenY;
-            if (touchStartY - touchEndY > 50) {
-                hideTabMenu();
-            } else if (touchEndY - touchStartY > 50) {
-                showTabMenu();
+            // 判断滚动方向
+            if (scrollPosition > lastScrollPosition) {
+                // 向下滚动，隐藏返回按钮
+                hideBackButton(iframeIndex);
+            } else {
+                // 向上滚动，显示返回按钮
+                showBackButton(iframeIndex);
             }
-        });
 
+            // 更新上一次滚动的位置
+            lastScrollPosition = scrollPosition;
+        }
+
+        // 显示返回按钮
+        function showBackButton(iframeIndex) {
+            const backButton = document.getElementById(`back-button${iframeIndex}`);
+            backButton.classList.remove('hidden');
+        }
+
+        // 隐藏返回按钮
+        function hideBackButton(iframeIndex) {
+            const backButton = document.getElementById(`back-button${iframeIndex}`);
+            backButton.classList.add('hidden');
+        }
+
+        // 初始化：默认显示第一个iframe
         changeIframe(1);
     </script>
 </body>
