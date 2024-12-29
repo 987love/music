@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机端导航页面</title>
     <style>
+        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
@@ -20,6 +21,7 @@
             overflow: hidden;
         }
 
+        /* iframe区域 */
         .content {
             position: relative;
             height: 100%;
@@ -27,10 +29,11 @@
             flex-direction: column;
         }
 
+        /* 单个iframe显示区域 */
         .iframe-container {
             width: 100%;
             height: 100%;
-            display: none;
+            display: none; /* 默认所有iframe都隐藏 */
         }
 
         #iframe1, #iframe2, #iframe3, #iframe4 {
@@ -93,13 +96,13 @@
         }
 
         .tab-menu ul li.active {
-            background-color: #ff8c00;
-            color: white;
-            font-weight: bold;
+            background-color: #ff8c00; /* 激活项的背景色 */
+            color: white; /* 激活项的字体颜色 */
+            font-weight: bold; /* 激活项字体加粗 */
         }
 
         .tab-menu ul li:hover {
-            background-color: #555;
+            background-color: #555; /* 鼠标悬停时背景颜色 */
         }
 
         /* 动画效果 */
@@ -187,6 +190,16 @@
             updateMenuActiveState(iframeIndex);
         }
 
+        // 处理返回操作
+        function goBack(iframeIndex) {
+            const history = iframeHistory[iframeIndex];
+            if (history.length > 1) {
+                history.pop();  // 移除当前页面
+                const previousPage = history[history.length - 1];  // 获取上一页面
+                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
+            }
+        }
+
         // 更新菜单项的激活状态
         function updateMenuActiveState(iframeIndex) {
             // 重置所有菜单项的激活状态
@@ -199,27 +212,13 @@
             activeMenuItem.classList.add('active');
         }
 
-        // 处理返回操作
-        function goBack(iframeIndex) {
-            const history = iframeHistory[iframeIndex];
-            if (history.length > 1) {
-                history.pop();  // 移除当前页面
-                const previousPage = history[history.length - 1];  // 获取上一页面
-                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
-            }
-        }
-
         // 监听每个iframe的加载事件，记录历史
         const iframes = [1, 2, 3, 4];
         iframes.forEach(iframeIndex => {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
             iframe.addEventListener('load', () => {
                 const iframeSrc = iframe.src;
-                const history = iframeHistory[iframeIndex];
-                // 记录每次加载的页面
-                if (history[history.length - 1] !== iframeSrc) {
-                    history.push(iframeSrc);
-                }
+                iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
             });
 
             // 监听iframe滚动事件
