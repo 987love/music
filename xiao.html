@@ -144,25 +144,33 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
-        // 用一个对象存储每个iframe的历史记录
-        const iframeHistory = {
-            1: [],
-            2: [],
-            3: [],
-            4: []
-        };
+        // 初始化浏览记录
+        function initHistory(iframeIndex, initialUrl) {
+            let history = JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
+            history.push(initialUrl);  // 添加初始页面URL
+            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
+        }
+
+        // 更新历史记录
+        function updateHistory(iframeIndex, url) {
+            let history = JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
+            history.push(url);  // 添加当前页面URL
+            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
+        }
+
+        // 获取历史记录
+        function getHistory(iframeIndex) {
+            return JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
+        }
 
         // 切换iframe显示
         function changeIframe(iframeIndex) {
-            // 隐藏当前iframe
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
-            // 显示新iframe
             document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
             currentIframe = iframeIndex;
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
 
-            // 更新历史记录
             let iframe = document.getElementById(`iframe${iframeIndex}`);
             updateHistory(iframeIndex, iframe.src);
         }
@@ -177,31 +185,15 @@
             activeMenuItem.classList.add('active');
         }
 
-        // 更新每个iframe的历史记录
-        function updateHistory(iframeIndex, url) {
-            // 如果历史记录已超过10个，删除最早的记录
-            if (iframeHistory[iframeIndex].length >= 10) {
-                iframeHistory[iframeIndex].shift();
-            }
-            // 添加当前页面的URL到历史记录
-            iframeHistory[iframeIndex].push(url);
-
-            // 保存到sessionStorage中
-            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(iframeHistory[iframeIndex]));
-        }
-
         // 返回操作
         function goBack(iframeIndex) {
-            let history = iframeHistory[iframeIndex];
+            let history = getHistory(iframeIndex);
             if (history.length > 1) {
-                // 删除当前页面
-                history.pop();
-                // 获取上一页的URL
-                let previousPage = history.pop();
+                history.pop();  // 删除当前页面
+                let previousPage = history.pop();  // 获取上一页
                 const iframe = document.getElementById(`iframe${iframeIndex}`);
                 iframe.src = previousPage;  // 返回到上一页面
-                iframeHistory[iframeIndex] = history;  // 更新历史记录
-                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));  // 保存到sessionStorage
+                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
             }
         }
 
@@ -268,6 +260,7 @@
 
         // 初始化，显示第一个iframe并绑定事件
         changeIframe(1);
+        initHistory(1, 'p.html?p=1'); // 初始化历史记录
         bindIframeScrollListener(1);
 
     </script>
