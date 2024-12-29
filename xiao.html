@@ -144,7 +144,7 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
-        // 初始化浏览记录
+        // 初始化历史记录
         function initHistory(iframeIndex, initialUrl) {
             let history = JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
             history.push(initialUrl);  // 添加初始页面URL
