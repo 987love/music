@@ -22,19 +22,16 @@
         .content {
             position: relative;
             height: 100%;
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .iframe-container {
+        iframe {
+            border: none;
             width: 100%;
             height: 100%;
-            display: none;
-        }
-
-        #iframe1, #iframe2, #iframe3, #iframe4 {
-            width: 100%;
-            height: 100%;
+            flex: 1;
         }
 
         .back-button {
@@ -110,25 +107,8 @@
 </head>
 <body>
     <div class="content">
-        <div id="iframe1-container" class="iframe-container">
-            <iframe id="iframe1" src="p.html?p=1" frameborder="0"></iframe>
-            <button id="back-button1" class="back-button hidden" onclick="goBack(1)">返回</button>
-        </div>
-
-        <div id="iframe2-container" class="iframe-container">
-            <iframe id="iframe2" src="quote.html" frameborder="0"></iframe>
-            <button id="back-button2" class="back-button hidden" onclick="goBack(2)">返回</button>
-        </div>
-
-        <div id="iframe3-container" class="iframe-container">
-            <iframe id="iframe3" src="test.html" frameborder="0"></iframe>
-            <button id="back-button3" class="back-button hidden" onclick="goBack(3)">返回</button>
-        </div>
-
-        <div id="iframe4-container" class="iframe-container">
-            <iframe id="iframe4" src="test2.html?s=2" frameborder="0"></iframe>
-            <button id="back-button4" class="back-button hidden" onclick="goBack(4)">返回</button>
-        </div>
+        <iframe id="iframe" src="p.html?p=1" frameborder="0"></iframe>
+        <button id="back-button" class="back-button hidden" onclick="goBack()">返回</button>
     </div>
 
     <div id="tab-menu" class="tab-menu visible">
@@ -141,83 +121,70 @@
     </div>
 
     <script>
+        // 管理 iframe 历史记录
+        const iframeHistory = [];
         let currentIframe = 1;
-        let lastScrollPosition = 0;
-        let iframeHistories = { 1: [], 2: [], 3: [], 4: [] };
 
-        // 初始化iframe的历史记录
-        function initHistory(iframeIndex, initialUrl) {
-            iframeHistories[iframeIndex] = [initialUrl];
-            window.history.pushState({ iframeIndex, page: initialUrl }, "", initialUrl);
+        // 页面初始化时设置 iframe 的 src 属性并加载
+        function changeIframe(menuIndex) {
+            const iframe = document.getElementById('iframe');
+            let src;
+            switch (menuIndex) {
+                case 1:
+                    src = 'p.html?p=1';
+                    break;
+                case 2:
+                    src = 'quote.html';
+                    break;
+                case 3:
+                    src = 'test.html';
+                    break;
+                case 4:
+                    src = 'test2.html?s=2';
+                    break;
+            }
+
+            iframe.src = src;
+            iframeHistory.push(src);  // 将新的 URL 添加到历史记录中
+            currentIframe = menuIndex;  // 更新当前 iframe 页签
+
+            // 更新底部菜单状态
+            updateMenuState(menuIndex);
+
+            // 重新绑定滚动事件监听器
+            bindIframeScrollListener();
         }
 
-        // 更新iframe的历史记录
-        function updateHistory(iframeIndex, url) {
-            iframeHistories[iframeIndex].push(url);
-            window.history.pushState({ iframeIndex, page: url }, "", url);
-        }
-
-        // 获取iframe的历史记录
-        function getHistory(iframeIndex) {
-            return iframeHistories[iframeIndex];
-        }
-
-        // 切换iframe显示
-        function changeIframe(iframeIndex) {
-            document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
-            document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
-            currentIframe = iframeIndex;
-            updateMenuActiveState(iframeIndex);
-            bindIframeScrollListener(iframeIndex);
-
-            const iframe = document.getElementById(`iframe${iframeIndex}`);
-            updateHistory(iframeIndex, iframe.src);
-        }
-
-        // 更新菜单项的激活状态
-        function updateMenuActiveState(iframeIndex) {
+        // 更新底部菜单的激活状态
+        function updateMenuState(menuIndex) {
             for (let i = 1; i <= 4; i++) {
                 const menuItem = document.getElementById(`menu${i}`);
                 menuItem.classList.remove('active');
             }
-            const activeMenuItem = document.getElementById(`menu${iframeIndex}`);
+            const activeMenuItem = document.getElementById(`menu${menuIndex}`);
             activeMenuItem.classList.add('active');
         }
 
-        // 返回操作
-        function goBack(iframeIndex) {
-            let history = getHistory(iframeIndex);
-            if (history.length > 1) {
-                history.pop();  // 删除当前页面
-                let previousPage = history.pop();  // 获取上一页
-                const iframe = document.getElementById(`iframe${iframeIndex}`);
-                iframe.src = previousPage;  // 返回到上一页面
+        // 返回按钮逻辑
+        function goBack() {
+            if (iframeHistory.length > 1) {
+                iframeHistory.pop();  // 删除当前页
+                const previousPage = iframeHistory.pop();  // 获取上一页 URL
+                document.getElementById('iframe').src = previousPage;  // 切换到上一页
             }
         }
 
-        // 监听浏览器历史的变化
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.iframeIndex) {
-                changeIframe(event.state.iframeIndex);
-            }
-        });
-
-        // 绑定iframe滚动事件
-        function bindIframeScrollListener(iframeIndex) {
-            const iframe = document.getElementById(`iframe${iframeIndex}`);
-            const iframeDocument = iframe.contentWindow || iframe.contentDocument;
-
-            if (iframeDocument) {
-                iframeDocument.removeEventListener('scroll', handleScroll);
-                iframeDocument.addEventListener('scroll', handleScroll, false);
-            }
+        // 监听 iframe 内的滚动事件
+        function bindIframeScrollListener() {
+            const iframe = document.getElementById('iframe');
+            iframe.contentWindow.addEventListener('scroll', handleScroll);
         }
 
-        // 滚动事件处理
+        let lastScrollPosition = 0;
+
         function handleScroll() {
-            const iframe = document.getElementById(`iframe${currentIframe}`);
-            const iframeDocument = iframe.contentWindow || iframe.contentDocument;
-            const scrollPosition = iframeDocument.scrollY || iframeDocument.documentElement.scrollTop;
+            const iframe = document.getElementById('iframe');
+            const scrollPosition = iframe.contentWindow.scrollY;
 
             if (scrollPosition > lastScrollPosition) {
                 hideBackButton();
@@ -232,13 +199,13 @@
 
         // 显示返回按钮
         function showBackButton() {
-            const backButton = document.getElementById(`back-button${currentIframe}`);
+            const backButton = document.getElementById('back-button');
             backButton.classList.remove('hidden');
         }
 
         // 隐藏返回按钮
         function hideBackButton() {
-            const backButton = document.getElementById(`back-button${currentIframe}`);
+            const backButton = document.getElementById('back-button');
             backButton.classList.add('hidden');
         }
 
@@ -256,11 +223,9 @@
             tabMenu.classList.add('hidden');
         }
 
-        // 初始化，显示第一个iframe并绑定事件
+        // 初始化时绑定滚动事件并加载第一个页面
         changeIframe(1);
-        initHistory(1, 'p.html?p=1'); // 初始化历史记录
-        bindIframeScrollListener(1);
-
+        bindIframeScrollListener();
     </script>
 </body>
 </html>
