@@ -188,6 +188,8 @@
 
             // 更新菜单项的激活状态
             updateMenuActiveState(iframeIndex);
+            // 重新绑定滚动事件监听器
+            bindIframeScrollListener(iframeIndex);
         }
 
         // 处理返回操作
@@ -219,11 +221,16 @@
             iframe.addEventListener('load', () => {
                 const iframeSrc = iframe.src;
                 iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
+                // 重新绑定滚动监听器
+                bindIframeScrollListener(iframeIndex);
             });
-
-            // 监听iframe滚动事件
-            iframe.contentWindow.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
         });
+
+        // 绑定iframe滚动事件监听器
+        function bindIframeScrollListener(iframeIndex) {
+            const iframe = document.getElementById(`iframe${iframeIndex}`);
+            iframe.contentWindow.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
+        }
 
         // 监听iframe的滚动方向
         function onIframeScroll(iframeIndex) {
