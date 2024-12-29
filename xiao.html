@@ -144,32 +144,19 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
-        // 记录页面的历史
-        function updateHistory(iframeIndex, url) {
-            let historyKey = `iframe${iframeIndex}_history`;
-            let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
-            history.push(url);  // 添加当前页面的URL到历史记录
-            sessionStorage.setItem(historyKey, JSON.stringify(history));
-        }
-
-        // 获取iframe历史记录
-        function getHistory(iframeIndex) {
-            let historyKey = `iframe${iframeIndex}_history`;
-            let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
-            return history;
-        }
-
         // 切换iframe显示
         function changeIframe(iframeIndex) {
+            // 隐藏当前iframe
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
+            // 显示新iframe
             document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
             currentIframe = iframeIndex;
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
 
-            // 记录历史
+            // 更新浏览器历史
             let iframe = document.getElementById(`iframe${iframeIndex}`);
-            updateHistory(iframeIndex, iframe.src);
+            history.pushState({ iframeIndex: iframeIndex, url: iframe.src }, `Iframe ${iframeIndex}`, iframe.src);
         }
 
         // 更新菜单项的激活状态
@@ -184,15 +171,15 @@
 
         // 返回操作
         function goBack(iframeIndex) {
-            let history = getHistory(iframeIndex);
-            if (history.length > 1) {
-                history.pop();  // 删除当前页面
-                let previousPage = history.pop();  // 获取上一页
-                const iframe = document.getElementById(`iframe${iframeIndex}`);
-                iframe.src = previousPage;  // 返回到上一页面
-                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
-            }
+            history.back(); // 返回上一页
         }
+
+        // 监听浏览器历史的变化
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.iframeIndex) {
+                changeIframe(event.state.iframeIndex);
+            }
+        });
 
         // 绑定iframe滚动事件
         function bindIframeScrollListener(iframeIndex) {
@@ -248,19 +235,9 @@
             tabMenu.classList.add('hidden');
         }
 
-        // 确保iframe页面加载完成时绑定滚动事件
-        function ensureIframeLoad() {
-            const iframeElements = document.querySelectorAll('iframe');
-            iframeElements.forEach(iframe => {
-                iframe.addEventListener('load', () => {
-                    bindIframeScrollListener(currentIframe);
-                });
-            });
-        }
-
         // 初始化，显示第一个iframe并绑定事件
         changeIframe(1);
-        ensureIframeLoad();
+        bindIframeScrollListener(1);
 
     </script>
 </body>
