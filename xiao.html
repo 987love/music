@@ -143,24 +143,23 @@
     <script>
         let currentIframe = 1;
         let lastScrollPosition = 0;
+        let iframeHistories = { 1: [], 2: [], 3: [], 4: [] };
 
-        // 初始化历史记录
+        // 初始化iframe的历史记录
         function initHistory(iframeIndex, initialUrl) {
-            let history = JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
-            history.push(initialUrl);  // 添加初始页面URL
-            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
+            iframeHistories[iframeIndex] = [initialUrl];
+            window.history.pushState({ iframeIndex, page: initialUrl }, "", initialUrl);
         }
 
-        // 更新历史记录
+        // 更新iframe的历史记录
         function updateHistory(iframeIndex, url) {
-            let history = JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
-            history.push(url);  // 添加当前页面URL
-            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
+            iframeHistories[iframeIndex].push(url);
+            window.history.pushState({ iframeIndex, page: url }, "", url);
         }
 
-        // 获取历史记录
+        // 获取iframe的历史记录
         function getHistory(iframeIndex) {
-            return JSON.parse(sessionStorage.getItem(`iframe${iframeIndex}_history`)) || [];
+            return iframeHistories[iframeIndex];
         }
 
         // 切换iframe显示
@@ -171,7 +170,7 @@
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
 
-            let iframe = document.getElementById(`iframe${iframeIndex}`);
+            const iframe = document.getElementById(`iframe${iframeIndex}`);
             updateHistory(iframeIndex, iframe.src);
         }
 
@@ -193,7 +192,6 @@
                 let previousPage = history.pop();  // 获取上一页
                 const iframe = document.getElementById(`iframe${iframeIndex}`);
                 iframe.src = previousPage;  // 返回到上一页面
-                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
             }
         }
 
