@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机端导航页面</title>
     <style>
+        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 页面基本样式 */
         body {
             font-family: Arial, sans-serif;
             height: 100vh;
@@ -19,7 +21,7 @@
             overflow: hidden;
         }
 
-        /* iframe容器 */
+        /* iframe区域 */
         .content {
             position: relative;
             height: 100%;
@@ -27,11 +29,11 @@
             flex-direction: column;
         }
 
-        /* 单个iframe容器 */
+        /* 单个iframe显示区域 */
         .iframe-container {
             width: 100%;
             height: 100%;
-            display: none;
+            display: none; /* 默认所有iframe都隐藏 */
         }
 
         #iframe1, #iframe2, #iframe3, #iframe4 {
@@ -40,7 +42,7 @@
         }
 
         /* 返回按钮 */
-        .back-button {
+        .back-button, .home-button {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -57,32 +59,13 @@
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
-        .back-button.hidden {
+        .back-button.hidden, .home-button.hidden {
             transform: translateX(-100%);
             opacity: 0;
         }
 
-        /* 返回主页按钮 */
         .home-button {
-            position: absolute;
-            top: 10px;
-            left: 120px; /* 距离返回按钮稍远 */
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            font-size: 14px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 1000;
-            opacity: 1;
-            transform: translateX(0);
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
-
-        .home-button.hidden {
-            transform: translateX(-100%);
-            opacity: 0;
+            top: 50px; /* Positioning the "返回主页" button below the back button */
         }
 
         /* 底部Tab菜单 */
@@ -113,14 +96,14 @@
             font-size: 16px;
             text-align: center;
             flex: 1;
-            padding: 5px 0;
-            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 当前激活菜单的样式 */
+        /* 当前选中的菜单项 */
         .tab-menu ul li.active {
-            background-color: #007BFF;
+            background-color: #00bfff;
             color: white;
+            border-radius: 4px;
+            font-weight: bold;
         }
 
         /* 动画效果 */
@@ -144,7 +127,7 @@
 
         <!-- iframe 2 -->
         <div id="iframe2-container" class="iframe-container">
-            <iframe id="iframe2" src="quote.html" frameborder="0"></iframe>
+            <iframe id="iframe2" src="https://www.baidu.com/" frameborder="0"></iframe>
             <button id="back-button2" class="back-button hidden" onclick="goBack(2)">返回</button>
             <button id="home-button2" class="home-button hidden" onclick="goHome(2)">返回主页</button>
         </div>
@@ -167,47 +150,38 @@
     <!-- 底部Tab菜单 -->
     <div id="tab-menu" class="tab-menu visible">
         <ul>
-            <li id="tab1" onclick="changeIframe(1)">首页</li>
-            <li id="tab2" onclick="changeIframe(2)">行情</li>
-            <li id="tab3" onclick="changeIframe(3)">测试</li>
-            <li id="tab4" onclick="changeIframe(4)">测试2</li>
+            <li id="menu1" onclick="changeIframe(1)">首页</li>
+            <li id="menu2" onclick="changeIframe(2)">行情</li>
+            <li id="menu3" onclick="changeIframe(3)">测试</li>
+            <li id="menu4" onclick="changeIframe(4)">测试2</li>
         </ul>
     </div>
 
     <script>
+        // 存储每个iframe的历史记录
         const iframeHistory = {
-            1: ['p.html?p=1'],
-            2: ['quote.html'],
-            3: ['test.html'],
-            4: ['test2.html?s=2']
+            1: ['p.html?p=1'],  // iframe 1 初始页面
+            2: ['https://www.baidu.com/'],  // iframe 2 初始页面
+            3: ['test.html'],   // iframe 3 初始页面
+            4: ['test2.html?s=2'] // iframe 4 初始页面
         };
 
-        const iframeStartURLs = {
-            1: 'p.html?p=1',
-            2: 'quote.html',
-            3: 'test.html',
-            4: 'test2.html?s=2'
-        };
-
+        // 当前显示的iframe
         let currentIframe = 1;
 
         // 切换iframe显示
         function changeIframe(iframeIndex) {
+            // 隐藏当前iframe
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
+            // 显示目标iframe
             document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
+            // 更新当前显示的iframe
             currentIframe = iframeIndex;
 
-            // 底部菜单项激活
-            for (let i = 1; i <= 4; i++) {
-                const tab = document.getElementById(`tab${i}`);
-                if (i === iframeIndex) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
-            }
+            // 更新底部菜单的状态
+            updateTabMenuStatus(iframeIndex);
 
-            // 显示对应iframe的返回按钮
+            // 显示对应iframe的返回按钮和返回主页按钮
             for (let i = 1; i <= 4; i++) {
                 const backButton = document.getElementById(`back-button${i}`);
                 const homeButton = document.getElementById(`home-button${i}`);
@@ -221,31 +195,69 @@
             }
         }
 
+        // 更新底部菜单状态
+        function updateTabMenuStatus(iframeIndex) {
+            const menuItems = document.querySelectorAll('.tab-menu ul li');
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            document.getElementById(`menu${iframeIndex}`).classList.add('active');
+        }
+
         // 处理返回操作
         function goBack(iframeIndex) {
             const history = iframeHistory[iframeIndex];
             if (history.length > 1) {
-                history.pop();
-                const previousPage = history[history.length - 1];
-                document.getElementById(`iframe${iframeIndex}`).src = previousPage;
+                history.pop();  // 移除当前页面
+                const previousPage = history[history.length - 1];  // 获取上一页面
+                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
             }
         }
 
-        // 处理返回主页操作
+        // 返回到初始页面
         function goHome(iframeIndex) {
-            const homeURL = iframeStartURLs[iframeIndex];
-            document.getElementById(`iframe${iframeIndex}`).src = homeURL;
+            const homePage = iframeHistory[iframeIndex][0];
+            document.getElementById(`iframe${iframeIndex}`).src = homePage;
         }
 
-        // 监听iframe加载，记录历史
+        // 监听每个iframe的加载事件，记录历史
         const iframes = [1, 2, 3, 4];
         iframes.forEach(iframeIndex => {
             document.getElementById(`iframe${iframeIndex}`).addEventListener('load', () => {
                 const iframe = document.getElementById(`iframe${iframeIndex}`);
                 const iframeSrc = iframe.src;
-                iframeHistory[iframeIndex].push(iframeSrc);
+                iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
             });
         });
+
+        // iframe滚动监听
+        let lastScrollTop = 0;
+        iframes.forEach(iframeIndex => {
+            const iframe = document.getElementById(`iframe${iframeIndex}`);
+            iframe.contentWindow.addEventListener('scroll', function () {
+                const scrollTop = iframe.contentWindow.scrollY;
+                if (scrollTop > lastScrollTop) {
+                    // 向下滚动
+                    hideButtons(iframeIndex);
+                } else {
+                    // 向上滚动
+                    showButtons(iframeIndex);
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // 防止负值
+            });
+        });
+
+        // 显示返回按钮和返回主页按钮
+        function showButtons(iframeIndex) {
+            document.getElementById(`back-button${iframeIndex}`).classList.remove('hidden');
+            document.getElementById(`home-button${iframeIndex}`).classList.remove('hidden');
+        }
+
+        // 隐藏返回按钮和返回主页按钮
+        function hideButtons(iframeIndex) {
+            document.getElementById(`back-button${iframeIndex}`).classList.add('hidden');
+            document.getElementById(`home-button${iframeIndex}`).classList.add('hidden');
+        }
 
         // 初始化：默认显示第一个iframe
         changeIframe(1);
