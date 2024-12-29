@@ -144,6 +144,21 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
+        // 存储历史记录
+        function updateHistory(iframeIndex, url) {
+            let historyKey = `iframe${iframeIndex}_history`;
+            let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
+            history.push(url);
+            sessionStorage.setItem(historyKey, JSON.stringify(history));
+        }
+
+        // 获取历史记录
+        function getHistory(iframeIndex) {
+            let historyKey = `iframe${iframeIndex}_history`;
+            let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
+            return history;
+        }
+
         // 切换iframe显示
         function changeIframe(iframeIndex) {
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
@@ -151,6 +166,10 @@
             currentIframe = iframeIndex;
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
+
+            // 记录历史记录
+            let iframe = document.getElementById(`iframe${iframeIndex}`);
+            updateHistory(iframeIndex, iframe.src);
         }
 
         // 更新菜单项的激活状态
@@ -165,8 +184,14 @@
 
         // 返回操作
         function goBack(iframeIndex) {
-            const iframe = document.getElementById(`iframe${iframeIndex}`);
-            iframe.contentWindow.history.back();
+            let history = getHistory(iframeIndex);
+            if (history.length > 1) {
+                history.pop();  // 删除当前页面
+                let previousPage = history.pop();  // 获取上一页
+                const iframe = document.getElementById(`iframe${iframeIndex}`);
+                iframe.src = previousPage;  // 返回到上一页面
+                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));
+            }
         }
 
         // 绑定iframe滚动事件
