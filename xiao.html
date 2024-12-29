@@ -224,18 +224,29 @@
                 // 重新绑定滚动监听器
                 bindIframeScrollListener(iframeIndex);
             });
+
+            // 初次加载时绑定滚动监听器
+            bindIframeScrollListener(iframeIndex);
         });
 
         // 绑定iframe滚动事件监听器
         function bindIframeScrollListener(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
-            iframe.contentWindow.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
+            const iframeDocument = iframe.contentWindow || iframe.contentDocument;
+            
+            if (iframeDocument) {
+                iframeDocument.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
+            }
         }
 
         // 监听iframe的滚动方向
         function onIframeScroll(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
-            const scrollPosition = iframe.contentWindow.scrollY;
+            const iframeDocument = iframe.contentWindow || iframe.contentDocument;
+            
+            if (!iframeDocument) return;
+
+            const scrollPosition = iframeDocument.scrollY || iframeDocument.documentElement.scrollTop;
 
             // 判断滚动方向
             if (scrollPosition > lastScrollPosition) {
