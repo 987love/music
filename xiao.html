@@ -144,15 +144,15 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
-        // 存储历史记录
+        // 记录页面的历史
         function updateHistory(iframeIndex, url) {
             let historyKey = `iframe${iframeIndex}_history`;
             let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
-            history.push(url);
+            history.push(url);  // 添加当前页面的URL到历史记录
             sessionStorage.setItem(historyKey, JSON.stringify(history));
         }
 
-        // 获取历史记录
+        // 获取iframe历史记录
         function getHistory(iframeIndex) {
             let historyKey = `iframe${iframeIndex}_history`;
             let history = JSON.parse(sessionStorage.getItem(historyKey)) || [];
@@ -167,7 +167,7 @@
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
 
-            // 记录历史记录
+            // 记录历史
             let iframe = document.getElementById(`iframe${iframeIndex}`);
             updateHistory(iframeIndex, iframe.src);
         }
