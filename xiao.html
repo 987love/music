@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机端导航页面</title>
     <style>
-        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 页面基本样式 */
         body {
             font-family: Arial, sans-serif;
             height: 100vh;
@@ -21,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* iframe区域 */
         .content {
             position: relative;
             height: 100%;
@@ -29,11 +26,10 @@
             flex-direction: column;
         }
 
-        /* 单个iframe显示区域 */
         .iframe-container {
             width: 100%;
             height: 100%;
-            display: none; /* 默认所有iframe都隐藏 */
+            display: none;
         }
 
         #iframe1, #iframe2, #iframe3, #iframe4 {
@@ -41,7 +37,6 @@
             height: 100%;
         }
 
-        /* 返回按钮 */
         .back-button {
             position: absolute;
             top: 10px;
@@ -64,7 +59,6 @@
             opacity: 0;
         }
 
-        /* 底部Tab菜单 */
         .tab-menu {
             position: fixed;
             bottom: 0;
@@ -96,16 +90,15 @@
         }
 
         .tab-menu ul li.active {
-            background-color: #ff8c00; /* 激活项的背景色 */
-            color: white; /* 激活项的字体颜色 */
-            font-weight: bold; /* 激活项字体加粗 */
+            background-color: #ff8c00;
+            color: white;
+            font-weight: bold;
         }
 
         .tab-menu ul li:hover {
-            background-color: #555; /* 鼠标悬停时背景颜色 */
+            background-color: #555;
         }
 
-        /* 动画效果 */
         .tab-menu.hidden {
             transform: translateY(100%);
         }
@@ -117,32 +110,27 @@
 </head>
 <body>
     <div class="content">
-        <!-- iframe 1 -->
         <div id="iframe1-container" class="iframe-container">
             <iframe id="iframe1" src="p.html?p=1" frameborder="0"></iframe>
             <button id="back-button1" class="back-button hidden" onclick="goBack(1)">返回</button>
         </div>
 
-        <!-- iframe 2 -->
         <div id="iframe2-container" class="iframe-container">
             <iframe id="iframe2" src="quote.html" frameborder="0"></iframe>
             <button id="back-button2" class="back-button hidden" onclick="goBack(2)">返回</button>
         </div>
 
-        <!-- iframe 3 -->
         <div id="iframe3-container" class="iframe-container">
             <iframe id="iframe3" src="test.html" frameborder="0"></iframe>
             <button id="back-button3" class="back-button hidden" onclick="goBack(3)">返回</button>
         </div>
 
-        <!-- iframe 4 -->
         <div id="iframe4-container" class="iframe-container">
             <iframe id="iframe4" src="test2.html?s=2" frameborder="0"></iframe>
             <button id="back-button4" class="back-button hidden" onclick="goBack(4)">返回</button>
         </div>
     </div>
 
-    <!-- 底部Tab菜单 -->
     <div id="tab-menu" class="tab-menu visible">
         <ul>
             <li id="menu1" onclick="changeIframe(1)">首页</li>
@@ -153,82 +141,59 @@
     </div>
 
     <script>
-        let currentIframe = 1;  // 当前显示的iframe
-        let lastScrollPosition = 0;  // 上一次滚动的位置
+        let currentIframe = 1;
+        let lastScrollPosition = 0;
 
         // 切换iframe显示
         function changeIframe(iframeIndex) {
-            // 隐藏当前iframe
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
-            // 显示目标iframe
             document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
-            // 更新当前显示的iframe
             currentIframe = iframeIndex;
-
-            // 显示对应iframe的返回按钮
-            for (let i = 1; i <= 4; i++) {
-                const backButton = document.getElementById(`back-button${i}`);
-                if (i === iframeIndex) {
-                    backButton.classList.remove('hidden');
-                } else {
-                    backButton.classList.add('hidden');
-                }
-            }
-
-            // 更新菜单项的激活状态
             updateMenuActiveState(iframeIndex);
-
-            // 绑定滚动事件
             bindIframeScrollListener(iframeIndex);
         }
 
         // 更新菜单项的激活状态
         function updateMenuActiveState(iframeIndex) {
-            // 重置所有菜单项的激活状态
             for (let i = 1; i <= 4; i++) {
                 const menuItem = document.getElementById(`menu${i}`);
                 menuItem.classList.remove('active');
             }
-            // 激活当前选中的菜单项
             const activeMenuItem = document.getElementById(`menu${iframeIndex}`);
             activeMenuItem.classList.add('active');
         }
 
-        // 处理返回操作
+        // 返回操作
         function goBack(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
             iframe.contentWindow.history.back();
         }
 
-        // 监听iframe的滚动事件
+        // 绑定iframe滚动事件
         function bindIframeScrollListener(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
             const iframeDocument = iframe.contentWindow || iframe.contentDocument;
 
             if (iframeDocument) {
-                iframeDocument.removeEventListener('scroll', handleScroll);  // 移除旧的事件监听器
+                iframeDocument.removeEventListener('scroll', handleScroll);
                 iframeDocument.addEventListener('scroll', handleScroll, false);
             }
         }
 
-        // 滚动事件处理函数
+        // 滚动事件处理
         function handleScroll() {
             const iframe = document.getElementById(`iframe${currentIframe}`);
             const iframeDocument = iframe.contentWindow || iframe.contentDocument;
             const scrollPosition = iframeDocument.scrollY || iframeDocument.documentElement.scrollTop;
 
-            // 判断滚动方向
             if (scrollPosition > lastScrollPosition) {
-                // 向下滚动，隐藏返回按钮和底部菜单
                 hideBackButton();
                 hideTabMenu();
             } else {
-                // 向上滚动，显示返回按钮和底部菜单
                 showBackButton();
                 showTabMenu();
             }
 
-            // 更新上一次滚动的位置
             lastScrollPosition = scrollPosition;
         }
 
@@ -258,8 +223,20 @@
             tabMenu.classList.add('hidden');
         }
 
-        // 初始化：默认显示第一个iframe
+        // 确保iframe页面加载完成时绑定滚动事件
+        function ensureIframeLoad() {
+            const iframeElements = document.querySelectorAll('iframe');
+            iframeElements.forEach(iframe => {
+                iframe.addEventListener('load', () => {
+                    bindIframeScrollListener(currentIframe);
+                });
+            });
+        }
+
+        // 初始化，显示第一个iframe并绑定事件
         changeIframe(1);
+        ensureIframeLoad();
+
     </script>
 </body>
 </html>
