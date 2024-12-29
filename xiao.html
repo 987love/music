@@ -153,19 +153,8 @@
     </div>
 
     <script>
-        // 存储每个iframe的历史记录
-        const iframeHistory = {
-            1: [],
-            2: [],
-            3: [],
-            4: []
-        };
-
-        // 当前显示的iframe
-        let currentIframe = 1;
-
-        // 上一次滚动的位置
-        let lastScrollPosition = 0;
+        let currentIframe = 1;  // 当前显示的iframe
+        let lastScrollPosition = 0;  // 上一次滚动的位置
 
         // 切换iframe显示
         function changeIframe(iframeIndex) {
@@ -188,18 +177,9 @@
 
             // 更新菜单项的激活状态
             updateMenuActiveState(iframeIndex);
-            // 重新绑定滚动事件监听器
-            bindIframeScrollListener(iframeIndex);
-        }
 
-        // 处理返回操作
-        function goBack(iframeIndex) {
-            const history = iframeHistory[iframeIndex];
-            if (history.length > 1) {
-                history.pop();  // 移除当前页面
-                const previousPage = history[history.length - 1];  // 获取上一页面
-                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
-            }
+            // 绑定滚动事件
+            bindIframeScrollListener(iframeIndex);
         }
 
         // 更新菜单项的激活状态
@@ -214,58 +194,37 @@
             activeMenuItem.classList.add('active');
         }
 
-        // 使用MutationObserver监听iframe内容变化
-        function monitorIframeChanges(iframeIndex) {
+        // 处理返回操作
+        function goBack(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
-            const observer = new MutationObserver(() => {
-                bindIframeScrollListener(iframeIndex);
-            });
-
-            observer.observe(iframe, {
-                childList: true,
-                subtree: true
-            });
+            iframe.contentWindow.history.back();
         }
 
-        // 监听每个iframe的加载事件，记录历史
-        const iframes = [1, 2, 3, 4];
-        iframes.forEach(iframeIndex => {
-            const iframe = document.getElementById(`iframe${iframeIndex}`);
-            
-            // 使用MutationObserver监控iframe加载完成
-            monitorIframeChanges(iframeIndex);
-            
-            // 初次加载时绑定滚动监听器
-            bindIframeScrollListener(iframeIndex);
-        });
-
-        // 绑定iframe滚动事件监听器
+        // 监听iframe的滚动事件
         function bindIframeScrollListener(iframeIndex) {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
             const iframeDocument = iframe.contentWindow || iframe.contentDocument;
-            
+
             if (iframeDocument) {
-                iframeDocument.addEventListener('scroll', () => onIframeScroll(iframeIndex), false);
+                iframeDocument.removeEventListener('scroll', handleScroll);  // 移除旧的事件监听器
+                iframeDocument.addEventListener('scroll', handleScroll, false);
             }
         }
 
-        // 监听iframe的滚动方向
-        function onIframeScroll(iframeIndex) {
-            const iframe = document.getElementById(`iframe${iframeIndex}`);
+        // 滚动事件处理函数
+        function handleScroll() {
+            const iframe = document.getElementById(`iframe${currentIframe}`);
             const iframeDocument = iframe.contentWindow || iframe.contentDocument;
-            
-            if (!iframeDocument) return;
-
             const scrollPosition = iframeDocument.scrollY || iframeDocument.documentElement.scrollTop;
 
             // 判断滚动方向
             if (scrollPosition > lastScrollPosition) {
                 // 向下滚动，隐藏返回按钮和底部菜单
-                hideBackButton(iframeIndex);
+                hideBackButton();
                 hideTabMenu();
             } else {
                 // 向上滚动，显示返回按钮和底部菜单
-                showBackButton(iframeIndex);
+                showBackButton();
                 showTabMenu();
             }
 
@@ -274,14 +233,14 @@
         }
 
         // 显示返回按钮
-        function showBackButton(iframeIndex) {
-            const backButton = document.getElementById(`back-button${iframeIndex}`);
+        function showBackButton() {
+            const backButton = document.getElementById(`back-button${currentIframe}`);
             backButton.classList.remove('hidden');
         }
 
         // 隐藏返回按钮
-        function hideBackButton(iframeIndex) {
-            const backButton = document.getElementById(`back-button${iframeIndex}`);
+        function hideBackButton() {
+            const backButton = document.getElementById(`back-button${currentIframe}`);
             backButton.classList.add('hidden');
         }
 
