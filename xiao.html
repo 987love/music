@@ -214,17 +214,27 @@
             activeMenuItem.classList.add('active');
         }
 
+        // 使用MutationObserver监听iframe内容变化
+        function monitorIframeChanges(iframeIndex) {
+            const iframe = document.getElementById(`iframe${iframeIndex}`);
+            const observer = new MutationObserver(() => {
+                bindIframeScrollListener(iframeIndex);
+            });
+
+            observer.observe(iframe, {
+                childList: true,
+                subtree: true
+            });
+        }
+
         // 监听每个iframe的加载事件，记录历史
         const iframes = [1, 2, 3, 4];
         iframes.forEach(iframeIndex => {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
-            iframe.addEventListener('load', () => {
-                const iframeSrc = iframe.src;
-                iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
-                // 重新绑定滚动监听器
-                bindIframeScrollListener(iframeIndex);
-            });
-
+            
+            // 使用MutationObserver监控iframe加载完成
+            monitorIframeChanges(iframeIndex);
+            
             // 初次加载时绑定滚动监听器
             bindIframeScrollListener(iframeIndex);
         });
