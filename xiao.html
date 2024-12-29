@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手机端导航页面</title>
     <style>
-        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 页面基本样式 */
         body {
             font-family: Arial, sans-serif;
             height: 100vh;
@@ -21,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* iframe区域 */
         .content {
             position: relative;
             height: 100%;
@@ -29,11 +26,10 @@
             flex-direction: column;
         }
 
-        /* 单个iframe显示区域 */
         .iframe-container {
             width: 100%;
             height: 100%;
-            display: none; /* 默认所有iframe都隐藏 */
+            display: none;
         }
 
         #iframe1, #iframe2, #iframe3, #iframe4 {
@@ -41,7 +37,6 @@
             height: 100%;
         }
 
-        /* 返回按钮 */
         .back-button, .home-button {
             position: absolute;
             top: 10px;
@@ -65,10 +60,9 @@
         }
 
         .home-button {
-            top: 50px; /* Positioning the "返回主页" button below the back button */
+            top: 50px;
         }
 
-        /* 底部Tab菜单 */
         .tab-menu {
             position: fixed;
             bottom: 0;
@@ -98,7 +92,6 @@
             flex: 1;
         }
 
-        /* 当前选中的菜单项 */
         .tab-menu ul li.active {
             background-color: #00bfff;
             color: white;
@@ -106,7 +99,6 @@
             font-weight: bold;
         }
 
-        /* 动画效果 */
         .tab-menu.hidden {
             transform: translateY(100%);
         }
@@ -118,28 +110,24 @@
 </head>
 <body>
     <div class="content">
-        <!-- iframe 1 -->
         <div id="iframe1-container" class="iframe-container">
             <iframe id="iframe1" src="p.html?p=1" frameborder="0"></iframe>
             <button id="back-button1" class="back-button hidden" onclick="goBack(1)">返回</button>
             <button id="home-button1" class="home-button hidden" onclick="goHome(1)">返回主页</button>
         </div>
 
-        <!-- iframe 2 -->
         <div id="iframe2-container" class="iframe-container">
             <iframe id="iframe2" src="https://www.baidu.com/" frameborder="0"></iframe>
             <button id="back-button2" class="back-button hidden" onclick="goBack(2)">返回</button>
             <button id="home-button2" class="home-button hidden" onclick="goHome(2)">返回主页</button>
         </div>
 
-        <!-- iframe 3 -->
         <div id="iframe3-container" class="iframe-container">
             <iframe id="iframe3" src="test.html" frameborder="0"></iframe>
             <button id="back-button3" class="back-button hidden" onclick="goBack(3)">返回</button>
             <button id="home-button3" class="home-button hidden" onclick="goHome(3)">返回主页</button>
         </div>
 
-        <!-- iframe 4 -->
         <div id="iframe4-container" class="iframe-container">
             <iframe id="iframe4" src="test2.html?s=2" frameborder="0"></iframe>
             <button id="back-button4" class="back-button hidden" onclick="goBack(4)">返回</button>
@@ -147,7 +135,6 @@
         </div>
     </div>
 
-    <!-- 底部Tab菜单 -->
     <div id="tab-menu" class="tab-menu visible">
         <ul>
             <li id="menu1" onclick="changeIframe(1)">首页</li>
@@ -158,30 +145,21 @@
     </div>
 
     <script>
-        // 存储每个iframe的历史记录
         const iframeHistory = {
-            1: ['p.html?p=1'],  // iframe 1 初始页面
-            2: ['https://www.baidu.com/'],  // iframe 2 初始页面
-            3: ['test.html'],   // iframe 3 初始页面
-            4: ['test2.html?s=2'] // iframe 4 初始页面
+            1: ['p.html?p=1'],
+            2: ['quote.html'],
+            3: ['test.html'],
+            4: ['test2.html?s=2']
         };
 
-        // 当前显示的iframe
         let currentIframe = 1;
 
-        // 切换iframe显示
         function changeIframe(iframeIndex) {
-            // 隐藏当前iframe
             document.getElementById(`iframe${currentIframe}-container`).style.display = 'none';
-            // 显示目标iframe
             document.getElementById(`iframe${iframeIndex}-container`).style.display = 'block';
-            // 更新当前显示的iframe
             currentIframe = iframeIndex;
-
-            // 更新底部菜单的状态
             updateTabMenuStatus(iframeIndex);
 
-            // 显示对应iframe的返回按钮和返回主页按钮
             for (let i = 1; i <= 4; i++) {
                 const backButton = document.getElementById(`back-button${i}`);
                 const homeButton = document.getElementById(`home-button${i}`);
@@ -195,71 +173,84 @@
             }
         }
 
-        // 更新底部菜单状态
         function updateTabMenuStatus(iframeIndex) {
             const menuItems = document.querySelectorAll('.tab-menu ul li');
-            menuItems.forEach(item => {
-                item.classList.remove('active');
-            });
+            menuItems.forEach(item => item.classList.remove('active'));
             document.getElementById(`menu${iframeIndex}`).classList.add('active');
         }
 
-        // 处理返回操作
         function goBack(iframeIndex) {
             const history = iframeHistory[iframeIndex];
             if (history.length > 1) {
-                history.pop();  // 移除当前页面
-                const previousPage = history[history.length - 1];  // 获取上一页面
-                document.getElementById(`iframe${iframeIndex}`).src = previousPage;  // 加载上一页面
+                history.pop();
+                const previousPage = history[history.length - 1];
+                document.getElementById(`iframe${iframeIndex}`).src = previousPage;
             }
         }
 
-        // 返回到初始页面
         function goHome(iframeIndex) {
             const homePage = iframeHistory[iframeIndex][0];
             document.getElementById(`iframe${iframeIndex}`).src = homePage;
         }
 
-        // 监听每个iframe的加载事件，记录历史
         const iframes = [1, 2, 3, 4];
         iframes.forEach(iframeIndex => {
             document.getElementById(`iframe${iframeIndex}`).addEventListener('load', () => {
                 const iframe = document.getElementById(`iframe${iframeIndex}`);
                 const iframeSrc = iframe.src;
-                iframeHistory[iframeIndex].push(iframeSrc);  // 保存当前iframe的历史
+                iframeHistory[iframeIndex].push(iframeSrc);
             });
         });
 
-        // iframe滚动监听
         let lastScrollTop = 0;
         iframes.forEach(iframeIndex => {
             const iframe = document.getElementById(`iframe${iframeIndex}`);
             iframe.contentWindow.addEventListener('scroll', function () {
                 const scrollTop = iframe.contentWindow.scrollY;
                 if (scrollTop > lastScrollTop) {
-                    // 向下滚动
                     hideButtons(iframeIndex);
                 } else {
-                    // 向上滚动
                     showButtons(iframeIndex);
                 }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // 防止负值
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             });
         });
 
-        // 显示返回按钮和返回主页按钮
         function showButtons(iframeIndex) {
             document.getElementById(`back-button${iframeIndex}`).classList.remove('hidden');
             document.getElementById(`home-button${iframeIndex}`).classList.remove('hidden');
         }
 
-        // 隐藏返回按钮和返回主页按钮
         function hideButtons(iframeIndex) {
             document.getElementById(`back-button${iframeIndex}`).classList.add('hidden');
             document.getElementById(`home-button${iframeIndex}`).classList.add('hidden');
         }
 
-        // 初始化：默认显示第一个iframe
+        function hideTabMenu() {
+            document.getElementById('tab-menu').classList.add('hidden');
+        }
+
+        function showTabMenu() {
+            document.getElementById('tab-menu').classList.remove('hidden');
+        }
+
+        let touchStartY = 0;
+
+        let touchEndY = 0;
+
+        window.addEventListener('touchstart', function (e) {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        window.addEventListener('touchend', function (e) {
+            touchEndY = e.changedTouches[0].screenY;
+            if (touchStartY - touchEndY > 50) {
+                hideTabMenu();
+            } else if (touchEndY - touchStartY > 50) {
+                showTabMenu();
+            }
+        });
+
         changeIframe(1);
     </script>
 </body>
