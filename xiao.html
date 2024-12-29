@@ -144,6 +144,14 @@
         let currentIframe = 1;
         let lastScrollPosition = 0;
 
+        // 用一个对象存储每个iframe的历史记录
+        const iframeHistory = {
+            1: [],
+            2: [],
+            3: [],
+            4: []
+        };
+
         // 切换iframe显示
         function changeIframe(iframeIndex) {
             // 隐藏当前iframe
@@ -154,9 +162,9 @@
             updateMenuActiveState(iframeIndex);
             bindIframeScrollListener(iframeIndex);
 
-            // 更新浏览器历史
+            // 更新历史记录
             let iframe = document.getElementById(`iframe${iframeIndex}`);
-            history.pushState({ iframeIndex: iframeIndex, url: iframe.src }, `Iframe ${iframeIndex}`, iframe.src);
+            updateHistory(iframeIndex, iframe.src);
         }
 
         // 更新菜单项的激活状态
@@ -169,9 +177,32 @@
             activeMenuItem.classList.add('active');
         }
 
+        // 更新每个iframe的历史记录
+        function updateHistory(iframeIndex, url) {
+            // 如果历史记录已超过10个，删除最早的记录
+            if (iframeHistory[iframeIndex].length >= 10) {
+                iframeHistory[iframeIndex].shift();
+            }
+            // 添加当前页面的URL到历史记录
+            iframeHistory[iframeIndex].push(url);
+
+            // 保存到sessionStorage中
+            sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(iframeHistory[iframeIndex]));
+        }
+
         // 返回操作
         function goBack(iframeIndex) {
-            history.back(); // 返回上一页
+            let history = iframeHistory[iframeIndex];
+            if (history.length > 1) {
+                // 删除当前页面
+                history.pop();
+                // 获取上一页的URL
+                let previousPage = history.pop();
+                const iframe = document.getElementById(`iframe${iframeIndex}`);
+                iframe.src = previousPage;  // 返回到上一页面
+                iframeHistory[iframeIndex] = history;  // 更新历史记录
+                sessionStorage.setItem(`iframe${iframeIndex}_history`, JSON.stringify(history));  // 保存到sessionStorage
+            }
         }
 
         // 监听浏览器历史的变化
