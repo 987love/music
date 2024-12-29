@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手机端导航页面</title>
+    <style>
+        /* Reset some styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面基本样式 */
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* iframe区域 */
+        .content {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* iframe显示区域 */
+        #iframe {
+            width: 100%;
+            height: 100%; /* iframe填充整个视口 */
+        }
+
+        /* 底部Tab菜单 */
+        .tab-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .tab-menu ul {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 10px 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .tab-menu ul li {
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* 动画效果 */
+        .tab-menu.hidden {
+            transform: translateY(100%);
+        }
+
+        .tab-menu.visible {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="content">
+        <!-- 这里是iframe的展示区域 -->
+        <iframe id="iframe" src="p.html?p=1" frameborder="0"></iframe>
+    </div>
+
+    <!-- 底部Tab菜单 -->
+    <div id="tab-menu" class="tab-menu visible">
+        <ul>
+            <li onclick="changeIframe(1)">首页</li>
+            <li onclick="changeIframe(2)">行情</li>
+            <li onclick="changeIframe(3)">测试</li>
+            <li onclick="changeIframe(4)">测试2</li>
+        </ul>
+    </div>
+
+    <script>
+        let lastScrollTop = 0;  // 上次滚动的位置
+        let isMenuVisible = true;  // 菜单当前的显示状态
+
+        // 监听iframe容器的滚动事件
+        const iframe = document.getElementById('iframe');
+        iframe.addEventListener('load', () => {
+            const iframeWindow = iframe.contentWindow;
+            iframeWindow.addEventListener('scroll', onIframeScroll);
+        });
+
+        // 判断iframe滚动方向
+        function onIframeScroll() {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const currentScrollTop = iframeDocument.documentElement.scrollTop || iframeDocument.body.scrollTop;
+
+            // 判断用户是向上滚动还是向下滚动
+            if (currentScrollTop < lastScrollTop && !isMenuVisible) {
+                showMenu();
+            } else if (currentScrollTop > lastScrollTop && isMenuVisible) {
+                hideMenu();
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // 防止滚动小于0
+        }
+
+        // 显示底部菜单
+        function showMenu() {
+            document.getElementById('tab-menu').classList.remove('hidden');
+            document.getElementById('tab-menu').classList.add('visible');
+            isMenuVisible = true;
+        }
+
+        // 隐藏底部菜单
+        function hideMenu() {
+            document.getElementById('tab-menu').classList.remove('visible');
+            document.getElementById('tab-menu').classList.add('hidden');
+            isMenuVisible = false;
+        }
+
+        // 切换iframe内容
+        function changeIframe(tabIndex) {
+            let iframe = document.getElementById('iframe');
+            switch (tabIndex) {
+                case 1:
+                    iframe.src = 'p.html?p=1';
+                    break;
+                case 2:
+                    iframe.src = 'quote.html';
+                    break;
+                case 3:
+                    iframe.src = 'test.html';
+                    break;
+                case 4:
+                    iframe.src = 'test2.html?s=2';
+                    break;
+            }
+
+            // 每次切换tab，保证菜单重新显示
+            if (!isMenuVisible) {
+                showMenu();
+            }
+        }
+    </script>
+</body>
+</html>
