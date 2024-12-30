@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>手机端导航页面</title>
   <style>
-    /* 整体布局 */
     body, html {
       margin: 0;
       padding: 0;
@@ -102,7 +101,7 @@
       <iframe src="test2.html?s=2" id="iframe4"></iframe>
     </div>
     <div class="tab-menu">
-      <button class="tab-item" id="tab1">2首页</button>
+      <button class="tab-item" id="tab1">3首页</button>
       <button class="tab-item" id="tab2">行情</button>
       <button class="tab-item" id="tab3">测试</button>
       <button class="tab-item" id="tab4">测试2</button>
@@ -135,60 +134,37 @@
     // 默认显示第一个iframe
     document.getElementById('tab1').click();
 
-    // 监听iframe的滚动事件
-    let lastScrollTop = 0;
-    const iframeScrollListener = (iframe) => {
-      iframe.addEventListener('load', function () {
-        // 获取iframe的文档对象
-        const iframeDoc = iframe.contentWindow.document;
-
-        // 每次加载时都绑定scroll事件
-        iframeDoc.addEventListener('scroll', function () {
-          let scrollTop = iframe.contentWindow.scrollY || iframe.contentWindow.document.documentElement.scrollTop;
-
-          // 控制返回按钮的显示
-          const returnButton = document.getElementById('returnButton');
-          if (scrollTop > lastScrollTop) {
-            // 向下滚动，隐藏返回按钮
-            returnButton.classList.remove('visible');
-            returnButton.classList.add('hidden');
-          } else {
-            // 向上滚动，显示返回按钮
-            returnButton.classList.remove('hidden');
-            returnButton.classList.add('visible');
-          }
-
-          lastScrollTop = scrollTop;
-
-          // 控制Tab菜单的显示和隐藏
-          const tabMenu = document.querySelector('.tab-menu');
-          if (scrollTop > 100) {
-            tabMenu.classList.add('hide');
-          } else {
-            tabMenu.classList.remove('hide');
-          }
-        });
-      });
-    };
-
-    // 为每个iframe绑定滚动监听
-    const bindScrollEvents = () => {
-      iframes.forEach(iframe => {
-        iframeScrollListener(iframe);
-      });
-    };
-
-    // 绑定滚动事件
-    bindScrollEvents();
-
-    // 监听iframe切换后，更新滚动事件
+    // 监听iframe滚动事件
     const iframeElements = document.querySelectorAll('iframe');
+
     iframeElements.forEach(iframe => {
-      iframe.addEventListener('load', () => {
-        iframe.contentWindow.scrollTo(0, 0);  // 滚动到顶部
+      // 只监听 iframe 元素的滚动
+      iframe.addEventListener('scroll', function () {
+        const returnButton = document.getElementById('returnButton');
+        const tabMenu = document.querySelector('.tab-menu');
+        
+        // 计算滚动状态，显示/隐藏返回按钮与底部菜单
+        const scrollTop = iframe.contentWindow.scrollY || iframe.contentWindow.document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+          // 向下滚动，隐藏底部菜单
+          tabMenu.classList.add('hide');
+        } else {
+          // 向上滚动，显示底部菜单
+          tabMenu.classList.remove('hide');
+        }
+
+        if (scrollTop > 50) {
+          // 向下滚动，隐藏返回按钮
+          returnButton.classList.remove('visible');
+          returnButton.classList.add('hidden');
+        } else {
+          // 向上滚动，显示返回按钮
+          returnButton.classList.remove('hidden');
+          returnButton.classList.add('visible');
+        }
       });
     });
-
   </script>
 </body>
 </html>
