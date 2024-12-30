@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笑笑的收藏夹</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #ffbc00;
+            text-align: center;
+            padding: 20px 0;
+            color: #fff;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header .subtitle {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 40%;
+            max-width: 350px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            border: none;
+            background-color: #ffbc00;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #ff9f00;
+        }
+
+        /* 卡片式网址导航区 */
+        .nav-container {
+            margin: 20px;
+        }
+
+        /* 一行一个卡片 */
+        .one-per-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* 一行两个卡片 */
+        .two-per-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* 一行三个卡片 */
+        .three-per-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .nav-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 150px;
+        }
+
+        .nav-item h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .nav-item p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .nav-item .name {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .nav-item .note {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* 自适应布局 */
+        @media (max-width: 600px) {
+            .one-per-row, .two-per-row, .three-per-row {
+                grid-template-columns: 1fr;  /* 手机屏幕下每行一个卡片 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">笑笑的收藏夹</div>
+        <div class="subtitle">我的收藏夹不一般</div>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="command" placeholder="请输入口令 直达神秘链接">
+        <button onclick="goToLink()">直达</button>
+    </div>
+
+    <!-- 一行一个的卡片区 -->
+    <div class="nav-container one-per-row">
+        <div class="nav-item">
+            <h4>网站名称 1</h4>
+            <p class="note">网站备注信息 1</p>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 2</h4>
+            <p class="note">网站备注信息 2</p>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 3</h4>
+            <p class="note">网站备注信息 3</p>
+        </div>
+    </div>
+
+    <!-- 一行两个的卡片区 -->
+    <div class="nav-container two-per-row">
+        <div class="nav-item">
+            <h4>网站名称 4</h4>
+            <p class="note">网站备注信息 4</p>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 5</h4>
+            <p class="note">网站备注信息 5</p>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 6</h4>
+            <p class="note">网站备注信息 6</p>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 7</h4>
+            <p class="note">网站备注信息 7</p>
+        </div>
+    </div>
+
+    <!-- 一行三个的卡片区 -->
+    <div class="nav-container three-per-row">
+        <div class="nav-item">
+            <h4>网站名称 8</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 9</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 10</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 11</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 12</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 13</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 14</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 15</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 16</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 17</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 18</h4>
+        </div>
+        <div class="nav-item">
+            <h4>网站名称 19</h4>
+        </div>
+    </div>
+
+    <script>
+        // 定义口令和网址对应关系
+        const links = {
+            "abc123": "https://www.example1.com",
+            "def456": "https://www.example2.com",
+            "ghi789": "https://www.example3.com"
+        };
+
+        // 处理口令输入，跳转到对应网址
+        function goToLink() {
+            const command = document.getElementById('command').value.trim();
+            if (links[command]) {
+                window.location.href = links[command];
+            } else {
+                alert("口令无效，请检查后再试。");
+            }
+        }
+    </script>
+</body>
+</html>
