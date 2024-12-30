@@ -9,14 +9,13 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
         }
 
         header {
-            background-color: #ffbc00;
             text-align: center;
-            padding: 20px 0;
-            color: #fff;
+            padding: 38px 0 10px;
+            color: #000000;
         }
 
         header .logo {
@@ -30,10 +29,9 @@
         }
 
         .search-container {
-            margin: 20px auto;
+            margin: 8px auto 38px;
             text-align: center;
         }
-
         .search-container input {
             padding: 10px;
             width: 40%;
@@ -83,17 +81,20 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
+		
+		.one-per-row .nav-item {}
+		.two-per-row .nav-item {}
+		.three-per-row .nav-item {}
+		
+		
+		
 
-        .nav-item {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 150px;
+            .nav-item {
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           padding: 15px;
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
         }
 
         .nav-item h4 {
@@ -117,12 +118,7 @@
             margin-top: 5px;
         }
 
-        /* 自适应布局 */
-        @media (max-width: 600px) {
-            .one-per-row, .two-per-row, .three-per-row {
-                grid-template-columns: 1fr;  /* 手机屏幕下每行一个卡片 */
-            }
-        }
+        
 
     </style>
 </head>
@@ -140,16 +136,22 @@
     <!-- 一行一个的卡片区 -->
     <div class="nav-container one-per-row">
         <div class="nav-item">
-            <h4>网站名称 1</h4>
+            <a href="">
+			<h4>世界百美风景</h4>
             <p class="note">网站备注信息 1</p>
+			</a>
         </div>
         <div class="nav-item">
-            <h4>网站名称 2</h4>
+		     <a href="index.html">
+            <h4>胎教音乐 </h4>
             <p class="note">网站备注信息 2</p>
+			</a>
         </div>
         <div class="nav-item">
+		     <a href="">
             <h4>网站名称 3</h4>
             <p class="note">网站备注信息 3</p>
+			</a>
         </div>
     </div>
 
