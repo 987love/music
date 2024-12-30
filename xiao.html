@@ -97,7 +97,7 @@
   <div class="container">
     <div class="iframe-container">
       <iframe src="p.html?p=1" id="iframe1"></iframe>
-      <iframe src="https://www.hao123.com/" id="iframe2"></iframe>
+      <iframe src="https://www.hao123.com/" id="iframe2"></iframe> <!-- 第二个菜单链接 -->
       <iframe src="test.html" id="iframe3"></iframe>
       <iframe src="test2.html?s=2" id="iframe4"></iframe>
     </div>
@@ -135,6 +135,24 @@
     // 默认显示第一个iframe
     document.getElementById('tab1').click();
 
+    // 为跨域页面注册 postMessage 消息监听
+    window.addEventListener("message", (event) => {
+      // 判断是否来自可信域名的iframe
+      if (event.origin === "https://www.hao123.com") {
+        if (event.data === "scrollUp") {
+          // 向上滚动，显示返回按钮
+          const returnButton = document.getElementById('returnButton');
+          returnButton.classList.remove('hidden');
+          returnButton.classList.add('visible');
+        } else if (event.data === "scrollDown") {
+          // 向下滚动，隐藏返回按钮
+          const returnButton = document.getElementById('returnButton');
+          returnButton.classList.remove('visible');
+          returnButton.classList.add('hidden');
+        }
+      }
+    });
+
     // 滚动事件监听
     let lastScrollTop = 0;
 
@@ -171,7 +189,9 @@
     const bindScrollEvents = () => {
       iframes.forEach(iframe => {
         iframe.addEventListener('load', () => {
-          iframeScrollListener(iframe);
+          if (iframe.contentWindow) {
+            iframeScrollListener(iframe);
+          }
         });
       });
     };
