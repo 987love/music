@@ -102,7 +102,7 @@
       <iframe src="test2.html?s=2" id="iframe4"></iframe>
     </div>
     <div class="tab-menu">
-      <button class="tab-item" id="tab1">1首页</button>
+      <button class="tab-item" id="tab1">2首页</button>
       <button class="tab-item" id="tab2">行情</button>
       <button class="tab-item" id="tab3">测试</button>
       <button class="tab-item" id="tab4">测试2</button>
@@ -135,64 +135,46 @@
     // 默认显示第一个iframe
     document.getElementById('tab1').click();
 
-    // 为跨域页面注册 postMessage 消息监听
-    window.addEventListener("message", (event) => {
-      // 判断是否来自可信域名的iframe
-      if (event.origin === "https://www.hao123.com") {
-        if (event.data === "scrollUp") {
-          // 向上滚动，显示返回按钮
-          const returnButton = document.getElementById('returnButton');
-          returnButton.classList.remove('hidden');
-          returnButton.classList.add('visible');
-        } else if (event.data === "scrollDown") {
-          // 向下滚动，隐藏返回按钮
-          const returnButton = document.getElementById('returnButton');
-          returnButton.classList.remove('visible');
-          returnButton.classList.add('hidden');
-        }
-      }
-    });
-
-    // 滚动事件监听
+    // 监听iframe的滚动事件
     let lastScrollTop = 0;
-
     const iframeScrollListener = (iframe) => {
-      let scrollTop = 0;
-      iframe.contentWindow.addEventListener('scroll', function() {
-        scrollTop = iframe.contentWindow.scrollY || iframe.contentWindow.document.documentElement.scrollTop;
+      iframe.addEventListener('load', function () {
+        // 获取iframe的文档对象
+        const iframeDoc = iframe.contentWindow.document;
 
-        // 控制返回按钮的显示
-        const returnButton = document.getElementById('returnButton');
-        if (scrollTop > lastScrollTop) {
-          // 向下滚动，隐藏返回按钮
-          returnButton.classList.remove('visible');
-          returnButton.classList.add('hidden');
-        } else {
-          // 向上滚动，显示返回按钮
-          returnButton.classList.remove('hidden');
-          returnButton.classList.add('visible');
-        }
+        // 每次加载时都绑定scroll事件
+        iframeDoc.addEventListener('scroll', function () {
+          let scrollTop = iframe.contentWindow.scrollY || iframe.contentWindow.document.documentElement.scrollTop;
 
-        lastScrollTop = scrollTop;
+          // 控制返回按钮的显示
+          const returnButton = document.getElementById('returnButton');
+          if (scrollTop > lastScrollTop) {
+            // 向下滚动，隐藏返回按钮
+            returnButton.classList.remove('visible');
+            returnButton.classList.add('hidden');
+          } else {
+            // 向上滚动，显示返回按钮
+            returnButton.classList.remove('hidden');
+            returnButton.classList.add('visible');
+          }
 
-        // 控制Tab菜单的显示和隐藏
-        const tabMenu = document.querySelector('.tab-menu');
-        if (scrollTop > 100) {
-          tabMenu.classList.add('hide');
-        } else {
-          tabMenu.classList.remove('hide');
-        }
+          lastScrollTop = scrollTop;
+
+          // 控制Tab菜单的显示和隐藏
+          const tabMenu = document.querySelector('.tab-menu');
+          if (scrollTop > 100) {
+            tabMenu.classList.add('hide');
+          } else {
+            tabMenu.classList.remove('hide');
+          }
+        });
       });
     };
 
     // 为每个iframe绑定滚动监听
     const bindScrollEvents = () => {
       iframes.forEach(iframe => {
-        iframe.addEventListener('load', () => {
-          if (iframe.contentWindow) {
-            iframeScrollListener(iframe);
-          }
-        });
+        iframeScrollListener(iframe);
       });
     };
 
