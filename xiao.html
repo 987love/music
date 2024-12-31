@@ -122,89 +122,65 @@
   <button class="return-button" id="returnButton" onclick="history.back()">‹</button>
 
   <script>
-    // 切换iframe页面
-    const tabItems = document.querySelectorAll('.tab-item');
-    const iframes = document.querySelectorAll('iframe');
+  const returnButton = document.getElementById('returnButton');
+  const tabMenu = document.querySelector('.tab-menu');
+  let lastScrollTop = 0;
 
-    tabItems.forEach((tab, index) => {
-      tab.addEventListener('click', () => {
-        // 切换Tab菜单高亮
-        tabItems.forEach(item => item.classList.remove('active'));
-        tab.classList.add('active');
+  const handleScroll = (scrollTop) => {
+    if (scrollTop > lastScrollTop) {
+      // 向下滚动
+      returnButton.classList.remove('visible');
+      returnButton.classList.add('hidden');
+      tabMenu.classList.add('hide');
+    } else {
+      // 向上滚动
+      returnButton.classList.remove('hidden');
+      returnButton.classList.add('visible');
+      tabMenu.classList.remove('hide');
+    }
+    lastScrollTop = scrollTop;
+  };
 
-        // 切换iframe显示
-        iframes.forEach((iframe, i) => {
-          iframe.classList.remove('active');
-          if (i === index) {
-            iframe.classList.add('active');
-          }
-        });
-      });
-    });
-
-    // 默认显示第一个iframe
-    document.getElementById('tab1').click();
-
-    // 监听iframe的滚动事件
-    let lastScrollTop = 0;
-
-    const iframeScrollListener = (iframe) => {
-      iframe.addEventListener('load', function () {
-        // 获取iframe的文档对象
+  const bindIframeScroll = (iframe) => {
+    iframe.addEventListener('load', () => {
+      try {
         const iframeDoc = iframe.contentWindow.document;
-
-        // 每次加载时都绑定scroll事件
-        iframeDoc.addEventListener('scroll', function () {
-          let scrollTop = iframe.contentWindow.scrollY || iframe.contentWindow.document.documentElement.scrollTop;
-
-          // 控制返回按钮的显示
-          const returnButton = document.getElementById('returnButton');
-          if (scrollTop > lastScrollTop) {
-            // 向下滚动，隐藏返回按钮
-            returnButton.classList.remove('visible');
-            returnButton.classList.add('hidden');
-          } else {
-            // 向上滚动，显示返回按钮
-            returnButton.classList.remove('hidden');
-            returnButton.classList.add('visible');
-          }
-
-          lastScrollTop = scrollTop;
-
-          // 控制Tab菜单的显示和隐藏
-          const tabMenu = document.querySelector('.tab-menu');
-          if (scrollTop > lastScrollTop) {
-            tabMenu.classList.add('hide');
-          } else {
-            tabMenu.classList.remove('hide');
-          }
+        iframeDoc.addEventListener('scroll', () => {
+          const scrollTop =
+            iframe.contentWindow.scrollY || iframeDoc.documentElement.scrollTop;
+          handleScroll(scrollTop);
         });
-      });
-    };
+      } catch (e) {
+        // 跨域处理：定时轮询
+        setInterval(() => {
+          try {
+            const scrollTop = iframe.contentWindow.scrollY || 0;
+            handleScroll(scrollTop);
+          } catch (e) {
+            // 忽略跨域报错
+          }
+        }, 200);
+      }
+    });
+  };
 
-    // 为每个iframe绑定滚动监听
-    const bindScrollEvents = () => {
-      iframes.forEach(iframe => {
-        iframeScrollListener(iframe);
-      });
-    };
+  iframes.forEach(bindIframeScroll);
 
-    // 绑定滚动事件
-    bindScrollEvents();
-
-    // 监听iframe切换后，更新滚动事件
-    const iframeElements = document.querySelectorAll('iframe');
-    iframeElements.forEach(iframe => {
-      iframe.addEventListener('load', () => {
-        iframe.contentWindow.scrollTo(0, 0);  // 滚动到顶部
+  tabItems.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      tabItems.forEach((item) => item.classList.remove('active'));
+      tab.classList.add('active');
+      iframes.forEach((iframe, i) => {
+        iframe.classList.remove('active');
+        if (i === index) iframe.classList.add('active');
       });
     });
+  });
 
-    // 初始化时让返回按钮默认显示
-    const returnButton = document.getElementById('returnButton');
-    returnButton.classList.remove('hidden');
-    returnButton.classList.add('visible');
+  document.getElementById('tab1').click();
 
-  </script>
+  returnButton.classList.add('visible');
+</script>
+
 </body>
 </html>
