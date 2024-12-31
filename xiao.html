@@ -173,7 +173,7 @@
 
           // 控制Tab菜单的显示和隐藏
           const tabMenu = document.querySelector('.tab-menu');
-          if (scrollTop > 100) {
+          if (scrollTop > lastScrollTop) {
             tabMenu.classList.add('hide');
           } else {
             tabMenu.classList.remove('hide');
