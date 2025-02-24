@@ -3,110 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章详情</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
+    <title>文章详情</title>
     <link rel="stylesheet" href="style.css">
     <script src="beauty.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="article-title">加载中...</h1>
+    </header>
+    
+    <main>
+        <img id="article-image" src="" alt="文章主图" style="display: none;">
+        <article id="article-content">加载中...</article>
+    </main>
+
+    <div id="ad1"></div> <!-- 广告区域 1 -->
+    <div id="ad2"></div> <!-- 广告区域 2 -->
+
+    <section id="related-articles">
+        <h2>猜你喜欢</h2>
+        <ul id="related-list"></ul>
+    </section>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let params = new URLSearchParams(window.location.search);
             let articleKey = params.get("article");
 
-            // 如果 URL 里没有参数，可能是 SEO 友好的 URL，解析路径
+            // 兼容 slug 访问方式
             if (!articleKey) {
                 let path = window.location.pathname;
                 let slug = path.split("/").pop().replace(".html", "");
 
-                // 通过 slug 找到 articleKey
                 for (let key in window.articles) {
-                    if (window.articles[key].slug.includes(slug)) {
+                    if (window.articles[key].slug === slug) {
                         articleKey = key;
                         break;
                     }
                 }
 
-                // 如果找到了文章，则更新 URL 并加载文章
                 if (articleKey) {
-                    history.replaceState(null, "", window.articles[articleKey].slug);
+                    history.replaceState(null, "", "/health/" + window.articles[articleKey].slug + ".html");
                 }
             }
 
             if (articleKey && window.articles[articleKey]) {
                 let article = window.articles[articleKey];
 
-                // 设置标题和 Meta 标签
                 document.title = article.title;
                 document.querySelector('meta[name="keywords"]').setAttribute("content", article.keywords.join(", "));
                 document.querySelector('meta[name="description"]').setAttribute("content", article.description);
 
-                // 渲染文章内容
                 document.getElementById("article-title").textContent = article.title;
-                document.getElementById("article-image").src = article.image;
+                
+                let imgElement = document.getElementById("article-image");
+                imgElement.src = article.image;
+                imgElement.style.display = "block";
+
                 document.getElementById("article-content").innerHTML = article.content;
 
-                // 生成猜你喜欢的文章列表
-                let relatedContainer = document.getElementById("related-articles");
-                relatedContainer.innerHTML = "";
-                let relatedArticles = [];
-
-                for (let key in window.articles) {
-                    if (key !== articleKey) {
-                        let matchCount = article.keywords.filter(keyword => window.articles[key].keywords.includes(keyword)).length;
-                        if (matchCount > 0) {
-                            relatedArticles.push({ ...window.articles[key], matchCount });
-                        }
-                    }
-                }
-
-                // 排序：匹配关键词最多的在前面
-                relatedArticles.sort((a, b) => b.matchCount - a.matchCount);
-
-                // 如果匹配不到至少 10 篇，就随机补充
-                if (relatedArticles.length < 10) {
-                    let remainingArticles = Object.values(window.articles).filter(a => a.slug !== article.slug && !relatedArticles.includes(a));
-                    remainingArticles.sort(() => Math.random() - 0.5); // 随机打乱
-                    relatedArticles = relatedArticles.concat(remainingArticles.slice(0, 10 - relatedArticles.length));
-                }
-
-                relatedArticles.forEach(article => {
-                    let link = document.createElement("a");
-                    link.href = article.slug;
-                    link.textContent = article.title;
-                    relatedContainer.appendChild(link);
-                });
-
+                // 生成猜你喜欢
+                generateRelatedArticles(article);
             } else {
                 document.getElementById("article-title").textContent = "文章未找到";
                 document.getElementById("article-content").innerHTML = "<p>抱歉，未能找到相关内容。</p>";
             }
         });
+
+        function generateRelatedArticles(currentArticle) {
+            let relatedList = document.getElementById("related-list");
+            relatedList.innerHTML = "";
+            let relatedArticles = [];
+
+            for (let key in window.articles) {
+                if (key !== currentArticle.id) {
+                    let matchCount = currentArticle.keywords.filter(keyword => window.articles[key].keywords.includes(keyword)).length;
+                    if (matchCount > 0) {
+                        relatedArticles.push({ ...window.articles[key], matchCount });
+                    }
+                }
+            }
+
+            relatedArticles.sort((a, b) => b.matchCount - a.matchCount);
+
+            if (relatedArticles.length === 0) {
+                let allArticles = Object.values(window.articles).filter(a => a.slug !== currentArticle.slug);
+                relatedArticles = allArticles.sort(() => 0.5 - Math.random()).slice(0, 10);
+            }
+
+            relatedArticles.forEach(article => {
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+                a.href = "/health/" + article.slug + ".html";
+                a.textContent = article.title;
+                li.appendChild(a);
+                relatedList.appendChild(li);
+            });
+        }
     </script>
-</head>
-<body>
-
-    <header>
-        <h1 id="article-title">文章加载中...</h1>
-    </header>
-
-    <main>
-        <div class="article-container">
-            <img id="article-image" src="" alt="文章图片" style="width:100%; height:auto;">
-            <div id="article-content"></div>
-        </div>
-
-        <!-- 广告区域 -->
-        <div id="ad1"></div>
-
-        <!-- 猜你喜欢 -->
-        <aside>
-            <h2>猜你喜欢</h2>
-            <div id="related-articles"></div>
-        </aside>
-
-        <!-- 广告区域 -->
-        <div id="ad2"></div>
-    </main>
-
 </body>
 </html>
