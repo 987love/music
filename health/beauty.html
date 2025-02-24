@@ -4,93 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>文章详情</title>
-    <meta name="description" content="" id="meta-description">
-    <meta name="keywords" content="" id="meta-keywords">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <link rel="stylesheet" href="style.css">
     <script src="beauty.js"></script>
-    <script src="ad.js"></script>
-</head>
-<body>
-    <header>
-        <h1 id="article-title">文章加载中...</h1>
-    </header>
-    
-    <main>
-        <div class="container">
-            <div id="ad1" class="ad-banner"></div>
-            <img id="article-image" src="" alt="文章图片" class="article-image">
-            <article id="article-content">加载中...</article>
-            <div id="ad2" class="ad-banner"></div>
-        </div>
-    </main>
-    
-    <section id="related-articles">
-        <h2>猜你喜欢</h2>
-        <ul id="related-links"></ul>
-    </section>
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const path = window.location.pathname;
-            const queryParams = new URLSearchParams(window.location.search);
-            let articleId = queryParams.get("article");
+        document.addEventListener("DOMContentLoaded", function () {
+            let params = new URLSearchParams(window.location.search);
+            let articleKey = params.get("article");
 
-            function updatePageContent(article) {
-                document.title = article.title;
-                document.getElementById("meta-description").setAttribute("content", article.description);
-                document.getElementById("meta-keywords").setAttribute("content", article.keywords.join(", "));
-                document.getElementById("article-title").textContent = article.title;
-                document.getElementById("article-content").innerHTML = article.content;
-                document.getElementById("article-image").src = article.image;
-                document.getElementById("article-image").alt = article.title;
+            // 如果 URL 里没有参数，可能是 SEO 友好的 URL，解析路径
+            if (!articleKey) {
+                let path = window.location.pathname;
+                let slug = path.split("/").pop().replace(".html", "");
+
+                // 通过 slug 找到 articleKey
+                for (let key in window.articles) {
+                    if (window.articles[key].slug.includes(slug)) {
+                        articleKey = key;
+                        break;
+                    }
+                }
+
+                // 如果找到了文章，则更新 URL 并加载文章
+                if (articleKey) {
+                    history.replaceState(null, "", window.articles[articleKey].slug);
+                }
             }
 
-            function generateRelatedArticles(currentKeywords) {
-                let relatedList = document.getElementById("related-links");
-                relatedList.innerHTML = "";
-                
-                let relatedArticles = Object.values(window.articles).filter(a => 
-                    a.keywords.some(k => currentKeywords.includes(k))
-                );
-                
-                relatedArticles.sort((a, b) => {
-                    let aMatches = a.keywords.filter(k => currentKeywords.includes(k)).length;
-                    let bMatches = b.keywords.filter(k => currentKeywords.includes(k)).length;
-                    return bMatches - aMatches;
-                });
+            if (articleKey && window.articles[articleKey]) {
+                let article = window.articles[articleKey];
+
+                // 设置标题和 Meta 标签
+                document.title = article.title;
+                document.querySelector('meta[name="keywords"]').setAttribute("content", article.keywords.join(", "));
+                document.querySelector('meta[name="description"]').setAttribute("content", article.description);
+
+                // 渲染文章内容
+                document.getElementById("article-title").textContent = article.title;
+                document.getElementById("article-image").src = article.image;
+                document.getElementById("article-content").innerHTML = article.content;
+
+                // 生成猜你喜欢的文章列表
+                let relatedContainer = document.getElementById("related-articles");
+                relatedContainer.innerHTML = "";
+                let relatedArticles = [];
+
+                for (let key in window.articles) {
+                    if (key !== articleKey) {
+                        let matchCount = article.keywords.filter(keyword => window.articles[key].keywords.includes(keyword)).length;
+                        if (matchCount > 0) {
+                            relatedArticles.push({ ...window.articles[key], matchCount });
+                        }
+                    }
+                }
+
+                // 排序：匹配关键词最多的在前面
+                relatedArticles.sort((a, b) => b.matchCount - a.matchCount);
+
+                // 如果匹配不到至少 10 篇，就随机补充
+                if (relatedArticles.length < 10) {
+                    let remainingArticles = Object.values(window.articles).filter(a => a.slug !== article.slug && !relatedArticles.includes(a));
+                    remainingArticles.sort(() => Math.random() - 0.5); // 随机打乱
+                    relatedArticles = relatedArticles.concat(remainingArticles.slice(0, 10 - relatedArticles.length));
+                }
 
                 relatedArticles.forEach(article => {
-                    let li = document.createElement("li");
-                    let a = document.createElement("a");
-                    a.href = `/${article.slug}.html`;
-                    a.textContent = article.title;
-                    li.appendChild(a);
-                    relatedList.appendChild(li);
+                    let link = document.createElement("a");
+                    link.href = article.slug;
+                    link.textContent = article.title;
+                    relatedContainer.appendChild(link);
                 });
-            }
 
-            if (articleId && window.articles[articleId]) {
-                let article = window.articles[articleId];
-                let newUrl = `/${article.slug}.html`;
-                if (window.location.pathname !== newUrl) {
-                    window.history.replaceState(null, article.title, newUrl);
-                }
-                updatePageContent(article);
-                generateRelatedArticles(article.keywords);
-            }
-
-            if (!articleId) {
-                const slug = path.replace("/", "").replace(".html", "");
-                const matchedArticle = Object.values(window.articles).find(a => a.slug === slug);
-
-                if (matchedArticle) {
-                    articleId = Object.keys(window.articles).find(key => window.articles[key] === matchedArticle);
-                    window.history.replaceState(null, matchedArticle.title, `beauty.html?article=${articleId}`);
-                    updatePageContent(matchedArticle);
-                    generateRelatedArticles(matchedArticle.keywords);
-                }
+            } else {
+                document.getElementById("article-title").textContent = "文章未找到";
+                document.getElementById("article-content").innerHTML = "<p>抱歉，未能找到相关内容。</p>";
             }
         });
     </script>
+</head>
+<body>
+
+    <header>
+        <h1 id="article-title">文章加载中...</h1>
+    </header>
+
+    <main>
+        <div class="article-container">
+            <img id="article-image" src="" alt="文章图片" style="width:100%; height:auto;">
+            <div id="article-content"></div>
+        </div>
+
+        <!-- 广告区域 -->
+        <div id="ad1"></div>
+
+        <!-- 猜你喜欢 -->
+        <aside>
+            <h2>猜你喜欢</h2>
+            <div id="related-articles"></div>
+        </aside>
+
+        <!-- 广告区域 -->
+        <div id="ad2"></div>
+    </main>
+
 </body>
 </html>
