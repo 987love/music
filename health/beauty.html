@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情</title>
+    <meta name="description" content="" id="meta-description">
+    <meta name="keywords" content="" id="meta-keywords">
+    <link rel="stylesheet" href="style.css">
+    <script src="beauty.js"></script>
+    <script src="ad.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="article-title">文章加载中...</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div id="ad1" class="ad-banner"></div>
+            <img id="article-image" src="" alt="文章图片" class="article-image">
+            <article id="article-content">加载中...</article>
+            <div id="ad2" class="ad-banner"></div>
+        </div>
+    </main>
+    
+    <section id="related-articles">
+        <h2>猜你喜欢</h2>
+        <ul id="related-links"></ul>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const path = window.location.pathname;
+            const queryParams = new URLSearchParams(window.location.search);
+            let articleId = queryParams.get("article");
+
+            function updatePageContent(article) {
+                document.title = article.title;
+                document.getElementById("meta-description").setAttribute("content", article.description);
+                document.getElementById("meta-keywords").setAttribute("content", article.keywords.join(", "));
+                document.getElementById("article-title").textContent = article.title;
+                document.getElementById("article-content").innerHTML = article.content;
+                document.getElementById("article-image").src = article.image;
+                document.getElementById("article-image").alt = article.title;
+            }
+
+            function generateRelatedArticles(currentKeywords) {
+                let relatedList = document.getElementById("related-links");
+                relatedList.innerHTML = "";
+                
+                let relatedArticles = Object.values(window.articles).filter(a => 
+                    a.keywords.some(k => currentKeywords.includes(k))
+                );
+                
+                relatedArticles.sort((a, b) => {
+                    let aMatches = a.keywords.filter(k => currentKeywords.includes(k)).length;
+                    let bMatches = b.keywords.filter(k => currentKeywords.includes(k)).length;
+                    return bMatches - aMatches;
+                });
+
+                relatedArticles.forEach(article => {
+                    let li = document.createElement("li");
+                    let a = document.createElement("a");
+                    a.href = `/${article.slug}.html`;
+                    a.textContent = article.title;
+                    li.appendChild(a);
+                    relatedList.appendChild(li);
+                });
+            }
+
+            if (articleId && window.articles[articleId]) {
+                let article = window.articles[articleId];
+                let newUrl = `/${article.slug}.html`;
+                if (window.location.pathname !== newUrl) {
+                    window.history.replaceState(null, article.title, newUrl);
+                }
+                updatePageContent(article);
+                generateRelatedArticles(article.keywords);
+            }
+
+            if (!articleId) {
+                const slug = path.replace("/", "").replace(".html", "");
+                const matchedArticle = Object.values(window.articles).find(a => a.slug === slug);
+
+                if (matchedArticle) {
+                    articleId = Object.keys(window.articles).find(key => window.articles[key] === matchedArticle);
+                    window.history.replaceState(null, matchedArticle.title, `beauty.html?article=${articleId}`);
+                    updatePageContent(matchedArticle);
+                    generateRelatedArticles(matchedArticle.keywords);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

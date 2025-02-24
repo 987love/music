@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Women's Nutrition - Healthy Eating Tips & Diet Plans</title>
+<meta name="description" content="Discover the best nutrition tips, diet plans, and healthy recipes for active women to stay fit and energized.">
+<meta name="keywords" content="women's nutrition, healthy eating, diet tips, meal planning, balanced diet, women's health food">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="beauty.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const articlesContainer = document.getElementById("articles-list");
+            if (window.articles) {
+                let articlesHtml = "";
+                Object.keys(window.articles).forEach(key => {
+                    const article = window.articles[key];
+                    articlesHtml += `
+                        <article class="article-item">
+                            <a href="beauty.html?article=${key}" class="article-link">
+                                <img src="${article.image}" alt="${article.title}" class="article-thumbnail">
+                                <h2 class="article-title">${article.title}</h2>
+                                <p class="article-description">${article.description}</p>
+                            </a>
+                        </article>
+                    `;
+                });
+                articlesContainer.innerHTML = articlesHtml;
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Active Women's Nutrition</h1>
+    </header>
+    <main>
+        <section id="articles-list" class="articles-grid">
+            <!-- 文章列表将由 JavaScript 动态加载 -->
+        </section>
+    </main>
+</body>
+</html>
