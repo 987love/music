@@ -3,42 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active Women's Nutrition - Healthy Eating Tips & Diet Plans</title>
-<meta name="description" content="Discover the best nutrition tips, diet plans, and healthy recipes for active women to stay fit and energized.">
-<meta name="keywords" content="women's nutrition, healthy eating, diet tips, meal planning, balanced diet, women's health food">
-
-    <link rel="stylesheet" href="styles.css">
-    <script src="beauty.js" defer></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const articlesContainer = document.getElementById("articles-list");
-            if (window.articles) {
-                let articlesHtml = "";
-                Object.keys(window.articles).forEach(key => {
-                    const article = window.articles[key];
-                    articlesHtml += `
-                        <article class="article-item">
-                            <a href="beauty.html?article=${key}" class="article-link">
-                                <img src="${article.image}" alt="${article.title}" class="article-thumbnail">
-                                <h2 class="article-title">${article.title}</h2>
-                                <p class="article-description">${article.description}</p>
-                            </a>
-                        </article>
-                    `;
-                });
-                articlesContainer.innerHTML = articlesHtml;
-            }
-        });
-    </script>
+    <title>女性健康 - 文章列表</title>
+    <meta name="keywords" content="女性健康, 营养, 健康生活">
+    <meta name="description" content="精选女性健康的营养知识，提供科学健康的生活方式指南。">
+    <link rel="stylesheet" href="cate.css">
 </head>
 <body>
-    <header>
-        <h1>Active Women's Nutrition</h1>
-    </header>
-    <main>
-        <section id="articles-list" class="articles-grid">
-            <!-- 文章列表将由 JavaScript 动态加载 -->
-        </section>
-    </main>
+
+    <!-- 面包屑导航 -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="https://p.peacelove.top">首页</a></li>
+            <li>健康知识</li>
+        </ol>
+    </nav>
+
+    <h1>女性健康文章</h1>
+
+    <!-- 文章列表 -->
+    <div class="article-list" id="article-list"></div>
+
+    <script src="beauty.js"></script>
+    <script>
+        // 获取文章列表数据
+        const articleList = document.getElementById("article-list");
+
+        Object.values(window.articles).forEach(article => {
+            let articleItem = document.createElement("a");
+            articleItem.href = `beauty.html?article=${article.id}`;
+            articleItem.classList.add("article-item");
+
+            articleItem.innerHTML = `
+                <img src="${article.image}" alt="${article.title}">
+                <div class="article-info">
+                    <h2>${article.title}</h2>
+                    <p>${article.description}</p>
+                </div>
+            `;
+
+            articleList.appendChild(articleItem);
+        });
+    </script>
+
 </body>
 </html>

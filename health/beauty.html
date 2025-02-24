@@ -3,105 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <title>文章详情</title>
+    <meta name="author" content="你的站点名称">
+    <title>女性健康 - 文章详情</title>
     <link rel="stylesheet" href="style.css">
     <script src="beauty.js"></script>
 </head>
 <body>
+
     <header>
-        <h1 id="article-title">加载中...</h1>
+        <h1>女性健康资讯</h1>
+        <div class="breadcrumb">
+    <a href="index.html">首页</a> <span>›</span> 
+    <a href="beauty.html">女性健康</a> <span>›</span> 
+    <span>当前文章</span>
+</div>
     </header>
-    
+
     <main>
-        <img id="article-image" src="" alt="文章主图" style="display: none;">
-        <article id="article-content">加载中...</article>
+        <article id="article-content">
+            <h2 id="article-title">文章加载中...</h2>
+            <img id="article-image" src="" alt="文章主图" style="display:none;">
+            <div id="article-description"></div>
+        </article>
+<section id="next-article-container" style="display: none;">
+    <h3>下一篇推荐</h3>
+    <div id="next-article" class="next-article-box">
+        <a id="next-article-link" href="#">
+            <img id="next-article-image" src="" alt="下一篇文章图片">
+            <p id="next-article-title">下一篇文章标题</p>
+        </a>
+    </div>
+</section>
+        <section>
+            <h3>猜你喜欢</h3>
+            <ul id="related-articles"></ul>
+        </section>
     </main>
 
-    <div id="ad1"></div> <!-- 广告区域 1 -->
-    <div id="ad2"></div> <!-- 广告区域 2 -->
-
-    <section id="related-articles">
-        <h2>猜你喜欢</h2>
-        <ul id="related-list"></ul>
-    </section>
+    <footer>
+        <p>&copy; 2025 你的站点名称 | 女性健康知识</p>
+    </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let params = new URLSearchParams(window.location.search);
-            let articleKey = params.get("article");
+    document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var articleId = urlParams.get("article");
+        var articles = window.articles;
 
-            // 兼容 slug 访问方式
-            if (!articleKey) {
-                let path = window.location.pathname;
-                let slug = path.split("/").pop().replace(".html", "");
+        if (articleId && articles[articleId]) {
+            var article = articles[articleId];
 
-                for (let key in window.articles) {
-                    if (window.articles[key].slug === slug) {
-                        articleKey = key;
-                        break;
-                    }
-                }
+            // 设置页面标题
+            document.title = article.title + " - 女性健康";
 
-                if (articleKey) {
-                    history.replaceState(null, "", "/health/" + window.articles[articleKey].slug + ".html");
-                }
+            // 设置文章内容
+            document.getElementById("article-title").textContent = article.title;
+            document.getElementById("article-description").innerHTML = article.content;
+
+            // 动态设置 Meta Description
+            var metaDescription = document.createElement("meta");
+            metaDescription.name = "description";
+            metaDescription.content = article.description;
+            document.head.appendChild(metaDescription);
+
+            // 动态设置 Meta Keywords
+            var metaKeywords = document.createElement("meta");
+            metaKeywords.name = "keywords";
+            metaKeywords.content = article.keywords;
+            document.head.appendChild(metaKeywords);
+
+            // 显示文章图片（如果有）
+            var articleImage = document.getElementById("article-image");
+            if (article.image) {
+                articleImage.src = article.image;
+                articleImage.style.display = "block";
             }
+        } else {
+            document.getElementById("article-content").innerHTML = "<h2>文章未找到</h2><p>抱歉，您访问的文章不存在。</p>";
+        }
 
-            if (articleKey && window.articles[articleKey]) {
-                let article = window.articles[articleKey];
 
-                document.title = article.title;
-                document.querySelector('meta[name="keywords"]').setAttribute("content", article.keywords.join(", "));
-                document.querySelector('meta[name="description"]').setAttribute("content", article.description);
 
-                document.getElementById("article-title").textContent = article.title;
-                
-                let imgElement = document.getElementById("article-image");
-                imgElement.src = article.image;
-                imgElement.style.display = "block";
+		// 获取所有文章的 ID 顺序
+		var articleKeys = Object.keys(articles);
+		articleKeys.sort(); // 确保文章按照 ID 递增排序
+		
+		// 查找当前文章的索引
+		var currentIndex = articleKeys.indexOf(articleId);
+		
+		if (currentIndex !== -1 && currentIndex < articleKeys.length - 1) {
+			var nextArticleId = articleKeys[currentIndex + 1]; // 获取下一篇文章的 ID
+			var nextArticle = articles[nextArticleId];
+		
+			if (nextArticle) {
+				// 设置下一篇文章信息
+				document.getElementById("next-article-link").href = "beauty.html?article=" + nextArticleId;
+				document.getElementById("next-article-title").textContent = nextArticle.title;
+		
+				if (nextArticle.image) {
+					document.getElementById("next-article-image").src = nextArticle.image;
+				} else {
+					document.getElementById("next-article-image").src = "default-image.jpg"; // 默认图片
+				}
+		
+				// 显示下一篇推荐
+				document.getElementById("next-article-container").style.display = "block";
+			}
+		}
 
-                document.getElementById("article-content").innerHTML = article.content;
 
-                // 生成猜你喜欢
-                generateRelatedArticles(article);
-            } else {
-                document.getElementById("article-title").textContent = "文章未找到";
-                document.getElementById("article-content").innerHTML = "<p>抱歉，未能找到相关内容。</p>";
+
+
+
+
+        // 生成猜你喜欢
+        var relatedContainer = document.getElementById("related-articles");
+        var articleKeys = Object.keys(articles);
+        var randomArticles = [];
+
+        while (randomArticles.length < 5 && randomArticles.length < articleKeys.length) {
+            var randomIndex = Math.floor(Math.random() * articleKeys.length);
+            var randomId = articleKeys[randomIndex];
+
+            if (randomId !== articleId && !randomArticles.includes(randomId)) {
+                randomArticles.push(randomId);
             }
-        });
+        }
 
-        function generateRelatedArticles(currentArticle) {
-            let relatedList = document.getElementById("related-list");
-            relatedList.innerHTML = "";
-            let relatedArticles = [];
-
-            for (let key in window.articles) {
-                if (key !== currentArticle.id) {
-                    let matchCount = currentArticle.keywords.filter(keyword => window.articles[key].keywords.includes(keyword)).length;
-                    if (matchCount > 0) {
-                        relatedArticles.push({ ...window.articles[key], matchCount });
-                    }
-                }
-            }
-
-            relatedArticles.sort((a, b) => b.matchCount - a.matchCount);
-
-            if (relatedArticles.length === 0) {
-                let allArticles = Object.values(window.articles).filter(a => a.slug !== currentArticle.slug);
-                relatedArticles = allArticles.sort(() => 0.5 - Math.random()).slice(0, 10);
-            }
-
-            relatedArticles.forEach(article => {
-                let li = document.createElement("li");
-                let a = document.createElement("a");
-                a.href = "/health/" + article.slug + ".html";
+        randomArticles.forEach(function (id) {
+            var article = articles[id];
+            if (article) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.href = "beauty.html?article=" + id;
                 a.textContent = article.title;
                 li.appendChild(a);
-                relatedList.appendChild(li);
-            });
-        }
+                relatedContainer.appendChild(li);
+            }
+        });
+    });
     </script>
+
 </body>
 </html>
