@@ -10,13 +10,13 @@ function gameFn() {
 													<div class="play">
 														<img src="${listJson[i].img}">
 														<div class="play-btn">
-															play game
+															Play Game
 														</div>
 														
 													</div>
 													<div class="g-title">${listJson[i].name}</div>
 												</div>
-												<iframe src="${listJson[i].url}" class="ifam-box" scrolling="none" frameborder="0"></iframe> 
+												<iframe src="${listJson[i].url}" class="ifam-box" scrolling="none" frameborder="0"  ></iframe> 
 											</div>
 										</div>
 									</div>

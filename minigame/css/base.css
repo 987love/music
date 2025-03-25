@@ -107,9 +107,10 @@ img {
 	}
 
 	.title {
-		width: 50%;
+		width: 60%;
 		height: 45px;
 	}
+	.title h1{font-size:25px;font-family: emoji;color:#fff;line-height: 44px;}
 
 	.title img {
 		width: 100%;
@@ -129,7 +130,7 @@ img {
 		background-color: #ed02d9;
 		border-radius: 15px;
 		padding: 5px;
-		margin-left: 20%;
+		margin-left: 10%;
 	}
 
 
@@ -482,3 +483,5 @@ img {
 		color: #fff;
 	}
 }
+
+#sdk__advertisement{ display:none;}

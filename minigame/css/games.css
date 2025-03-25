@@ -231,7 +231,6 @@
 		z-index: 10;
 		background-color: rgb(255 255 255 / 1%);
 		border-radius: 20px;
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 	}
 
 	.play {
@@ -258,11 +257,11 @@
 		transition: all linear 0.2s;
 		/* border-radius: 8px; */
 	}
-
+/*
 	.play img:hover {
 		transform: scale(1.1);
 		box-shadow: -2px -2px 10px 1px #ffffff, 10px 20px 21px rgba(0, 0, 0, .4);
-	}
+	}*/
 
 
 	.play-btn {
@@ -279,7 +278,7 @@
 		color: #fff;
 		text-transform: uppercase;
 		left: 0;
-		right: 0;
+		right: 0; cursor:pointer;
 		margin: auto;
 		/* text-indent: 1.5em; */
 		/* border: 3px solid #fff; */
