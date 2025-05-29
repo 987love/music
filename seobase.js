@@ -1666,3 +1666,507 @@
     "url": "https://html5.gamemonetize.com/k5qkomnng89vxh33jgswau4et63unte9/",
     "text": "Solve 60 physics puzzles in Gift Drop's Christmas rescue mission requiring strategic block removal. Guide Santa's escape through precise environmental manipulation in this holiday-themed brain teaser for puzzle enthusiasts."
 },
+{
+    "index": 208,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/tgt3c8qbfbrtxbkovwubcxu6akx5rt2d/512x384.jpg",
+    "name": "Duet Cats Halloween Cat Music",
+    "url": "https://html5.gamemonetize.com/tgt3c8qbfbrtxbkovwubcxu6akx5rt2d/",
+    "text": "Dive into Duet Cats Halloween Cat Music, a rhythmic multiplayer game where you and a friend control adorable cats to the beat of Halloween-themed tunes. Collect ice cream to boost your score while mastering musical challenges. Perfect for fans of rhythm games and Halloween fun!"
+},
+{
+    "index": 209,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/imaqq34l0iw90484l470rs0cfu7pofze/512x384.jpg",
+    "name": "Coin Sort Puzzle",
+    "url": "https://html5.gamemonetize.com/imaqq34l0iw90484l470rs0cfu7pofze/",
+    "text": "Test your sorting skills in Coin Sort Puzzle, a fast-paced arcade game where you organize coins by denomination. Strategize to clear the board and unlock new levels in this addictive puzzle game for all ages."
+},
+{
+    "index": 210,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/wlb9vj2y6oazlm6q8vvostlu8w649f71/512x384.jpg",
+    "name": "Bus Jam Sort",
+    "url": "https://html5.gamemonetize.com/wlb9vj2y6oazlm6q8vvostlu8w649f71/",
+    "text": "Sort passengers by color in Bus Jam Sort, a vibrant puzzle game featuring colorful buses and lively animations. Perfect for fans of match-3 and organizational challenges."
+},
+{
+    "index": 211,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/c0iute06224rvf22x1sccy86960odfci/512x384.jpg",
+    "name": "Hexa Tile Master",
+    "url": "https://html5.gamemonetize.com/c0iute06224rvf22x1sccy86960odfci/",
+    "text": "Master hexagonal tile merging in Hexa Tile Master, a strategic puzzle game where you combine tiles to clear the board. With increasing difficulty and rewarding animations, it’s perfect for puzzle enthusiasts."
+},
+{
+    "index": 212,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/a63gjnbyhaljru308qlenvrhnxzeajk9/512x384.jpg",
+    "name": "Halloween crosswords HTML5",
+    "url": "https://html5.gamemonetize.com/a63gjnbyhaljru308qlenvrhnxzeajk9/",
+    "text": "Solve spooky word puzzles in Halloween Crosswords, featuring themed clues and three challenging levels. Perfect for mobile and tablet play, this game combines fun and brain-teasing challenges."
+},
+{
+    "index": 213,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/qtzaemfmdj5ovmh1jekjq4bltpnlbjd5/512x384.jpg",
+    "name": "Colors Grid",
+    "url": "https://html5.gamemonetize.com/qtzaemfmdj5ovmh1jekjq4bltpnlbjd5/",
+    "text": "Challenge your mind with Colors Grid, a visual puzzle game where you organize colored squares to match patterns. With increasing complexity, it’s ideal for developing problem-solving skills."
+},
+{
+    "index": 214,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/q80sjppcgrmh9yq3x5orcmhrwf8ltqaa/512x384.jpg",
+    "name": "MergeMaster",
+    "url": "https://html5.gamemonetize.com/q80sjppcgrmh9yq3x5orcmhrwf8ltqaa/",
+    "text": "Relax with MergeMaster, a casual puzzle game featuring beach-themed visuals and soothing sound effects. Perfect for fans of matching and elimination games."
+},
+{
+    "index": 215,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/ddb4oinisy5gur76nix440fy1xhjp8nw/512x384.jpg",
+    "name": "Blackpink Black Friday Fever",
+    "url": "https://html5.gamemonetize.com/ddb4oinisy5gur76nix440fy1xhjp8nw/",
+    "text": "Style Blackpink members in Blackpink Black Friday Fever, a fashion dress-up game inspired by Black Friday trends. Perfect for K-pop fans and fashion enthusiasts."
+},
+{
+    "index": 216,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/9prltg366ftrjuuvkyow792209ye37bg/512x384.jpg",
+    "name": "Count Masters Superhero",
+    "url": "https://html5.gamemonetize.com/9prltg366ftrjuuvkyow792209ye37bg/",
+    "text": "Embark on a parkour adventure in Count Masters Superhero, where you dodge obstacles and collect items as a superhero. Perfect for fans of fast-paced action games."
+},
+{
+    "index": 217,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/0g1lbwa9t0i9se2gx1a15f0x1j5eto2t/512x384.jpg",
+    "name": "Mini Tennis",
+    "url": "https://html5.gamemonetize.com/0g1lbwa9t0i9se2gx1a15f0x1j5eto2t/",
+    "text": "Master precision in Mini Tennis, an arcade sports game where you return balls while dodging obstacles. Perfect for fans of quick, skill-based challenges."
+},
+{
+    "index": 218,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/pr2p1clt6clmexk3u5e06vpmxexivku0/512x384.jpg",
+    "name": "BTS Winter Coloring",
+    "url": "https://html5.gamemonetize.com/pr2p1clt6clmexk3u5e06vpmxexivku0/",
+    "text": "Unleash creativity in BTS Winter Coloring, a winter-themed coloring game featuring adorable images. Perfect for kids and BTS fans alike."
+},
+{
+    "index": 219,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/7hd69nd6fkv70epx1d4kwjkx2ymxd3yk/512x384.jpg",
+    "name": "Halloween Merge",
+    "url": "https://html5.gamemonetize.com/7hd69nd6fkv70epx1d4kwjkx2ymxd3yk/",
+    "text": "Merge spooky items in Halloween Merge, a festive puzzle game where you unlock haunted treasures and complete levels. Perfect for Halloween enthusiasts."
+},
+{
+    "index": 220,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/ttig4tj1axodc6zcnc88fon5qm27yprt/512x384.jpg",
+    "name": "Mini Goalie",
+    "url": "https://html5.gamemonetize.com/ttig4tj1axodc6zcnc88fon5qm27yprt/",
+    "text": "Defend the goal in Mini Goalie, a reflex-testing game where you block incoming shots. Perfect for soccer fans and casual gamers."
+},
+{
+    "index": 221,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/nsuj9l7hotazamfmbvt36c1xneya84pk/512x384.jpg",
+    "name": "Plinko Ballon Archery Pop",
+    "url": "https://html5.gamemonetize.com/nsuj9l7hotazamfmbvt36c1xneya84pk/",
+    "text": "Pop balloons in Plinko Balloon Archery Pop, a blend of archery and Plinko mechanics. Perfect for fans of skill-based arcade games."
+},
+{
+    "index": 222,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/ynpmxdspl2anc9kliluolgjahjla7mjd/512x384.jpg",
+    "name": "Zigzag Adventure",
+    "url": "https://html5.gamemonetize.com/ynpmxdspl2anc9kliluolgjahjla7mjd/",
+    "text": "Navigate zigzag roads in Zigzag Adventure, an endless car game with increasing speed and unlockable vehicles. Perfect for fans of fast-paced driving games."
+},
+{
+    "index": 223,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/gvs7p4se8dr3j7wk21fhojo6b8m43mhq/512x384.jpg",
+    "name": "ABC Halloween",
+    "url": "https://html5.gamemonetize.com/gvs7p4se8dr3j7wk21fhojo6b8m43mhq/",
+    "text": "Learn the alphabet with ABC Halloween, an educational game for kids featuring Halloween-themed mini-games. Perfect for young learners."
+},
+{
+    "index": 224,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/5i0vrym62yzsweueas3avpgrccn6lwun/512x384.jpg",
+    "name": "Baby Smartphone",
+    "url": "https://html5.gamemonetize.com/5i0vrym62yzsweueas3avpgrccn6lwun/",
+    "text": "Engage young minds with Baby Smartphone, an educational game teaching numbers and songs through interactive rhymes. Perfect for toddlers."
+},
+{
+    "index": 225,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/xhcyeuuown2tyz55w6ookuyf4hqszk9j/512x384.jpg",
+    "name": "Layer Man 3d Run Collect",
+    "url": "https://html5.gamemonetize.com/xhcyeuuown2tyz55w6ookuyf4hqszk9j/",
+    "text": "Run and collect in Layer Man 3D Run Collect, an obstacle course game where you gather coil springs to grow larger. Perfect for fans of endless runners."
+},
+{
+    "index": 226,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/lktavtmelnunk2sl1erg9q4hsn85islm/512x384.jpg",
+    "name": "3D Golf Adventure",
+    "url": "https://html5.gamemonetize.com/lktavtmelnunk2sl1erg9q4hsn85islm/",
+    "text": "Play mini-golf in 3D Golf Adventure, a fun and challenging game featuring realistic obstacles and courses. Perfect for golf enthusiasts."
+},
+{
+    "index": 227,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/9vrdlxdyokgp8hwhi7eseyg72k3pa54w/512x384.jpg",
+    "name": "4color swipe",
+    "url": "https://html5.gamemonetize.com/9vrdlxdyokgp8hwhi7eseyg72k3pa54w/",
+    "text": "Test your reflexes in 4color swipe, a fast-paced game where you swipe balls in the correct direction based on their color. Perfect for quick, skill-based challenges."
+},
+{
+    "index": 228,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/3p0c5gp13e1cmlw7dew2pvjulv2akyxu/512x384.jpg",
+    "name": "Army Truck Simulator 2024",
+    "url": "https://html5.gamemonetize.com/3p0c5gp13e1cmlw7dew2pvjulv2akyxu/",
+    "text": "Drive military trucks in Army Truck Simulator 2024, a challenging game where you transport soldiers and ammo through hazardous highways. Perfect for simulation fans."
+},
+{
+    "index": 229,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/9vz6x0b5dmyk48s8nalz74iupnzh3tyq/512x384.jpg",
+    "name": "Plane Crash Ragdoll Simulator",
+    "url": "https://html5.gamemonetize.com/9vz6x0b5dmyk48s8nalz74iupnzh3tyq/",
+    "text": "Survive aerial chaos in Plane Crash Ragdoll Simulator, featuring realistic physics and multiple game modes. Perfect for fans of ragdoll and simulation games."
+},
+{
+    "index": 230,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/hrwkashqoo7fhvppv99z1ri63xxj70qd/512x384.jpg",
+    "name": "Cell Escape",
+    "url": "https://html5.gamemonetize.com/hrwkashqoo7fhvppv99z1ri63xxj70qd/",
+    "text": "Solve physics puzzles in Cell Escape, a game where you strategically remove blocks to free a prisoner. Perfect for puzzle and strategy enthusiasts."
+},
+{
+    "index": 231,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/594795s0fh64izkmnelrpracbmz1we3t/512x384.jpg",
+    "name": "Giveaway Checkers",
+    "url": "https://html5.gamemonetize.com/594795s0fh64izkmnelrpracbmz1we3t/",
+    "text": "Play Giveaway Checkers, a strategic board game with multiple difficulty levels and time controls. Perfect for fans of classic and competitive games."
+},
+{
+    "index": 232,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/yshmlvi9nfvclrsb5717cormnog76789/512x384.jpg",
+    "name": "Quiz Goose Math",
+    "url": "https://html5.gamemonetize.com/yshmlvi9nfvclrsb5717cormnog76789/",
+    "text": "Test your math skills in Quiz Goose Math, a fun and educational game where you answer questions to advance. Perfect for learners and puzzle fans."
+},
+{
+    "index": 233,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/e472eyiyyaeamdjqjipbl1txpuf2soto/512x384.jpg",
+    "name": "Shopaholic Black Friday",
+    "url": "https://html5.gamemonetize.com/e472eyiyyaeamdjqjipbl1txpuf2soto/",
+    "text": "Shop till you drop in Shopaholic Black Friday, a fashion dress-up game featuring Selena Gomez. Perfect for fans of styling and shopping games."
+},
+{
+    "index": 234,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/silz8kmpkeyd6wdwtkirsv1dijinroaf/512x384.jpg",
+    "name": "Mega Fall Ragdoll Simulator",
+    "url": "https://html5.gamemonetize.com/silz8kmpkeyd6wdwtkirsv1dijinroaf/",
+    "text": "Relax with Mega Fall Ragdoll Simulator, a stress-relief game where you break bones by falling from heights. Perfect for fans of ragdoll physics."
+},
+{
+    "index": 235,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/986fun05qwydiarux83m6eoy6bv94voc/512x384.jpg",
+    "name": "Mythic Auto Chess Realms",
+    "url": "https://html5.gamemonetize.com/986fun05qwydiarux83m6eoy6bv94voc/",
+    "text": "Strategize in Mythic Auto Chess Realms, a relaxing auto chess game with diverse team compositions. Perfect for fans of strategy and idle games."
+},
+{
+    "index": 236,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/iyxx3kkaeraxzs9vi3b1lj85na9bjpyq/512x384.jpg",
+    "name": "Bouncy Ball Vanishing Bars",
+    "url": "https://html5.gamemonetize.com/iyxx3kkaeraxzs9vi3b1lj85na9bjpyq/",
+    "text": "Bounce your way through Bouncy Ball Vanishing Bars, a fast-paced game where you time jumps over disappearing bars. Perfect for fans of reflex challenges."
+},
+{
+    "index": 237,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/p6awx5njobc4v40mxq7eljvskqw28u57/512x384.jpg",
+    "name": "Santa In a Pot",
+    "url": "https://html5.gamemonetize.com/p6awx5njobc4v40mxq7eljvskqw28u57/",
+    "text": "Help Santa in Santa In a Pot, a Christmas-themed physics puzzle game. Perfect for holiday fun and puzzle enthusiasts."
+},
+{
+    "index": 238,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/r4dpgggva8y5dexih070qs3jyzi7uup5/512x384.jpg",
+    "name": "Penty",
+    "url": "https://html5.gamemonetize.com/r4dpgggva8y5dexih070qs3jyzi7uup5/",
+    "text": "Connect gems in Penty, a colorful and addictive puzzle game. Perfect for fans of matching and strategy games."
+},
+{
+    "index": 239,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/grcoj83culvapsxit0uaznoyk1yqf6a0/512x384.jpg",
+    "name": "Emoji Skill Puzzles",
+    "url": "https://html5.gamemonetize.com/grcoj83culvapsxit0uaznoyk1yqf6a0/",
+    "text": "Solve emoji-based puzzles in Emoji Skill Puzzles, featuring six unique puzzle types. Perfect for fans of brain teasers and creative challenges."
+},
+{
+    "index": 240,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/txwl3520lsglou2w07efd3tlymvue57o/512x384.jpg",
+    "name": "Jump and Fly",
+    "url": "https://html5.gamemonetize.com/txwl3520lsglou2w07efd3tlymvue57o/",
+    "text": "Guide a squirrel and bee in Jump and Fly, an action-packed platformer where you collect coins and power-ups. Perfect for fans of adventure games."
+},
+{
+    "index": 241,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/m9rmolvne3a31grtkcbwj0s6b123aq8v/512x384.jpg",
+    "name": "Horror Ban Ban 1 2 Player Parkour",
+    "url": "https://html5.gamemonetize.com/m9rmolvne3a31grtkcbwj0s6b123aq8v/",
+    "text": "Escape the haunted house in Horror Ban Ban, a thrilling parkour game for 1-2 players. Choose between two siblings, collect essential items, and unlock doors with red and blue remotes. Avoid deadly traps like thorns and knives in this spine-chilling adventure. Perfect for fans of horror and co-op games!"
+},
+{
+    "index": 242,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/gkqfxpc88k3u5ac09dslws82ivboob75/512x384.jpg",
+    "name": "Spooky Links",
+    "url": "https://html5.gamemonetize.com/gkqfxpc88k3u5ac09dslws82ivboob75/",
+    "text": "Connect matching Halloween tiles in Spooky Links, a relaxing puzzle game. Clear tiles with two or fewer turns to create space and solve levels. Perfect for fans of casual and Halloween-themed games."
+},
+{
+    "index": 243,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/d41vzzxrgz9tzrkmdeezt7e8vxnrjfy0/512x384.jpg",
+    "name": "Candy Cascade",
+    "url": "https://html5.gamemonetize.com/d41vzzxrgz9tzrkmdeezt7e8vxnrjfy0/",
+    "text": "Clear groups of candies in Candy Cascade, a sweet puzzle game. Collect specific sweets, remove obstacles like wooden blocks and honey, and use bonuses to complete 40 challenging levels. Perfect for match-3 enthusiasts!"
+},
+{
+    "index": 244,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/xvuzcyxxdd4wtc95j2kxe6afp4tppwio/512x384.jpg",
+    "name": "Alien Buster",
+    "url": "https://html5.gamemonetize.com/xvuzcyxxdd4wtc95j2kxe6afp4tppwio/",
+    "text": "Defend Earth in Alien Buster, an adrenaline-pumping shooting game. Battle waves of aliens with futuristic weapons across stunning landscapes. Perfect for fans of space combat and action-packed shooters."
+},
+{
+    "index": 245,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/ny4cfrf39v7lm3xk6yata4uyu9nxho6g/512x384.jpg",
+    "name": "Crash Em Zombies",
+    "url": "https://html5.gamemonetize.com/ny4cfrf39v7lm3xk6yata4uyu9nxho6g/",
+    "text": "Crash zombies in Crash Em Zombies, a fast-paced arcade game. Tap to change direction, avoid obstacles, and collect boosters for high scores. Perfect for fans of casual and zombie-themed games."
+},
+{
+    "index": 246,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/6wdmcd732arglt1snp6usmsdan4wuhhp/512x384.jpg",
+    "name": "Spot Unique Animal",
+    "url": "https://html5.gamemonetize.com/6wdmcd732arglt1snp6usmsdan4wuhhp/",
+    "text": "Test your observation skills in Spot Unique Animal, a fun puzzle game. Find the one animal without a duplicate among groups of wild creatures. Perfect for players of all ages!"
+},
+{
+    "index": 247,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/jayv1ip186ga9nfzx9z5nm2f5tjkycfs/512x384.jpg",
+    "name": "Purple Clicker Game",
+    "url": "https://html5.gamemonetize.com/jayv1ip186ga9nfzx9z5nm2f5tjkycfs/",
+    "text": "Click your way to victory in Purple Clicker Game, a simple yet addictive game. Track your clicks per second and total clicks in this easy-to-play challenge. Perfect for casual gamers."
+},
+{
+    "index": 248,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/5xdhv37nxb6dpd7chw33kb82sjrgh8rs/512x384.jpg",
+    "name": "Retro Jack",
+    "url": "https://html5.gamemonetize.com/5xdhv37nxb6dpd7chw33kb82sjrgh8rs/",
+    "text": "Guide Jack through spooky landscapes in Retro Jack, a pixel-style adventure game. Collect jewels, avoid rolling stones, and enjoy nostalgic arcade gameplay with a Halloween twist. Perfect for retro gaming fans."
+},
+{
+    "index": 249,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/4k579xvfap5w0zh3j1uk9gznj41c51r5/512x384.jpg",
+    "name": "Mona Lisa Fashion Experiments",
+    "url": "https://html5.gamemonetize.com/4k579xvfap5w0zh3j1uk9gznj41c51r5/",
+    "text": "Style Mona Lisa in Mona Lisa Fashion Experiments, a humorous dress-up game. Combine past and present trends to create unique outfits. Perfect for fans of fashion and creativity games."
+},
+{
+    "index": 250,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/50o3tezgwknif6v8in5lghl0mt3pxwke/512x384.jpg",
+    "name": "Cube Master",
+    "url": "https://html5.gamemonetize.com/50o3tezgwknif6v8in5lghl0mt3pxwke/",
+    "text": "Match and blast cubes in Cube Master, a vibrant puzzle game. Solve challenging levels with exciting power-ups and engaging gameplay. Perfect for puzzle lovers of all ages."
+},
+{
+    "index": 251,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/t5dupwqivsoahc1au7vpiei6q640cmzu/512x384.jpg",
+    "name": "Screw Jam",
+    "url": "https://html5.gamemonetize.com/t5dupwqivsoahc1au7vpiei6q640cmzu/",
+    "text": "Solve screw puzzles in Screw Jam, a stress-relieving game. Move your fingers to complete challenges and enjoy a unique kind of fun. Perfect for casual gamers."
+},
+{
+    "index": 252,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/dtkbzxwyvrgtd7wecflu5dvnlldo9l41/512x384.jpg",
+    "name": "Kids Dentist Asmr Salon",
+    "url": "https://html5.gamemonetize.com/dtkbzxwyvrgtd7wecflu5dvnlldo9l41/",
+    "text": "Become a dentist in Kids Dentist ASMR Salon, an educational game. Perform procedures like fillings, extractions, and teeth whitening. Perfect for kids and fans of simulation games."
+},
+{
+    "index": 253,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/vi9vyf7fpagibh2ydio5mkdr010olwr3/512x384.jpg",
+    "name": "Baby Bella Braid Hair Salon",
+    "url": "https://html5.gamemonetize.com/vi9vyf7fpagibh2ydio5mkdr010olwr3/",
+    "text": "Design hairstyles in Baby Bella Braid Hair Salon, a creative make-up game. Enjoy hair spa, weaving, and coloring features. Perfect for fans of styling and beauty games."
+},
+{
+    "index": 254,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/vgvjnzi0s2per2w33lfs0w1eu5icwy93/512x384.jpg",
+    "name": "Toops",
+    "url": "https://html5.gamemonetize.com/vgvjnzi0s2per2w33lfs0w1eu5icwy93/",
+    "text": "Break shapes in Toops, a fast-paced HTML5 game. Swipe to throw balls and prevent shapes from reaching the top. Perfect for fans of skill-based challenges."
+},
+{
+    "index": 255,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/mcu1qexvqwksgoby0bw05y01hqzxlfsu/512x384.jpg",
+    "name": "Cubble on top",
+    "url": "https://html5.gamemonetize.com/mcu1qexvqwksgoby0bw05y01hqzxlfsu/",
+    "text": "Climb cliffs in Cubble on Top, a unique jumping game. Test your patience and skills to reach the finish. Perfect for fans of challenging platformers."
+},
+{
+    "index": 256,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/9vwyi3z5ew1y0fkt7sl3veu7z8gg9hfy/512x384.jpg",
+    "name": "Bubble Merge 2048",
+    "url": "https://html5.gamemonetize.com/9vwyi3z5ew1y0fkt7sl3veu7z8gg9hfy/",
+    "text": "Merge bubbles in Bubble Merge 2048, a unique puzzle game. Match numbers and colors, solve challenges, and unlock rewards. Perfect for fans of brain-teasing games."
+},
+{
+    "index": 257,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/3muhrlhyqf4lpdux52p7buuegacaspf7/512x384.jpg",
+    "name": "Lucy Makeup And Dress Up",
+    "url": "https://html5.gamemonetize.com/3muhrlhyqf4lpdux52p7buuegacaspf7/",
+    "text": "Style Lucy in Lucy Makeup and Dress Up, a creative beauty game. Apply makeup, choose outfits, and create stunning looks. Perfect for fans of fashion and make-up games."
+},
+{
+    "index": 258,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/rsamlcd9ez1drgzppwadisina1ptps25/512x384.jpg",
+    "name": "Spot The Unique Halloween",
+    "url": "https://html5.gamemonetize.com/rsamlcd9ez1drgzppwadisina1ptps25/",
+    "text": "Find the unique character in Spot the Unique Halloween, a fun observation game. Search through spooky portraits and enjoy Halloween-themed challenges. Perfect for all ages!"
+},
+{
+    "index": 259,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/szb7rfuwk4wnsktxfcpoa49d7r1ircbq/512x384.jpg",
+    "name": "Point to Merge",
+    "url": "https://html5.gamemonetize.com/szb7rfuwk4wnsktxfcpoa49d7r1ircbq/",
+    "text": "Merge numbers in Point to Merge, a strategic puzzle game. Connect blocks to reach the highest value and solve 50 challenging levels. Perfect for fans of brain-teasing games."
+},
+{
+    "index": 260,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/yt8kpi3lpnk6r62jpn7cckge4h9us3ux/512x384.jpg",
+    "name": "Crab Penalty",
+    "url": "https://html5.gamemonetize.com/yt8kpi3lpnk6r62jpn7cckge4h9us3ux/",
+    "text": "Score goals with a crab in Crab Penalty, a fun beach-themed game. Aim carefully to outsmart the goalie and enjoy endless entertainment. Perfect for casual gamers."
+},
+{
+    "index": 261,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/y1u8kfpu0lymi72uz9s4nqzs9oztmcot/512x384.jpg",
+    "name": "Roblox Climb Motorbike",
+    "url": "https://html5.gamemonetize.com/y1u8kfpu0lymi72uz9s4nqzs9oztmcot/",
+    "text": "Race and climb in Roblox Climb Motorbike, an adventure game. Complete parkour courses, upgrade your bike, and unlock skins. Perfect for fans of fast-paced and skill-based games."
+},
+{
+    "index": 262,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/qahsfosbapnzdo3ya16hjf9uudzw7eob/512x384.jpg",
+    "name": "Football Leauge",
+    "url": "https://html5.gamemonetize.com/qahsfosbapnzdo3ya16hjf9uudzw7eob/",
+    "text": "Lead your team to victory in Football League, an action-packed soccer game. Master tactics, score goals, and climb the ranks. Perfect for fans of sports and strategy games."
+},
+{
+    "index": 263,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/3iszjm1ew73xv6nwpnjly72o7jsezlu9/512x384.jpg",
+    "name": "Hexa Dots",
+    "url": "https://html5.gamemonetize.com/3iszjm1ew73xv6nwpnjly72o7jsezlu9/",
+    "text": "Match colorful dots in Hexa Dots, a vibrant puzzle game. Solve intricate levels and enjoy smooth gameplay. Perfect for fans of brain-teasing challenges."
+},
+{
+    "index": 264,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/l6by3mxcqrjf5hagenq9oh0d4rpixwh1/512x384.jpg",
+    "name": "Jigsaw Halloween",
+    "url": "https://html5.gamemonetize.com/l6by3mxcqrjf5hagenq9oh0d4rpixwh1/",
+    "text": "Piece together spooky images in Jigsaw Halloween, a festive puzzle game. Choose from various difficulty levels and enjoy Halloween-themed fun. Perfect for all ages!"
+},
+{
+    "index": 265,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/2m43hd8iyydapf3qp4ogzbhm50aem850/512x384.jpg",
+    "name": "Hippo Good Morning",
+    "url": "https://html5.gamemonetize.com/2m43hd8iyydapf3qp4ogzbhm50aem850/",
+    "text": "Help the hippo family start their day in Hippo Good Morning, an educational game for kids. Brush teeth, bathe, exercise, and prepare meals. Perfect for young learners."
+},
+{
+    "index": 266,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/mblvj47zl43zklf6ylwc480dm93id6pj/512x384.jpg",
+    "name": "Bubble Wheel Halloween",
+    "url": "https://html5.gamemonetize.com/mblvj47zl43zklf6ylwc480dm93id6pj/",
+    "text": "Match Halloween bubbles in Bubble Wheel Halloween, a festive puzzle game. Rotate the wheel, line up groups of three or more, and clear the board. Perfect for casual gamers."
+},
+{
+    "index": 267,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/aeej2k3czrlzgs7vf32b8uza49cxmyr0/512x384.jpg",
+    "name": "ASMR Doll Repair",
+    "url": "https://html5.gamemonetize.com/aeej2k3czrlzgs7vf32b8uza49cxmyr0/",
+    "text": "Repair and style dolls in ASMR Doll Repair, a creative make-up game. Choose models, fix them, and dress them up. Perfect for fans of DIY and doll games."
+},
+{
+    "index": 268,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/qyatso0vkjq5zz2e0lbzwua064bhfz3y/512x384.jpg",
+    "name": "Cars Movement",
+    "url": "https://html5.gamemonetize.com/qyatso0vkjq5zz2e0lbzwua064bhfz3y/",
+    "text": "Blast bad guys in Cars Movement, an exciting arcade game. Use colored balls strategically and enjoy endless fun. Perfect for fans of action-packed challenges."
+},
+{
+    "index": 269,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/dknfzlo018fucv5igyifvwuiprwrhtxy/512x384.jpg",
+    "name": "Match 3D Puzzle Mania",
+    "url": "https://html5.gamemonetize.com/dknfzlo018fucv5igyifvwuiprwrhtxy/",
+    "text": "Solve 3D puzzles in Match 3D Puzzle Mania, a captivating game. Collect coins, earn power-ups, and complete daily tasks. Perfect for puzzle enthusiasts."
+},
+{
+    "index": 270,
+    "star": "image/star-3.png",
+    "img": "https://img.gamemonetize.com/92la82a07m5svdcghv5t1ytio7bf4q9j/512x384.jpg",
+    "name": "Ping Pong Table Tennis",
+    "url": "https://html5.gamemonetize.com/92la82a07m5svdcghv5t1ytio7bf4q9j/",
+    "text": "Play table tennis in Ping Pong Table Tennis, a fast-paced sports game. Control the racket, hit the ball accurately, and outsmart opponents. Perfect for casual gamers."
+},
